@@ -10,47 +10,88 @@ public class main {
 
         File folder = new File("cranfield");
         File[] listOfFiles = folder.listFiles();
+        String[] tags = {"<TEXT>", "<AUTHOR>"};
+        int cont = 1;
 
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()){
-                corpus = readFile(listOfFile.getPath());
-                printNewCorpus(corpus);
+                corpus = readFile(listOfFile.getPath(),tags);
+                printNewCorpus(corpus,cont);
+                cont++;
             }
 
         }
-
-        /*corpus = readFile("cranfield/cranfield0001",,"</TEXT>","<AUTHOR>","</AUTHOR>");
-        printNewCorpus(corpus);*/
     }
 
-    private static LinkedList<String> readFile(String filename) throws IOException {
+    private static LinkedList<String> readFile(String filename, String[] tags) throws IOException {
         LinkedList<String> corpus = new LinkedList<String>();
         boolean save = false;
+        String[] tags_end = new String[tags.length];
+
+        for(int i = 0; i < tags.length; i++){
+            tags_end[i] = tags[i];
+            tags_end[i] = tags_end[i].substring(0,1) + "/" +  tags_end[i].substring(1, tags_end[i].length());
+        }
+
         FileReader freader = new FileReader(filename);
         BufferedReader br = new BufferedReader(freader);
         String s;
         while((s = br.readLine()) != null) {
-            /*if(s.equals(first_tag)) save = true;
-            if(s.equals(end)) save = false;
-            if(s.equals(sc_tag)) save = true;
-            if(s.equals(sc_end)) save = false;
+            for(int i = 0; i < tags.length; i++){
+                if(s.equals(tags[i])){
+                    save = true;
+                }
+                if(s.equals(tags_end[i])){
+                    save = false;
+                }
+            }
+
             if (save){
-                s = s.replaceAll("<[^>]+>", "");
-                corpus.add(s);
-            }*/
-            s = s.replaceAll("<[^>]+>", "");
-            corpus.add(s);
+                if (s.charAt(0) != '<'){
+                    s = s + "\n";
+                    corpus.add(s);
+                }
+
+            }
         }
         freader.close();
 
         return corpus;
     }
 
-    private static void printNewCorpus(LinkedList<String> corpus){
-        for(int i = 0; i < corpus.size(); i++){
-            System.out.println(corpus.get(i));
+    private static void printNewCorpus(LinkedList<String> corpus, int cont) {
+        BufferedWriter bw = null;
+        String directoryName = "out_corpus";
+
+        File directory = new File(directoryName);
+        if (! directory.exists()){
+            directory.mkdir();
         }
 
+        try {
+
+            File file = new File(directoryName + "/" + cont);
+
+            FileWriter fw = new FileWriter(file);
+            bw = new BufferedWriter(fw);
+
+            for (String corpu : corpus)
+                bw.write(corpu);
+
+
+            System.out.println("File written Successfully");
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            try {
+                if (bw != null)
+                    bw.close();
+            } catch (Exception ex) {
+                System.out.println("Error in closing the BufferedWriter" + ex);
+            }
+        }
     }
+
 
 }
