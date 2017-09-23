@@ -11,13 +11,11 @@ public class main {
         File folder = new File("cranfield");
         File[] listOfFiles = folder.listFiles();
         String[] tags = {"<TEXT>", "<AUTHOR>"};
-        int cont = 1;
 
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()){
                 corpus = readFile(listOfFile.getPath(),tags);
-                printNewCorpus(corpus,cont);
-                cont++;
+                printNewCorpus(corpus, listOfFile.getName());
             }
 
         }
@@ -59,7 +57,7 @@ public class main {
         return corpus;
     }
 
-    private static void printNewCorpus(LinkedList<String> corpus, int cont) {
+    private static void printNewCorpus(LinkedList<String> corpus, String cont) {
         BufferedWriter bw = null;
         String directoryName = "out_corpus";
 
@@ -77,9 +75,6 @@ public class main {
 
             for (String corpu : corpus)
                 bw.write(corpu);
-
-
-            System.out.println("File written Successfully");
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
