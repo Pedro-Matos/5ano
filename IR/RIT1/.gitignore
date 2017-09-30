@@ -1,1 +1,4 @@
 .idea/
+.cranfield/
+.out_corpus/
+.target/
