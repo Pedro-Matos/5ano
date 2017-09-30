@@ -1,5 +1,6 @@
 package T1.tokenizer;
 
+import T1.stemmer.Stemmer;
 import T1.stopwords.StopWordsRemover;
 import com.google.common.base.Splitter;
 
@@ -9,9 +10,11 @@ import java.util.List;
 public class SimpleTokenizer implements Tokenizer {
 
     private StopWordsRemover stopWordsRemover;
+    private Stemmer stemmer;
 
     public SimpleTokenizer() {
         stopWordsRemover = new StopWordsRemover("stopwords.txt");
+        stemmer = new Stemmer();
     }
 
     public List<String> tokenize(String corpusText) {
@@ -26,6 +29,7 @@ public class SimpleTokenizer implements Tokenizer {
         tokens.addAll(splitter.splitToList(corpusText));
 
         tokens = stopWordsRemover.removeStopWords(tokens);
+        tokens = stemmer.stem(tokens);
 
         return tokens;
     }
