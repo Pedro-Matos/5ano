@@ -12,8 +12,8 @@ import java.util.LinkedList;
  */
 public class Reader {
 
-    private static Document readFile(String filename, String[] tags) throws IOException {
-        LinkedList<String> corpus = new LinkedList<String>();
+    public static Document readFile(String filename, String[] tags, int docID) throws IOException {
+        String corpus  = "";
         boolean save = false;
         String[] tags_end = new String[tags.length];
 
@@ -38,14 +38,14 @@ public class Reader {
             if (save){
                 if (s.charAt(0) != '<'){
                     s = s + "\n";
-                    corpus.add(s);
+                    corpus = corpus.concat(s);
                 }
 
             }
         }
         freader.close();
 
-        return corpus;
+        return new Document(docID,corpus);
     }
 
 
