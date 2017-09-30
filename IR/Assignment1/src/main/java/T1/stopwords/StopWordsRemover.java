@@ -3,6 +3,8 @@ package T1.stopwords;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -34,6 +36,18 @@ public class StopWordsRemover {
 
     public boolean containsStopWord(String word) {
         return stopwords.contains(word);
+    }
+
+    public List<String> removeStopWords(List<String> tokens) {
+        List<String> filteredTokens = new ArrayList<String>(tokens);
+
+        for (String token : new HashSet<String>(tokens)) {
+            if (stopwords.contains(token)) {
+                filteredTokens.removeAll(Collections.singleton(token));
+            }
+        }
+
+        return filteredTokens;
     }
 
 }
