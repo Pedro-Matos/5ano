@@ -21,8 +21,10 @@ public class SimpleTokenizer implements Tokenizer {
 
         List<String> tokens = new ArrayList<String>();
 
+        corpusText = corpusText.replaceAll("(\\d)\\.(\\d)", "$1\\$dot\\$$2");
         corpusText = corpusText.replaceAll("[,;.?!()]", "");
-
+        corpusText = corpusText.replaceAll("\\'|\\.|(&[a-zA-Z\\d]+;)", " ");
+        corpusText = corpusText.replaceAll("\\$dot\\$", "\\.");
         corpusText = corpusText.toLowerCase();
 
         Splitter splitter = Splitter.onPattern("\\s+").omitEmptyStrings();
