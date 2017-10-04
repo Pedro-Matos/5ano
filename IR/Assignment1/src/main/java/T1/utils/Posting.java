@@ -24,7 +24,6 @@ public class Posting {
 
     @Override
     public String toString() {
-        return docId + ":" + frequency +
-                ',';
+        return docId + ":" + frequency;
     }
 }

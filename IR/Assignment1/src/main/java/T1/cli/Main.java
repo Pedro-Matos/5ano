@@ -36,7 +36,7 @@ public class Main {
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()){
                 Document corpus = T1.reader.Reader.readFile(listOfFile.getPath(), tags,id);
-                printNewCorpus(corpus.getCorpus(), listOfFile.getName());
+                //printNewCorpus(corpus.getCorpus(), listOfFile.getName());
                 List<String> tokens = tokenizer.tokenize(corpus.getCorpus());
                 // Add tokens to inverted index
                 invIndexer.addTokens(corpus.getId(), tokens);

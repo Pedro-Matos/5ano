@@ -86,19 +86,11 @@ public class InvertedIndex {
         try {
             String blockFileName = FILE_NAME + ++cont + ".txt";
             PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
-            JSONObject jsonObject = new JSONObject(dic);
-            try {
-                /*for(Entry<String, List<Posting>> e : dictionary.entrySet()){
-                pwt.print(e.getKey() + "\t");
-                for (Posting posting : e.getValue()) {
-                pwt.print(posting.toString() + " ");
-                }
-                pwt.println();
-                }*/
-                pwt.print(jsonObject.toString(4));
-            } catch (JSONException ex) {
-                Logger.getLogger(InvertedIndex.class.getName()).log(Level.SEVERE, null, ex);
+
+            for(Map.Entry<String, List<Posting>> entry : dic.entrySet()){
+                pwt.println(entry.getKey() + "\t" + entry.getValue());
             }
+
             pwt.close();
         } catch (IOException ex) {
             throw new RuntimeException("There was a problem writing the index to a file", ex);
