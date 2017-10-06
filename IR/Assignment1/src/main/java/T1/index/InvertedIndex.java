@@ -5,6 +5,9 @@ import T1.utils.Posting;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryPoolMXBean;
+import java.lang.management.MemoryType;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +49,6 @@ public class InvertedIndex {
     private void start_index(){
      //Create output dir
         outputDir.mkdir();
-
         try {
             FileUtils.cleanDirectory(outputDir);
         } catch (IOException ex) {
@@ -75,16 +77,20 @@ public class InvertedIndex {
             terms.add(token);
         }
 
-        //writeFile();
-
+        /*verificar memória
+         */
+        if(getMemory()>80){
+            writeFile();
+            dic.clear();
+        }
     }
 
     public void writeFile(){
-        File dir = new File(outputDir.getName());
+        File dir = new File(outputDir.getAbsolutePath());
 
         // Write block
         try {
-            String blockFileName = FILE_NAME + ++cont + ".txt";
+            String blockFileName = FILE_NAME + cont++ + ".txt";
             PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
 
             for(Map.Entry<String, List<Posting>> entry : dic.entrySet()){
@@ -97,7 +103,24 @@ public class InvertedIndex {
         }
 
     }
+    
+    private double getMemory(){
+        double usage = 0;
+        for (MemoryPoolMXBean mpBean: ManagementFactory.getMemoryPoolMXBeans()) {
+            if ((mpBean.getType() == MemoryType.HEAP) && mpBean.getName().equalsIgnoreCase("PS Eden Space")) {
+                //System.out.println(mpBean.getUsage().getUsed());
+                //System.out.println(mpBean.getUsage().getMax());
+                usage = ((double) mpBean.getUsage().getUsed()/mpBean.getUsage().getMax()) * 100;
+            }
+        }
+        return usage;
+    }
 
 
-
+    public void close() {
+        if (!dic.isEmpty()) {
+            writeFile();
+        }
+        System.out.println("Done");
+    }
 }

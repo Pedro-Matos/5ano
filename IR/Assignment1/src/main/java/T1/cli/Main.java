@@ -30,7 +30,7 @@ public class Main {
         File folder = new File("cranfield");
         File[] listOfFiles = folder.listFiles();
         String[] tags = {"<TEXT>", "<AUTHOR>"};
-        Tokenizer tokenizer = new SimpleTokenizer();
+        Tokenizer tokenizer = new SimpleTokenizer("stopwords.txt");
 
         int id = 1;
         for (File listOfFile : listOfFiles) {
@@ -43,7 +43,7 @@ public class Main {
                 id++;
             }
         }
-        invIndexer.writeFile();
+        invIndexer.close();
 
 
     }
