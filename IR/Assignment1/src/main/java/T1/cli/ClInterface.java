@@ -35,7 +35,7 @@ public class ClInterface {
 
 
         if(commandLine.getOptions().length == 0){
-            System.out.println("No arguments given");
+            printProgramHelp(options, "No arguments given.");
             System.exit(0);
         }
 
