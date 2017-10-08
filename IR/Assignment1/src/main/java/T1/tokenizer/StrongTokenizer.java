@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class FirstTokenizer implements Tokenizer {
+public class StrongTokenizer implements Tokenizer {
 
     private StopWordsRemover stopWordsRemover;
     private Stemmer stemmer;
 
-    public FirstTokenizer(String stopwords) {
+    public StrongTokenizer(String stopwords) {
         stopWordsRemover = new StopWordsRemover(stopwords);
         stemmer = new Stemmer();
     }
@@ -22,7 +22,7 @@ public class FirstTokenizer implements Tokenizer {
 
         List<String> tokens = new ArrayList<String>();
 
-        corpusText = corpusText.replaceAll("[,;.?!()*\\/\\+\\-]", "");
+        corpusText = corpusText.replaceAll("[,;.?=!()*\\/\\+\\-]", "");
 
         Splitter splitter = Splitter.onPattern("\\s+").omitEmptyStrings();
         tokens.addAll(splitter.splitToList(corpusText));

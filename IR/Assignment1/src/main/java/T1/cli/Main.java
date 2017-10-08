@@ -3,6 +3,7 @@ package T1.cli;
 import T1.index.InvertedIndex;
 import T1.stopwords.StopWordsRemover;
 import T1.tokenizer.SimpleTokenizer;
+import T1.tokenizer.StrongTokenizer;
 import T1.tokenizer.Tokenizer;
 import T1.utils.Document;
 import T1.index.InvertedIndex.*;
@@ -30,7 +31,7 @@ public class Main {
         File folder = new File("cranfield");
         File[] listOfFiles = folder.listFiles();
         String[] tags = {"<TEXT>", "<AUTHOR>"};
-        Tokenizer tokenizer = new SimpleTokenizer("stopwords.txt");
+        Tokenizer tokenizer = new StrongTokenizer("stopwords.txt");
 
         int id = 1;
         for (File listOfFile : listOfFiles) {

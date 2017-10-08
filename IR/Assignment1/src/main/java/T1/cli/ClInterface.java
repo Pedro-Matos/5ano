@@ -2,6 +2,7 @@ package T1.cli;
 
 import T1.index.InvertedIndex;
 import T1.tokenizer.SimpleTokenizer;
+import T1.tokenizer.StrongTokenizer;
 import T1.tokenizer.Tokenizer;
 import T1.utils.Document;
 import org.apache.commons.cli.*;
@@ -62,20 +63,30 @@ public class ClInterface {
             }
         }
 
-        // Type of tokenizer
-        String str_tokenizer;
-        if(commandLine.hasOption('t')){
-            str_tokenizer = commandLine.getOptionValue('t');
-            if(!str_tokenizer.equalsIgnoreCase("first") && !str_tokenizer.equalsIgnoreCase("simple")) {
-                System.out.println("Not a tokenizer type");
-                System.exit(0);
-            }
-        }
-
         // Stopwords location
         String stop = null;
         if(commandLine.hasOption('s')){
             stop = commandLine.getOptionValue('s');
+            File stopwordsFile = new File(stop);
+            if(!stopwordsFile.exists()) {
+                System.out.println("The " + stop + " file does not exist");
+                System.exit(0);
+            }
+        }
+
+        Tokenizer tokenizer = null;
+        // Type of tokenizer
+        String str_tokenizer;
+        if(commandLine.hasOption('t')){
+            str_tokenizer = commandLine.getOptionValue('t');
+            if(!str_tokenizer.equalsIgnoreCase("strong") && !str_tokenizer.equalsIgnoreCase("simple")) {
+                System.out.println("Not a tokenizer type");
+                System.exit(0);
+            }
+            if(str_tokenizer.equalsIgnoreCase("strong"))
+                tokenizer = new StrongTokenizer(stop);
+            else if(str_tokenizer.equalsIgnoreCase("simple"))
+                tokenizer = new SimpleTokenizer();
         }
 
         // Help information
@@ -93,7 +104,6 @@ public class ClInterface {
         File folder = new File(input_p);
         File[] listOfFiles = folder.listFiles();
         String[] tags = {"<TEXT>", "<AUTHOR>"};
-        Tokenizer tokenizer = new SimpleTokenizer(stop);
 
         int id = 1;
         for (File listOfFile : listOfFiles) {
@@ -109,6 +119,8 @@ public class ClInterface {
         invIndexer.close();
 
     }
+
+
     /**
      * Print program help message.
      *
@@ -119,7 +131,7 @@ public class ClInterface {
         final String HEADER = "\nAssignment 1	\n";
         final String USAGE =  "-i <directory> "
                 + "-o <directory> "
-                + "-t <tokenizer> first/simple "
+                + "-t <tokenizer> simple/strong "
                 + "-s <directory> "
                 + "-h help ";
 
