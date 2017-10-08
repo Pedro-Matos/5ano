@@ -82,6 +82,7 @@ public class InvertedIndex {
         if(getMemory()>80){
             writeFile();
             dic.clear();
+            System.gc();
         }
     }
 

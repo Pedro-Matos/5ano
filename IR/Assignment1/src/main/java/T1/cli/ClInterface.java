@@ -17,6 +17,8 @@ import java.util.List;
 public class ClInterface {
     public static void main(String[] args) throws IOException {
 
+        long start = System.nanoTime();
+
         CommandLineParser parser = new GnuParser();
         Options options = new Options();
         options.addOption("i", "input-path", true, "Directory with corpus files.");
@@ -117,6 +119,9 @@ public class ClInterface {
             }
         }
         invIndexer.close();
+
+        long elapsedTime = System.nanoTime() - start;
+        System.out.println("Elapsed Time: " + elapsedTime);
 
     }
 
