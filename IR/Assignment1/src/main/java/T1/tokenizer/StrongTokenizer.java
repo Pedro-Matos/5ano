@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * Create by Pedro Matos & Tiago Bastos
+ */
 public class StrongTokenizer implements Tokenizer {
 
     private StopWordsRemover stopWordsRemover;

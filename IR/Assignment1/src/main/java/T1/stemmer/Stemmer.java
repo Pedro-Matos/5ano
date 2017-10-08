@@ -6,6 +6,10 @@ import org.tartarus.snowball.ext.englishStemmer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Create by Pedro Matos & Tiago Bastos
+ */
+
 public class Stemmer {
 
     private SnowballStemmer stemmer;

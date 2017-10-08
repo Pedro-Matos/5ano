@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Create by Pedro Matos & Tiago Bastos
+ */
 public class StopWordsRemover {
 
     private HashSet<String> stopwords;

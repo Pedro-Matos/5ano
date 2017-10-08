@@ -1,7 +1,9 @@
 package T1.utils;
 
 /**
- * Created by pmatos9 on 30/09/17.
+ * Create by Pedro Matos & Tiago Bastos
+ * Class that represents the Posting, which is important to the terms in the inverted index.
+ * DocID and the frequency are the important aspects.
  */
 public class Posting {
 

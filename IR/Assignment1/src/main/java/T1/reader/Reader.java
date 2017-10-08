@@ -5,10 +5,10 @@ import T1.utils.Document;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedList;
 
 /**
- * Created by pmatos9 on 30/09/17.
+ * Created by Pedro Matos & Tiago Bastos
+ * Class to read the corpus from the file
  */
 public class Reader {
 

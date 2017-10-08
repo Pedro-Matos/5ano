@@ -2,7 +2,9 @@ package T1.utils;
 
 
 /**
- * Created by pmatos9 on 30/09/17.
+ * Create by Pedro Matos & Tiago Bastos
+ *
+ * Class that represents the object Document. ID and Corpus the important information from the files
  */
 public class Document {
 

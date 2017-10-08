@@ -9,17 +9,16 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryPoolMXBean;
 import java.lang.management.MemoryType;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import org.apache.commons.io.FileUtils;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 
 /**
- * Created by pmatos9 on 30/09/17.
+ * Created by Pedro Matos & Tiago Bastos
+ * This is the class responsible for the Inverted Index
+ *
+ * Here we have a TreeMap that will work as a dictionary, with the terms and their's posting list.
  */
 public class InvertedIndex {
 
@@ -27,15 +26,10 @@ public class InvertedIndex {
     private int cont;
     private Map<String, List<Posting>> dic;
     private Set<String> terms;
-    /**
-     * Output directory.
-     */
     private File outputDir;
 
     public InvertedIndex(File outputDir){
-        /*
-            Garante que os elementos são organizados em ordem ascendente da chave.
-         */
+
         this.dic = new TreeMap();
         this.terms = new HashSet<String>();
         this.outputDir = outputDir;
@@ -47,7 +41,9 @@ public class InvertedIndex {
      * Initializes inverted index.
      */
     private void start_index(){
-     //Create output dir
+     /*
+        Create output dir
+      */
         outputDir.mkdir();
         try {
             FileUtils.cleanDirectory(outputDir);
@@ -57,7 +53,9 @@ public class InvertedIndex {
     }
 
     public void addTokens(int docId, List<String> tokens){
-        // Count tokens occurences
+        /*
+            Count the tokens
+         */
         Multiset<String> multiset = HashMultiset.create(tokens);
 
         Posting tmp_posting;
@@ -77,7 +75,8 @@ public class InvertedIndex {
             terms.add(token);
         }
 
-        /*verificar memória
+        /*
+           Check memory usage by dictionary. Print file and erase if bigger than 80%
          */
         if(getMemory()>80){
             writeFile();
@@ -86,10 +85,12 @@ public class InvertedIndex {
         }
     }
 
+    /**
+     * Write index file
+     */
     public void writeFile(){
         File dir = new File(outputDir.getAbsolutePath());
 
-        // Write block
         try {
             String blockFileName = FILE_NAME + cont++ + ".txt";
             PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
@@ -104,20 +105,24 @@ public class InvertedIndex {
         }
 
     }
-    
+
+    /**
+     * Check the percentage of memory used
+     * @return double with the percentage
+     */
     private double getMemory(){
         double usage = 0;
         for (MemoryPoolMXBean mpBean: ManagementFactory.getMemoryPoolMXBeans()) {
             if ((mpBean.getType() == MemoryType.HEAP) && mpBean.getName().equalsIgnoreCase("PS Eden Space")) {
-                //System.out.println(mpBean.getUsage().getUsed());
-                //System.out.println(mpBean.getUsage().getMax());
                 usage = ((double) mpBean.getUsage().getUsed()/mpBean.getUsage().getMax()) * 100;
             }
         }
         return usage;
     }
 
-
+    /**
+     * Write the file if the dic is not empty. Can be empty if it has been writing when the memory was low
+     */
     public void close() {
         if (!dic.isEmpty()) {
             writeFile();

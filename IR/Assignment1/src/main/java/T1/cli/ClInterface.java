@@ -12,12 +12,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by pmatos9 on 05/10/17.
+ * Created by Pedro Matos & Tiago Bastos
+ *
+ * This is the main interface of our application. It works like a command line interface to the user.
  */
 public class ClInterface {
     public static void main(String[] args) throws IOException {
 
         long start = System.nanoTime();
+
+        /*
+         * here we indicate all the options the user can use.
+         **/
 
         CommandLineParser parser = new GnuParser();
         Options options = new Options();
@@ -35,13 +41,17 @@ public class ClInterface {
             return;
         }
 
-
+        /*
+         * if no arguments are given, we print the program help to the user.
+         */
         if(commandLine.getOptions().length == 0){
             printProgramHelp(options, "No arguments given.");
             System.exit(0);
         }
 
-        // Input path
+        /*
+         * Input path of the cranfield texts (directory)
+         */
         String input_p = null;
         if(commandLine.hasOption('i')){
             input_p = commandLine.getOptionValue('i');
@@ -52,7 +62,9 @@ public class ClInterface {
             }
         }
 
-        // Output path
+        /*
+         * Output path of the index file (directory)
+         */
         String out_p = null;
         if(commandLine.hasOption('o')){
             out_p = commandLine.getOptionValue('o');
@@ -65,7 +77,9 @@ public class ClInterface {
             }
         }
 
-        // Stopwords location
+        /*
+         * Stopwords location (file)
+         */
         String stop = null;
         if(commandLine.hasOption('s')){
             stop = commandLine.getOptionValue('s');
@@ -76,8 +90,10 @@ public class ClInterface {
             }
         }
 
+        /*
+         * Type of tokenizer, can be simple or strong
+         */
         Tokenizer tokenizer = null;
-        // Type of tokenizer
         String str_tokenizer;
         if(commandLine.hasOption('t')){
             str_tokenizer = commandLine.getOptionValue('t');
@@ -91,13 +107,18 @@ public class ClInterface {
                 tokenizer = new SimpleTokenizer();
         }
 
-        // Help information
+        /*
+         * Help information
+         */
         if (commandLine.hasOption('h')) {
             printProgramHelp(options, "Help information");
             System.exit(0);
         }
 
 
+        /*
+         * Creation of the reader and the inverted indexer
+         */
         File output = new File(out_p);
         T1.reader.Reader reader = new T1.reader.Reader();
         InvertedIndex invIndexer = new InvertedIndex(output);
@@ -105,15 +126,22 @@ public class ClInterface {
 
         File folder = new File(input_p);
         File[] listOfFiles = folder.listFiles();
+        /*
+         * We use this tags to filter the information we want
+         */
         String[] tags = {"<TEXT>", "<AUTHOR>"};
 
         int id = 1;
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()){
+                /*
+                 * read the file and get the corpus and id
+                 */
                 Document corpus = T1.reader.Reader.readFile(listOfFile.getPath(), tags,id);
-                //printNewCorpus(corpus.getCorpus(), listOfFile.getName());
                 List<String> tokens = tokenizer.tokenize(corpus.getCorpus());
-                // Add tokens to inverted index
+                /*
+                 * Add tokens to inverted index
+                 */
                 invIndexer.addTokens(corpus.getId(), tokens);
                 id++;
             }
