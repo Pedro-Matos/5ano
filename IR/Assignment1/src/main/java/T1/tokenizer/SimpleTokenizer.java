@@ -23,7 +23,7 @@ public class SimpleTokenizer implements Tokenizer {
 
         corpusText = corpusText.replaceAll("[,;.?!=()*\\/\\+\\-]", "");
 
-        corpusText = corpusText.replaceAll("\\'|\\.|(&[a-zA-Z]+;)", " ");
+        corpusText = corpusText.replaceAll("\\'|(&[a-zA-Z]+;)", " ");
         corpusText = corpusText.replaceAll("\\d","");
         corpusText = corpusText.toLowerCase();
 

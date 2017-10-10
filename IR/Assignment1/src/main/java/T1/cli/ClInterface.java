@@ -19,8 +19,6 @@ import java.util.List;
 public class ClInterface {
     public static void main(String[] args) throws IOException {
 
-        long start = System.nanoTime();
-
         /*
          * here we indicate all the options the user can use.
          **/
@@ -101,6 +99,7 @@ public class ClInterface {
                 System.out.println("Not a tokenizer type");
                 System.exit(0);
             }
+
             if(str_tokenizer.equalsIgnoreCase("strong"))
                 tokenizer = new StrongTokenizer(stop);
             else if(str_tokenizer.equalsIgnoreCase("simple"))
@@ -131,6 +130,8 @@ public class ClInterface {
          */
         String[] tags = {"<TEXT>", "<AUTHOR>"};
 
+        //long start = System.nanoTime();
+
         int id = 1;
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()){
@@ -148,8 +149,8 @@ public class ClInterface {
         }
         invIndexer.close();
 
-        long elapsedTime = System.nanoTime() - start;
-        System.out.println("Elapsed Time: " + elapsedTime);
+        //long elapsedTime = System.nanoTime() - start;
+        //System.out.println("Elapsed Time: " + elapsedTime);
 
     }
 
