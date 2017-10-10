@@ -9,10 +9,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-/**
- * Create by Pedro Matos & Tiago Bastos
- */
-
 public class SimpleTokenizer implements Tokenizer {
 
 

@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * Create by Pedro Matos & Tiago Bastos
- */
 public class StrongTokenizer implements Tokenizer {
 
     private StopWordsRemover stopWordsRemover;
@@ -25,7 +22,9 @@ public class StrongTokenizer implements Tokenizer {
 
         List<String> tokens = new ArrayList<String>();
 
+        corpusText = corpusText.replaceAll("(\\d)\\.(\\d)", "$1\\$dot\\$$2");
         corpusText = corpusText.replaceAll("[,;.?=!()*\\/\\+\\-]", "");
+        corpusText = corpusText.replaceAll("\\$dot\\$", "\\.");
 
         Splitter splitter = Splitter.onPattern("\\s+").omitEmptyStrings();
         tokens.addAll(splitter.splitToList(corpusText));
