@@ -12,7 +12,7 @@ public class Main {
         String filename = "index0.txt" ;
         Reader indexreader = new Reader();
         indexreader.readFile(filename);
-
+        indexreader.writeFile();
 
 
 

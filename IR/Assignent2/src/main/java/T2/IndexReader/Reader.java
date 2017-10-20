@@ -1,14 +1,12 @@
 package T2.IndexReader;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import T2.utils.Posting;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
+import org.apache.commons.io.FileUtils;
 import sun.awt.image.ImageWatched;
 
 
@@ -47,48 +45,66 @@ public class Reader {
         String[] array_to_list = postings_raw.split(",");
         postings_parsed.addAll(Arrays.asList(array_to_list));   //ter todos os postings separados
 
-        System.out.println(term);
+        Posting tmp_posting;
+
         for(int i = 0; i < postings_parsed.size(); i++){
 
             if(i == 0) {
-                System.out.println(postings_parsed.get(i));
+                String[] doc_freq = postings_parsed.get(i).split(":");
+                int docid = new Integer(doc_freq[0]);
+                int freq = new Integer(doc_freq[1]);
+                tmp_posting = new Posting(docid,freq);
             }
             else{
-                System.out.println(postings_parsed.get(i).substring(1,postings_parsed.get(i).length()));
+                String post_parsed_2 = postings_parsed.get(i).substring(1,postings_parsed.get(i).length());
+                String[] doc_freq = post_parsed_2.split(":");
+                int docid = new Integer(doc_freq[0]);
+                int freq = new Integer(doc_freq[1]);
+                tmp_posting = new Posting(docid,freq);
             }
 
-            
+            if(dic.containsKey(term)){
+                dic.get(term).add(tmp_posting);
+            }
+            else{
+                List<Posting> list = new ArrayList<Posting>();
+                list.add(tmp_posting);
+                dic.put(term,list);
+            }
         }
-        System.out.println("-------------------------");
 
     }
 
-    /*
-    public void addTokens(int docId, List<String> tokens){
-
-    Multiset<String> multiset = HashMultiset.create(tokens);
-
-    Posting tmp_posting;
-
-        for(String token : multiset.elementSet()){
-        tmp_posting = new Posting(docId,multiset.count(token));
-
-        if(dic.containsKey(token)){
-            dic.get(token).add(tmp_posting);
-        }
-        else{
-            List<Posting> list = new ArrayList<Posting>();
-            list.add(tmp_posting);
-            dic.put(token,list);
-        }
-
-        terms.add(token);
-    }
-
-
+    /**
+     * Write index file
      */
+    public void writeFile(){
 
+        File dir_tmp = new File("teste");
 
+        dir_tmp.mkdir();
+        try {
+            FileUtils.cleanDirectory(dir_tmp);
+        } catch (IOException ex) {
+            throw new RuntimeException("There was a problem cleaning the directory.", ex);
+        }
+
+        File dir = new File("teste");
+
+        try {
+            String blockFileName = "index_teste.txt";
+            PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
+
+            for(Map.Entry<String, List<Posting>> entry : dic.entrySet()){
+                pwt.println(entry.getKey() + "\t" + entry.getValue());
+            }
+
+            pwt.close();
+        } catch (IOException ex) {
+            throw new RuntimeException("There was a problem writing the index to a file", ex);
+        }
+
+    }
 
 
 }
