@@ -75,9 +75,6 @@ public class Reader {
 
     }
 
-    /**
-     * Write index file
-     */
     public void writeFile(){
 
         File dir_tmp = new File("teste");
@@ -106,5 +103,8 @@ public class Reader {
 
     }
 
+    public Map<String, List<Posting>> getDic() {
+        return dic;
+    }
 
 }
