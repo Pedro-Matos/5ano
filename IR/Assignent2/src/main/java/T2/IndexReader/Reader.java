@@ -30,10 +30,6 @@ public class Reader {
             parseContent(s);
         }
         freader.close();
-
-
-
-
     }
 
     private void parseContent(String s){
@@ -75,33 +71,6 @@ public class Reader {
 
     }
 
-    public void writeFile(){
-
-        File dir_tmp = new File("teste");
-
-        dir_tmp.mkdir();
-        try {
-            FileUtils.cleanDirectory(dir_tmp);
-        } catch (IOException ex) {
-            throw new RuntimeException("There was a problem cleaning the directory.", ex);
-        }
-
-        File dir = new File("teste");
-
-        try {
-            String blockFileName = "index_teste.txt";
-            PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
-
-            for(Map.Entry<String, List<Posting>> entry : dic.entrySet()){
-                pwt.println(entry.getKey() + "\t" + entry.getValue());
-            }
-
-            pwt.close();
-        } catch (IOException ex) {
-            throw new RuntimeException("There was a problem writing the index to a file", ex);
-        }
-
-    }
 
     public Map<String, List<Posting>> getDic() {
         return dic;

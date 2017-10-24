@@ -32,7 +32,7 @@ public class BooleanRetrieval {
 
 
 
-    public void ProcessTerms(List<String> query, Map<String, List<Posting>> dic){
+    public void ProcessTerms(List<String> query, Map<String, List<Posting>> dic, File dir){
         int query_id = 1;
         String query_term;
 
@@ -54,33 +54,29 @@ public class BooleanRetrieval {
                         ScoringOption scoring = new ScoringOption();
                         scoring.setQuery_id(query_id);
                         scoring.setDoc_id(post.getDocId());
-
+                        scoring.setDoc_score(post.getFrequency());
                         scoring_opt.add(scoring);
                     }
-
                 }
-
             }
-
             query_id++;
         }
-
-        WriteScores();
+        WriteScores(dir);
     }
 
 
-    private void WriteScores(){
+    private void WriteScores(File dir){
 
-        File dir_tmp = new File("outputs");
 
-        dir_tmp.mkdir();
+
+        dir.mkdir();
         try {
-            FileUtils.cleanDirectory(dir_tmp);
+            FileUtils.cleanDirectory(dir);
         } catch (IOException ex) {
             throw new RuntimeException("There was a problem cleaning the directory.", ex);
         }
 
-        File dir = new File("outputs");
+
 
         try {
             String blockFileName = "scores.txt";
@@ -88,7 +84,7 @@ public class BooleanRetrieval {
 
             pwt.println("query_id" + "\t" + "doc_id" + "\t" + "doc_score");
             for(ScoringOption scor : scoring_opt){
-                pwt.println(scor.getQuery_id() + "\t" + scor.getDoc_id());
+                pwt.println(scor.getQuery_id() + "\t\t\t" + scor.getDoc_id() + "\t\t\t" + scor.getDoc_score());
             }
 
             pwt.close();
