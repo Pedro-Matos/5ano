@@ -1,0 +1,3 @@
+[1026/110658.732:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acesso negado} Um processo pediu acesso a um objeto, mas não lhe foram concedidos permissões de acesso.  (0xc0000022)
+[1026/110658.732:ERROR:exception_snapshot_win.cc(87)] thread ID 12228 not found in process
+[1026/110658.732:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed
