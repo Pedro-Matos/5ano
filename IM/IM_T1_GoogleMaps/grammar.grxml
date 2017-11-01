@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar version="1.0" xml:lang="pt-PT" mode="voice" root="basicCmd"
+xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
+
+  <rule id="basicCmd" scope="public">
+    <ruleref uri="#command"/>
+  </rule>
+
+
+  <rule id="command">
+    <one-of>
+      <item>
+        <tag>out.Categoria = "places"; </tag>
+        <ruleref uri="#Cidades"/>
+        <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
+      </item>
+        <tag>out.Categoria = "vista"; </tag>
+        <ruleref uri="#TrocarVista"/>
+        <tag>out.TrocarVista = rules.TrocarVista.TrocarVista ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "zoom"; </tag>
+        <ruleref uri="#Zoom"/>
+        <tag>out.Zoom = rules.Zoom.Zoom ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "proximos"; </tag>
+        <item>
+          <ruleref uri="#Proximos"/>
+          <tag>out.Proximos = rules.Proximos.Proximos ; </tag>
+        </item>
+      </item>
+      <item>
+        <tag>out.Categoria = "proximosLocal"; </tag>
+        <item>
+          <ruleref uri="#Proximos"/>
+          <tag>out.Proximos = rules.Proximos.Proximos ; </tag>
+          <ruleref uri="#Apendice"/>
+          <ruleref uri="#Cidades"/>
+          <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
+        </item>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="TrocarVista">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          vista de mapa <tag>out.TrocarVista = "mapa" ; </tag>
+        </item>
+        <item weight="10">
+          vista de satélite <tag>out.TrocarVista = "satélite" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Apendice">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">  no  </item>
+        <item weight="10">  na  </item>
+        <item weight="10">  em </item>
+        <item weight="10">  do </item>
+        <item weight="10">  da </item>
+        <item weight="10">  de </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Zoom">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          ver menos  <tag>out.Zoom = "menos" ; </tag>
+        </item>
+        <item weight="10">
+          ver mais  <tag>out.Zoom = "mais" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Proximos">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          ver hospitais   <tag>out.Proximos = "hospitais" ; </tag>
+        </item>
+        <item weight="10">
+          ver pontos de interesse   <tag>out.Proximos = "interesse" ; </tag>
+        </item>
+        <item weight="10">
+          ver hotéis  <tag>out.Proximos = "hoteis" ; </tag>
+        </item>
+        <item weight="10">
+          ver museus   <tag>out.Proximos = "museus" ; </tag>
+        </item>
+        <item weight="10">
+          ver restaurantes   <tag>out.Proximos = "restaurantes" ; </tag>
+        </item>
+        <item weight="10">
+          ver aeroporto   <tag>out.Proximos = "aeroportos" ; </tag>
+        </item>
+        <item weight="2">
+          hospitais   <tag>out.Proximos = "hospitais" ; </tag>
+        </item>
+        <item weight="2">
+          pontos de interesse    <tag>out.Proximos = "interesse" ; </tag>
+        </item>
+        <item weight="2">
+          hotéis   <tag>out.Proximos = "hoteis" ; </tag>
+        </item>
+        <item weight="2">
+          museus   <tag>out.Proximos = "museus" ; </tag>
+        </item>
+        <item weight="2">
+          restaurantes   <tag>out.Proximos = "restaurantes" ; </tag>
+        </item>
+        <item weight="2">
+          aeroporto    <tag>out.Proximos = "aeroportos" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Cidades">
+    <item repeat="1">
+      <one-of>
+        <item weight="5">
+          Abrantes <tag>out.Cidades = "Aveiro" ; </tag>
+        </item>
+        <item weight="5">
+          Agualva-Cacém  <tag>out.Cidades = "Porto" ; </tag>
+        </item>
+        <item weight="5">
+          Águeda  <tag>out.Cidades = "Águeda" ; </tag>
+        </item>
+        <item weight="5">
+          Albergaria-a-Velha <tag>out.Cidades = "Albergaria-a-Velha" ; </tag>
+        </item>
+        <item weight="5">
+          Albufeira  <tag>out.Cidades = "Lisboa" ; </tag>
+        </item>
+        <item weight="5">
+          Alcobaça <tag>out.Cidades = "Alcobaça" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+</grammar>
