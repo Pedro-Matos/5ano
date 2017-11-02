@@ -1,29 +1,188 @@
-﻿<?xml version="1.0"?>
-<grammar xml:lang="pt-PT" version="1.0" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
-	<rule id="rootRule" scope="public">
-	  <item>
-		  <item>
-			<ruleref uri="#object"/>
-			<tag>out.shape=rules.latest();</tag>
-		  </item>
-		  <item>
-			<ruleref uri="#color"/>
-			<tag>out.color=rules.latest();</tag>
-		  </item>
-	  </item>
-	</rule>
-	<rule id="object">
-	  <one-of>
-		<item>quadrado<tag>out="SQUARE"</tag></item>
-		<item>círculo<tag>out="CIRCLE"</tag></item>
-		<item>triângulo<tag>out="TRIANGLE"</tag></item>
-	  </one-of>
-	</rule>
-	<rule id="color">
-	  <one-of>
-		<item>verde<tag>out="GREEN"</tag></item>
-		<item>azul<tag>out="BLUE"</tag></item>
-		<item>vermelho<tag>out="RED"</tag></item>
-	  </one-of>
-	</rule>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<grammar version="1.0" xml:lang="pt-PT" mode="voice" root="basicCmd"
+xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
+
+  <rule id="basicCmd" scope="public">
+    <ruleref uri="#command"/>
+  </rule>
+
+
+  <rule id="command">
+    <one-of>
+      <item>
+        <tag>out.Categoria = "cidades"; </tag>
+        <ruleref uri="#Cidades"/>
+        <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "tipovista"; </tag>
+        <ruleref uri="#EscolherVista"/>
+        <tag>out.EscolherVista = rules.EscolherVista.EscolherVista ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "zoom"; </tag>
+        <ruleref uri="#Zoom"/>
+        <tag>out.Zoom = rules.Zoom.Zoom ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "Opções"; </tag>
+        <ruleref uri="#Opções"/>
+        <tag>out.Opções = rules.Opções.Opções ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "locais"; </tag>
+        <item>
+          <ruleref uri="#locais"/>
+          <tag>out.locais = rules.locais.locais ; </tag>
+        </item>
+      </item>
+      <item>
+        <tag>out.Categoria = "locaisEmCidades"; </tag>
+        <item>
+          <ruleref uri="#locais"/>
+          <tag>out.locais = rules.locais.locais ; </tag>
+          <ruleref uri="#Preposições"/>
+          <ruleref uri="#Cidades"/>
+          <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
+        </item>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="EscolherVista">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          vista de mapa <tag>out.EscolherVista = "mapa" ; </tag>
+        </item>
+        <item weight="10">
+          vista de satélite <tag>out.EscolherVista = "satélite" ; </tag>
+        </item>
+        <item weight="10">
+          vista de terreno <tag>out.EscolherVista = "terreno" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Opções">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          mostrar painel <tag>out.Paineis = "painel" ; </tag>
+        </item>
+        <item weight="10">
+          esconder painel <tag>out.Paineis = "sem painel" ; </tag>
+        </item>
+        <item weight="10">
+          fechar direções <tag>out.Paineis = "sem direções" ; </tag>
+        </item>
+        <item weight="10">
+          limpar pesquisa <tag>out.Paineis = "limpar pesquisa" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+
+  <rule id="Preposições">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">  no  </item>
+        <item weight="10">  na  </item>
+        <item weight="10">  em </item>
+        <item weight="10">  do </item>
+        <item weight="10">  da </item>
+        <item weight="10">  de </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Zoom">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          mais zoom <tag>out.Zoom = "mais" ; </tag>
+        </item>
+        <item weight="10">
+          menos zoom <tag>out.Zoom = "menos" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="locais">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          ver hospitais   <tag>out.locais = "hospitais" ; </tag>
+        </item>
+        <item weight="10">
+          ver pontos de interesse   <tag>out.locais = "interesse" ; </tag>
+        </item>
+        <item weight="10">
+          ver hotéis  <tag>out.locais = "hoteis" ; </tag>
+        </item>
+        <item weight="10">
+          ver museus   <tag>out.locais = "museus" ; </tag>
+        </item>
+        <item weight="10">
+          ver restaurantes   <tag>out.locais = "restaurantes" ; </tag>
+        </item>
+        <item weight="10">
+          ver aeroporto   <tag>out.locais = "aeroportos" ; </tag>
+        </item>
+        <item weight="2">
+          hospitais   <tag>out.locais = "hospitais" ; </tag>
+        </item>
+        <item weight="2">
+          pontos de interesse    <tag>out.locais = "interesse" ; </tag>
+        </item>
+        <item weight="2">
+          hotéis   <tag>out.locais = "hoteis" ; </tag>
+        </item>
+        <item weight="2">
+          museus   <tag>out.locais = "museus" ; </tag>
+        </item>
+        <item weight="2">
+          restaurantes   <tag>out.locais = "restaurantes" ; </tag>
+        </item>
+        <item weight="2">
+          aeroporto    <tag>out.locais = "aeroportos" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Cidades">
+    <item repeat="1">
+      <one-of>
+        <item weight="5">
+          Aveiro <tag>out.Cidades = "Aveiro" ; </tag>
+        </item>
+        <item weight="5">
+          Porto <tag>out.Cidades = "Porto" ; </tag>
+        </item>
+        <item weight="5">
+          Águeda  <tag>out.Cidades = "Águeda" ; </tag>
+        </item>
+        <item weight="5">
+          Albergaria-a-Velha <tag>out.Cidades = "Albergaria-a-Velha" ; </tag>
+        </item>
+        <item weight="5">
+          Lisboa  <tag>out.Cidades = "Lisboa" ; </tag>
+        </item>
+        <item weight="5">
+          Viseu <tag>out.Cidades = "Viseu" ; </tag>
+        </item>
+        <item weight="5">
+          Sever do Vouga <tag>out.Cidades = "Sever do Vouga" ; </tag>
+        </item>
+        <item weight="5">
+          Santa Comba Dão <tag>out.Cidades = "Santa Comba Dão" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
 </grammar>

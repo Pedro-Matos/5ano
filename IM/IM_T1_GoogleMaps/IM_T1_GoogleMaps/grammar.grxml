@@ -25,6 +25,11 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <tag>out.Zoom = rules.Zoom.Zoom ; </tag>
       </item>
       <item>
+        <tag>out.Categoria = "Opções"; </tag>
+        <ruleref uri="#Opções"/>
+        <tag>out.Opções = rules.Opções.Opções ; </tag>
+      </item>
+      <item>
         <tag>out.Categoria = "locais"; </tag>
         <item>
           <ruleref uri="#locais"/>
@@ -60,15 +65,21 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
     </item>
   </rule>
 
-<rule id="Preposições">
+  <rule id="Opções">
     <item repeat="0-1">
       <one-of>
-        <item weight="10">  no  </item>
-        <item weight="10">  na  </item>
-        <item weight="10">  em </item>
-        <item weight="10">  do </item>
-        <item weight="10">  da </item>
-        <item weight="10">  de </item>
+        <item weight="10">
+          mostrar painel <tag>out.Paineis = "painel" ; </tag>
+        </item>
+        <item weight="10">
+          esconder painel <tag>out.Paineis = "sem painel" ; </tag>
+        </item>
+        <item weight="10">
+          fechar direções <tag>out.Paineis = "sem direções" ; </tag>
+        </item>
+        <item weight="10">
+          limpar pesquisa <tag>out.Paineis = "limpar pesquisa" ; </tag>
+        </item>
       </one-of>
     </item>
   </rule>
