@@ -49,7 +49,26 @@ namespace IM_T1_GoogleMaps
             driver.Navigate().GoToUrl(url);
 
             Thread.Sleep(3000);
-            setTransportationMode("bicicleta");
+            openMyFavoritePlaces();
+        }
+
+        public void goToMyLocation()
+        {
+            try
+            {
+                IWebElement elemBtn = driver.FindElement(By.ClassName("widget-mylocation-button-icon-common"));
+                elemBtn.Click();
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("1Error");
+                return;
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("2Error");
+                return;
+            }
         }
 
         public void zoomIn()
@@ -200,9 +219,33 @@ namespace IM_T1_GoogleMaps
 
         }
 
+
+
+
+        public void openMyFavoritePlaces()
+        {
+            try
+            {
+                openMenu();
+                Thread.Sleep(2000);
+
+                IWebElement elem = driver.FindElement(By.XPath("//*[@id=\"settings\"]/div/div[2]/div/ul[2]/li[3]/button"));
+                elem.Click();
+            }
+            catch (InvalidOperationException e)
+            {
+                return;
+            }
+            catch (NoSuchElementException e)
+            {
+                return;
+            }
+
+        }
+
         public void toggleTraffic()
         {
-            
+
 
             try
             {
@@ -230,6 +273,27 @@ namespace IM_T1_GoogleMaps
                 Thread.Sleep(1000);
 
                 IWebElement elem = driver.FindElement(By.XPath("//*[@id=\"settings\"]/div/div[2]/div/ul[1]/li[2]/div/button[1]"));
+                elem.Click();
+            }
+            catch (InvalidOperationException e)
+            {
+                return;
+            }
+            catch (NoSuchElementException e)
+            {
+                return;
+            }
+        }
+
+
+        public void toggleTerreno()
+        {
+            try
+            {
+                openMenu();
+                Thread.Sleep(1000);
+
+                IWebElement elem = driver.FindElement(By.XPath("//*[@id=\"settings\"]/div/div[2]/div/ul[1]/li[6]/button"));
                 elem.Click();
             }
             catch (InvalidOperationException e)
