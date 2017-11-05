@@ -17,11 +17,9 @@ namespace AppGui
         private GoogleMapsWorker worker;
         public MainWindow()
         {
-            InitializeComponent();
-
             worker = new GoogleMapsWorker();
 
-            mmiC = new MmiCommunication("localhost",8000, "User1", "GUI");
+            mmiC = new MmiCommunication("localhost", 8000, "User1", "GUI");
             mmiC.Message += MmiC_Message;
             mmiC.Start();
 
@@ -35,32 +33,31 @@ namespace AppGui
 
             Shape _s = null;
 
-            switch (json.shape.ToString())
+            switch (json.CidadeDestino.ToString())
             {
-                case "SQUARE": worker.goToPlace("Aveiro");
+                case "Aveiro":
+                    worker.goToPlace("Aveiro");
                     break;
-                case "CIRCLE": _s = circle;
-                    break;
-                case "TRIANGLE": _s = triangle;
-                    break;
+
             }
 
-            App.Current.Dispatcher.Invoke(() =>
-            {
-                switch (json.color.ToString())
-                {
-                    case "GREEN":
-                        _s.Fill = Brushes.Green;
-                        break;
-                    case "BLUE":
-                        _s.Fill = Brushes.Blue;
-                        break;
-                    case "RED":
-                        _s.Fill = Brushes.Red;
-                        break;
-                }
-            });
-            
+            // Dispatcher para ouvir outro reconhecimento
+            //App.Current.Dispatcher.Invoke(() =>
+            //{
+            //    switch (json.color.ToString())
+            //    {
+            //        case "GREEN":
+            //            _s.Fill = Brushes.Green;
+            //            break;
+            //        case "BLUE":
+            //            _s.Fill = Brushes.Blue;
+            //            break;
+            //        case "RED":
+            //            _s.Fill = Brushes.Red;
+            //            break;
+            //    }
+            //});
+
 
 
         }
