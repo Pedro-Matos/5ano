@@ -69,16 +69,16 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
     <item repeat="0-1">
       <one-of>
         <item weight="10">
-          mostrar painel <tag>out.Paineis = "painel" ; </tag>
+          mostrar painel <tag>out.Opções = "painel" ; </tag>
         </item>
         <item weight="10">
-          esconder painel <tag>out.Paineis = "sem painel" ; </tag>
+          esconder painel <tag>out.Opções = "sem painel" ; </tag>
         </item>
         <item weight="10">
-          fechar direções <tag>out.Paineis = "sem direções" ; </tag>
+          fechar direções <tag>out.Opções = "sem direções" ; </tag>
         </item>
         <item weight="10">
-          limpar pesquisa <tag>out.Paineis = "limpar pesquisa" ; </tag>
+          limpar pesquisa <tag>out.Opções = "limpar pesquisa" ; </tag>
         </item>
       </one-of>
     </item>

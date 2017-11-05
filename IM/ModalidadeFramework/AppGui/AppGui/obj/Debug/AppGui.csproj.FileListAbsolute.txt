@@ -59,3 +59,23 @@ C:\Users\Tiago\5ano\IM\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csproj
 C:\Users\Tiago\5ano\IM\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csproj.CoreCompileInputs.cache
 C:\Users\Tiago\5ano\IM\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.exe
 C:\Users\Tiago\5ano\IM\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.pdb
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\AppGui.exe.config
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\AppGui.exe
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\AppGui.pdb
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\WebDriver.dll
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\mmisharp.pdb
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\bin\Debug\WebDriver.xml
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csprojResolveAssemblyReference.cache
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\MainWindow.g.cs
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\App.g.cs
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui_MarkupCompile.cache
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui_MarkupCompile.lref
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\MainWindow.baml
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.g.resources
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.Properties.Resources.resources
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csproj.GenerateResource.Cache
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csproj.CoreCompileInputs.cache
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.exe
+C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.pdb
