@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using multimodal;
 
 namespace speechModality
 {
@@ -22,7 +23,7 @@ namespace speechModality
     {
 
         private SpeechMod _sm;
-        private Tts t;
+        Tts t;
         public MainWindow()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace speechModality
                 t.Speak("Não compreendi.");
                 Console.WriteLine("No confidence ");
             }
-            if (e.Final) result.FontWeight = FontWeights.Bold;
+            if (e.Final && e.Confidence > 0.85) result.FontWeight = FontWeights.Bold;
             else result.FontWeight = FontWeights.Normal;
         }
     }

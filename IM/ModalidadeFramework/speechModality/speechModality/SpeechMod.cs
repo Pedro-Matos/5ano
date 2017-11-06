@@ -65,7 +65,12 @@ namespace speechModality
             json += " }";
 
             var exNot = lce.ExtensionNotification(e.Result.Audio.StartTime+"", e.Result.Audio.StartTime.Add(e.Result.Audio.Duration)+"",e.Result.Confidence, json);
-            mmic.Send(exNot);
+            if(e.Result.Confidence > 0.85)
+            {
+                Console.WriteLine(exNot);
+                mmic.Send(exNot);
+            }
+            
         }
     }
 }

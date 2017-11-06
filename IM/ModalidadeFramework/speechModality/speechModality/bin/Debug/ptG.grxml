@@ -34,9 +34,23 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <tag>out.Zoom = rules.Zoom.Zoom ; </tag>
       </item>
       <item>
+        <tag>out.Categoria = "transporte"; </tag>
+        <ruleref uri="#MeioTransporte"/>
+        <tag>out.MeioTransporte = rules.MeioTransporte.MeioTransporte ; </tag>
+      </item>
+      <item>
         <tag>out.Categoria = "loc"; </tag>
         <ruleref uri="#MyLoc"/>
         <tag>out.MyLoc = rules.MyLoc.MyLoc ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "atualdirpara"; </tag>
+        <ruleref uri="#MyLoc"/>
+        <ruleref uri="#Cidades"/>
+        <tag>out.CidadeOrigem = rules.Cidades.Cidades ; </tag>
+        <ruleref uri="#DestinoFim"/>
+        <ruleref uri="#Cidades"/>
+        <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
       </item>
       <item>
         <tag>out.Categoria = "tts"; </tag>
@@ -207,6 +221,28 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         </item>
         <item weight="2">
           aeroporto    <tag>out.locais = "aeroportos" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+  
+   <rule id="MeioTransporte">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="2">
+          transporte carro <tag>out.MeioTransporte = "carro" ; </tag>
+        </item>
+        <item weight="2">
+          transporte a pé <tag>out.MeioTransporte = "a pé" ; </tag>
+        </item>
+        <item weight="2">
+          transportes públicos <tag>out.MeioTransporte = "publicos" ; </tag>
+        </item>
+        <item weight="2">
+          transporte bicicleta <tag>out.MeioTransporte = "bicicleta" ; </tag>
+        </item>
+        <item weight="2">
+          transporte avião <tag>out.MeioTransporte = "avião" ; </tag>
         </item>
       </one-of>
     </item>
