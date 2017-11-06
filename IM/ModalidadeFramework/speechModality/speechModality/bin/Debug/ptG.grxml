@@ -25,6 +25,11 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <tag>out.Zoom = rules.Zoom.Zoom ; </tag>
       </item>
       <item>
+        <tag>out.Categoria = "tts"; </tag>
+        <ruleref uri="#Tts"/>
+        <tag>out.Tts = rules.Tts.Tts; </tag>
+      </item>
+      <item>
         <tag>out.Categoria = "Opções"; </tag>
         <ruleref uri="#Opções"/>
         <tag>out.Opções = rules.Opções.Opções ; </tag>
@@ -106,6 +111,16 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         </item>
         <item weight="10">
           menos zoom <tag>out.Zoom = "menos" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="Tts">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          Não compreendi <tag>out.Zoom = "tts" ; </tag>
         </item>
       </one-of>
     </item>

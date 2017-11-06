@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="SpeechEventArg.cs" />
     <Compile Include="SpeechMod.cs" />
+    <Compile Include="Tts.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,6 +101,7 @@
     </None>
     <Content Include="ptG.grxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

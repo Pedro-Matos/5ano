@@ -8,7 +8,7 @@ using System.Media;
 using Microsoft.Speech.Synthesis;
 using Microsoft.Speech.AudioFormat;
 
-namespace T1_Gmaps
+namespace speechModality
 {
     class Tts
     {

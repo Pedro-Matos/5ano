@@ -22,18 +22,25 @@ namespace speechModality
     {
 
         private SpeechMod _sm;
+        private Tts t;
         public MainWindow()
         {
             InitializeComponent();
 
             _sm = new SpeechMod();
             _sm.Recognized += _sm_Recognized;
+            t = new Tts();
         }
 
         private void _sm_Recognized(object sender, SpeechEventArg e)
         {
             result.Text = e.Text;
             confidence.Text = e.Confidence+"";
+            if(e.Confidence < 0.3)
+            {
+                t.Speak("Não compreendi.");
+                Console.WriteLine("No confidence ");
+            }
             if (e.Final) result.FontWeight = FontWeights.Bold;
             else result.FontWeight = FontWeights.Normal;
         }
