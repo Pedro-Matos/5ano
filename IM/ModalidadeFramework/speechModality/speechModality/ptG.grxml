@@ -12,6 +12,15 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
       <item>
         <tag>out.Categoria = "cidades"; </tag>
         <ruleref uri="#Cidades"/>
+        <tag>out.CidadeUnica = rules.Cidades.Cidades ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "direcao"; </tag>
+        <ruleref uri="#DestinoInicio"/>
+        <ruleref uri="#Cidades"/>
+        <tag>out.CidadeOrigem = rules.Cidades.Cidades ; </tag>
+        <ruleref uri="#DestinoFim"/>
+        <ruleref uri="#Cidades"/>
         <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
       </item>
       <item>
@@ -23,6 +32,11 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <tag>out.Categoria = "zoom"; </tag>
         <ruleref uri="#Zoom"/>
         <tag>out.Zoom = rules.Zoom.Zoom ; </tag>
+      </item>
+      <item>
+        <tag>out.Categoria = "loc"; </tag>
+        <ruleref uri="#MyLoc"/>
+        <tag>out.MyLoc = rules.MyLoc.MyLoc ; </tag>
       </item>
       <item>
         <tag>out.Categoria = "tts"; </tag>
@@ -48,7 +62,7 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
           <tag>out.locais = rules.locais.locais ; </tag>
           <ruleref uri="#Preposições"/>
           <ruleref uri="#Cidades"/>
-          <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
+          <tag>out.CidadeLocal = rules.Cidades.Cidades ; </tag>
         </item>
       </item>
     </one-of>
@@ -70,6 +84,25 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
     </item>
   </rule>
 
+  <rule id="DestinoInicio">
+    <item repeat="0-1">
+      <tag>out.DestinoInicio = "DestinoInicio" ; </tag>
+      <one-of>
+        <item weight="4">  preciso de ir de </item>
+        <item weight="4">  gostaria de ir de </item>
+        <item weight="4">  quero ir de </item>
+        <item weight="6"> ir de   </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="DestinoFim">
+    <item repeat="1">
+      <tag>out.DestinoFim = "DestinoFim" ; </tag>
+      <item>  para  </item>
+    </item>
+  </rule>
+
   <rule id="Opções">
     <item repeat="0-1">
       <one-of>
@@ -78,6 +111,12 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         </item>
         <item weight="10">
           esconder painel <tag>out.Opções = "sem painel" ; </tag>
+        </item>
+        <item weight="10">
+          abrir menu <tag>out.Opções = "abrir menu" ; </tag>
+        </item>
+        <item weight="10">
+          fechar menu <tag>out.Opções = "fechar menu" ; </tag>
         </item>
         <item weight="10">
           fechar direções <tag>out.Opções = "sem direções" ; </tag>
@@ -116,6 +155,16 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
     </item>
   </rule>
 
+  <rule id="MyLoc">
+    <item repeat="0-1">
+      <one-of>
+        <item weight="10">
+          minha localização <tag>out.MyLoc = "atual" ; </tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
   <rule id="Tts">
     <item repeat="0-1">
       <one-of>
@@ -133,9 +182,6 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
           ver hospitais   <tag>out.locais = "hospitais" ; </tag>
         </item>
         <item weight="10">
-          ver pontos de interesse   <tag>out.locais = "interesse" ; </tag>
-        </item>
-        <item weight="10">
           ver hotéis  <tag>out.locais = "hoteis" ; </tag>
         </item>
         <item weight="10">
@@ -149,9 +195,6 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         </item>
         <item weight="2">
           hospitais   <tag>out.locais = "hospitais" ; </tag>
-        </item>
-        <item weight="2">
-          pontos de interesse    <tag>out.locais = "interesse" ; </tag>
         </item>
         <item weight="2">
           hotéis   <tag>out.locais = "hoteis" ; </tag>
