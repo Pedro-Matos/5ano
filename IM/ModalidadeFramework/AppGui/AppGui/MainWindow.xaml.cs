@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using mmisharp;
+using System;
 using Newtonsoft.Json;
 
 namespace AppGui
@@ -19,7 +20,7 @@ namespace AppGui
         {
             worker = new GoogleMapsWorker();
 
-            mmiC = new MmiCommunication("localhost", 8000, "User1", "GUI");
+            mmiC = new MmiCommunication("192.168.1.86", 8000, "User1", "GUI");
             mmiC.Message += MmiC_Message;
             mmiC.Start();
 
@@ -31,121 +32,72 @@ namespace AppGui
             var com = doc.Descendants("command").FirstOrDefault().Value;
             dynamic json = JsonConvert.DeserializeObject(com);
 
-            switch (json.CidadeDestino.ToString())
+            switch(json.Categoria.ToString())
             {
-                case "Aveiro":
-                    worker.goToPlace("Aveiro");
+                case "cidades":
+                    worker.goToPlace(json.CidadeUnica.ToString());
                     break;
-                case "Porto":
-                    worker.goToPlace("Porto");
-                        break;
-                case "Águeda":
-                    worker.goToPlace("Águeda");
+
+                case "zoom":
+                    switch (json.Zoom.ToString())
+                    {
+                        case "mais":
+                            worker.zoomIn();
+                            break;
+                        case "menos":
+                            worker.zoomOut();
+                            break;
+                    }
                     break;
-                case "Albergaria-a-Velha":
-                    worker.goToPlace("Albergaria-a-Velha");
+
+                case "loc":
+                    worker.goToMyLocation();
                     break;
-                case "Lisboa":
-                    worker.goToPlace("Lisboa");
+
+                case "locaisEmCidades":
+                    worker.searchServiceAtLocation(json.locais.ToString(), json.CidadeLocal.ToString());
                     break;
-                case "Viseu":
-                    worker.goToPlace("Viseu");
+
+                case "tipovista":
+                    switch (json.EscolherVista.ToString())
+                    {
+                        case "satélite":
+                            worker.toggleSatellite();
+                            break;
+                        case "terreno":
+                            worker.toggleTerreno();
+                            break;
+                    }
                     break;
-                case "Sever do Vouga":
-                    worker.goToPlace("Sever do Vouga");
+
+                case "Opções":
+                    switch (json.Opções.ToString())
+                    {
+                        case "painel":
+                            worker.togglePanel();
+                            break;
+                        case "sem painel":
+                            worker.togglePanel();
+                            break;
+                        case "abrir menu":
+                            worker.openMenu();
+                            break;
+                        case "fechar menu":
+                            worker.closeMenu();
+                            break;
+                        case "sem direções":
+                            worker.closeDirections();
+                            break;
+                        case "limpar pesquisa":
+                            worker.closeSearchBox();
+                            break;
+                    }
                     break;
-                case "Santa Comba Dão":
-                    worker.goToPlace("Santa Comba Dão");
-                        break;
+
+                case "direcao":
+                    worker.searchDirections(json.CidadeOrigem.ToString(), json.CidadeDestino.ToString());
+                    break;
             }
-
-            switch(json.Zoom.ToString())
-            {
-                case "mais":
-                    worker.zoomIn();
-                    break;
-
-                case "menos":
-                    worker.zoomOut();
-                    break;
-
-            }
-
-            switch(json.Opções.ToString())
-            {
-                case "painel":
-                    worker.togglePanel();
-                    break;
-                case "sem painel":
-                    worker.togglePanel();
-                    break;
-                case "sem direções":
-                    worker.closeDirections();
-                    break;
-                case "limpar pesquisa":
-                    worker.closeSearchBox();
-                    break;
-            }
-
-            switch(json.EscolherVista.ToString())
-            {
-                case "mapa":
-                    break;
-                case "satélite":
-                    worker.toggleSatellite();
-                    break;
-                case "terreno":
-                    worker.toggleTerreno();
-                    break;
-
-            }
-
-            switch(json.locaisEmCidades.ToString())
-            {
-                case "hospitais":
-                    worker.searchServiceAtLocation("hospitais", json.CidadeDestino.ToString());
-                    break;
-                case "interesse":
-                    worker.searchServiceAtLocation("interesse", json.CidadeDestino.ToString());
-                    break;
-                case "hoteis":
-                    worker.searchServiceAtLocation("hoteis", json.CidadeDestino.ToString());
-                    break;
-                case "museus":
-                    worker.searchServiceAtLocation("museus", json.CidadeDestino.ToString());
-                    break;
-                case "restaurantes":
-                    worker.searchServiceAtLocation("restaurantes", json.CidadeDestino.ToString());
-                    break;
-                case "aeroportos":
-                    worker.searchServiceAtLocation("aeroportos", json.CidadeDestino.ToString());
-                    break;
-
-
-
-
-            }
-
-
-            // Dispatcher para ouvir outro reconhecimento
-            //App.Current.Dispatcher.Invoke(() =>
-            //{
-            //    switch (json.color.ToString())
-            //    {
-            //        case "GREEN":
-            //            _s.Fill = Brushes.Green;
-            //            break;
-            //        case "BLUE":
-            //            _s.Fill = Brushes.Blue;
-            //            break;
-            //        case "RED":
-            //            _s.Fill = Brushes.Red;
-            //            break;
-            //    }
-            //});
-
-
-
         }
     }
 }

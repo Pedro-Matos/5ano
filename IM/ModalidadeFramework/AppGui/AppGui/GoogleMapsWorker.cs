@@ -45,9 +45,6 @@ namespace AppGui
         {
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(url);
-
-            Thread.Sleep(3000);
-            openMyFavoritePlaces();
         }
 
         public void goToMyLocation()
