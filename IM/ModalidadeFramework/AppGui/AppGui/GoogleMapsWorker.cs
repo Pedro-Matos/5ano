@@ -310,7 +310,7 @@ namespace AppGui
                     carMode.Click();
 
                     break;
-                case "pé":
+                case "a pé":
                     IWebElement footMode = driver.FindElement(By.XPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div[1]/div[4]/button"));
                     footMode.Click();
 
@@ -325,7 +325,7 @@ namespace AppGui
                     planeMode.Click();
 
                     break;
-                case "transportes":
+                case "publicos":
                     IWebElement transporMode = driver.FindElement(By.XPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div[1]/div[3]/button"));
                     transporMode.Click();
 

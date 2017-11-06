@@ -97,6 +97,10 @@ namespace AppGui
                 case "direcao":
                     worker.searchDirections(json.CidadeOrigem.ToString(), json.CidadeDestino.ToString());
                     break;
+
+                case "transporte":
+                    worker.setTransportationMode(json.MeioTransporte.ToString());
+                    break;
             }
         }
     }
