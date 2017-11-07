@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mmisharp;
 
 namespace AppGui
 {
@@ -15,11 +16,18 @@ namespace AppGui
         String API_KEY = "AIzaSyAEGr6lbb8xTXsVu4VEsA-9N56Dh2VJ1NI";
         String baseMapsUrl = "https://www.google.com/maps/";
 
+        private MmiCommunication mmic;
+        private LifeCycleEvents lce;
+
         IWebDriver driver = new ChromeDriver();
 
 
         public GoogleMapsWorker()
         {
+            lce = new LifeCycleEvents("ASR", "IM", "speech-1", "acoustic", "command");
+            mmic = mmic = new MmiCommunication("192.168.1.86", 8000, "User1", "ASR");
+
+            mmic.Send(lce.NewContextRequest());
 
         }
 
@@ -105,6 +113,11 @@ namespace AppGui
         {
             String url = baseMapsUrl + "dir/" + start + "/" + end;
             goToUrl(url);
+
+            Thread.Sleep(2000);
+            String tempo = getTempoPercurso();
+            String distancia = getDistanciaPercurso();
+            makeDistanceTimeSpeech(tempo, distancia);
         }
 
         public void openMenu()
@@ -215,8 +228,6 @@ namespace AppGui
         }
 
 
-
-
         public void openMyFavoritePlaces()
         {
             try
@@ -309,27 +320,149 @@ namespace AppGui
                     IWebElement carMode = driver.FindElement(By.XPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div[1]/div[2]/button"));
                     carMode.Click();
 
+                    Thread.Sleep(2000);
+                    makeDistanceTimeSpeech(getTempoPercurso(), getDistanciaPercurso());
+
                     break;
                 case "a pé":
                     IWebElement footMode = driver.FindElement(By.XPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div[1]/div[4]/button"));
                     footMode.Click();
+
+                    Thread.Sleep(2000);
+                    makeDistanceTimeSpeech(getTempoPercurso(), getDistanciaPercurso());
 
                     break;
                 case "bicicleta":
                     IWebElement bikeMode = driver.FindElement(By.XPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div[2]/div/div[1]/button"));
                     bikeMode.Click();
 
+                    Thread.Sleep(2000);
+                    makeDistanceTimeSpeech(getTempoPercurso(), getDistanciaPercurso());
+
                     break;
                 case "avião":
                     IWebElement planeMode = driver.FindElement(By.XPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div[2]/div/div[2]/button"));
                     planeMode.Click();
+
+                    Thread.Sleep(2000);
+                    makeDistanceTimeSpeech(getTempoPercurso(), getDistanciaPercurso());
+
 
                     break;
                 case "publicos":
                     IWebElement transporMode = driver.FindElement(By.XPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div[1]/div[3]/button"));
                     transporMode.Click();
 
+                    Thread.Sleep(2000);
+                    makeDistanceTimeSpeech(getTempoPercurso(), getDistanciaPercurso()); ;
+
                     break;
+            }
+        }
+
+        private String getTempoPercurso()
+        {
+            try
+            {
+                IWebElement tempo = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/span[1]"));
+                return tempo.Text;
+            }
+            catch (InvalidOperationException e)
+            {
+                return "ERROR";
+            }
+            catch (NoSuchElementException e)
+            {
+                try
+                {
+                    IWebElement tempoTry = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[5]/div[1]/div[2]/div[2]/div/div"));
+                    return tempoTry.Text;
+                }
+                catch (NoSuchElementException ex)
+                {
+                    try
+                    {
+                        IWebElement tempoTry2 = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[5]/div[1]/div[2]/div[3]/div[1]/div[1]"));
+                        return tempoTry2.Text;
+                    }
+                    catch (NoSuchElementException ex1)
+                    {
+                        return "ERROR";
+                    }
+                }
+            }
+
+        }
+
+        private String getDistanciaPercurso()
+        {
+            try
+            {
+                IWebElement distancia = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[5]/div[1]/div[2]/div[1]/div[1]/div[2]/div"));
+                return distancia.Text;
+            }
+            catch (InvalidOperationException e)
+            {
+                return "ERROR";
+            }
+            catch (NoSuchElementException e)
+            {
+                try
+                {
+                    IWebElement tempoTry2 = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[5]/div[1]/div[2]/div[3]/div[1]/div[2]"));
+                    return tempoTry2.Text;
+                }
+                catch (NoSuchElementException ex1)
+                {
+                    return "ERROR";
+                }
+                return "ERROR";
+            }
+
+        }
+
+        private void makeDistanceTimeSpeech(String tempo, String distancia)
+        {
+            if(distancia.Equals("ERROR"))
+            {
+                if (tempo.Contains("min") && tempo.Contains("h"))
+                {
+                    var exNot = lce.ExtensionNotification("", "", 0.0f, "O percurso demora " + tempo);
+                    mmic.Send(exNot);
+                }
+                else
+                {
+                    if (tempo.Contains("h"))
+                    {
+                        var exNot = lce.ExtensionNotification("", "", 0.0f, "O percurso demora " + tempo + "oras");
+                        mmic.Send(exNot);
+                    }
+                    else
+                    {
+                        var exNot = lce.ExtensionNotification("", "", 0.0f, "O percurso demora " + tempo + "utos");
+                        mmic.Send(exNot);
+                    }
+                }
+            } else
+            {
+                if (tempo.Contains("min") && tempo.Contains("h"))
+                {
+                    var exNot = lce.ExtensionNotification("", "", 0.0f, "A distância a percorrer é de " + distancia + " e demora " + tempo);
+                    mmic.Send(exNot);
+                }
+                else
+                {
+                    if (tempo.Contains("h"))
+                    {
+                        var exNot = lce.ExtensionNotification("", "", 0.0f, "A distância a percorrer é de " + distancia + " e demora " + tempo + "oras");
+                        mmic.Send(exNot);
+                    }
+                    else
+                    {
+                        var exNot = lce.ExtensionNotification("", "", 0.0f, "A distância a percorrer é de " + distancia + " e demora " + tempo + "utos");
+                        mmic.Send(exNot);
+                    }
+                }
             }
         }
 
