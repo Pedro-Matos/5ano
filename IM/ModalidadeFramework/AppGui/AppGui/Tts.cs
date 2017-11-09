@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Media;
 using Microsoft.Speech.Synthesis;
 using Microsoft.Speech.AudioFormat;
@@ -10,7 +9,7 @@ using Microsoft.Speech.AudioFormat;
 
 
 
-namespace multimodal
+namespace AppGui
 {
     class Tts
     {
