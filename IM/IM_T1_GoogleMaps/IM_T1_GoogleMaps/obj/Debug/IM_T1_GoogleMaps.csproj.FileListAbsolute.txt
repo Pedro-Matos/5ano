@@ -1,0 +1,14 @@
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\IM_T1_GoogleMaps.exe.config
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\IM_T1_GoogleMaps.exe
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\IM_T1_GoogleMaps.pdb
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\GoogleMapsAPI.NET.dll
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\WebDriver.dll
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\GoogleMapsAPI.NET.pdb
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\GoogleMapsAPI.NET.xml
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\bin\Debug\WebDriver.xml
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\obj\Debug\IM_T1_GoogleMaps.csprojResolveAssemblyReference.cache
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\obj\Debug\IM_T1_GoogleMaps.csproj.CoreCompileInputs.cache
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\obj\Debug\IM_T1_GoogleMaps.exe
+C:\Users\Tiago\Documents\IM_T1_GoogleMaps\IM_T1_GoogleMaps\obj\Debug\IM_T1_GoogleMaps.pdb
