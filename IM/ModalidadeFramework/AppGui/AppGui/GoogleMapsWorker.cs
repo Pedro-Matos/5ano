@@ -7,28 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using mmisharp;
+using multimodal;
 
 namespace AppGui
 {
     class GoogleMapsWorker
     {
+        private Tts tts;
 
-        String API_KEY = "AIzaSyAEGr6lbb8xTXsVu4VEsA-9N56Dh2VJ1NI";
-        String baseMapsUrl = "https://www.google.com/maps/";
+        private String baseMapsUrl;
 
-        private MmiCommunication mmic;
-        private LifeCycleEvents lce;
+        private IWebDriver driver;
 
-        IWebDriver driver = new ChromeDriver();
-
+        private Boolean satelite;
+        private Boolean terreno;
+        private Boolean transito;
 
         public GoogleMapsWorker()
         {
-            lce = new LifeCycleEvents("ASR", "IM", "speech-1", "acoustic", "command");
-            mmic = mmic = new MmiCommunication("192.168.1.86", 8000, "User1", "ASR");
+            tts = new Tts();
 
-            mmic.Send(lce.NewContextRequest());
+            baseMapsUrl = "https://www.google.com/maps/";
 
+            driver = new ChromeDriver();
+
+            satelite = false;
+            terreno = false;
+            transito = false;
         }
 
         public void sampleUrl()
@@ -255,11 +260,23 @@ namespace AppGui
 
             try
             {
+
+                if (transito)
+                    transito = false;
+                else
+                    transito = true;
+
                 openMenu();
                 Thread.Sleep(1000);
 
                 IWebElement elem = driver.FindElement(By.XPath("//*[@id=\"settings\"]/div/div[2]/div/ul[1]/li[3]/button"));
                 elem.Click();
+
+                Thread.Sleep(500);
+                if (transito)
+                    tts.Speak("Vista de trânsito ativada");
+                else
+                    tts.Speak("Vista de trânsito desativada");
             }
             catch (InvalidOperationException e)
             {
@@ -275,11 +292,24 @@ namespace AppGui
         {
             try
             {
+
+                if(satelite)
+                    satelite = false;
+                else
+                    satelite = true;
+                
+
                 openMenu();
                 Thread.Sleep(1000);
 
                 IWebElement elem = driver.FindElement(By.XPath("//*[@id=\"settings\"]/div/div[2]/div/ul[1]/li[2]/div/button[1]"));
                 elem.Click();
+
+                Thread.Sleep(500);
+                if (satelite)
+                    tts.Speak("Vista de Satélite ativada");
+                else
+                    tts.Speak("Vista de Satélite desativada");
             }
             catch (InvalidOperationException e)
             {
@@ -296,11 +326,23 @@ namespace AppGui
         {
             try
             {
+
+                if (terreno)
+                    terreno = false;
+                else
+                    terreno = true;
+
                 openMenu();
                 Thread.Sleep(1000);
 
                 IWebElement elem = driver.FindElement(By.XPath("//*[@id=\"settings\"]/div/div[2]/div/ul[1]/li[6]/button"));
                 elem.Click();
+
+                Thread.Sleep(500);
+                if (terreno)
+                    tts.Speak("Vista de terreno ativada");
+                else
+                    tts.Speak("Vista de terreno desativada");
             }
             catch (InvalidOperationException e)
             {
@@ -416,7 +458,6 @@ namespace AppGui
                 {
                     return "ERROR";
                 }
-                return "ERROR";
             }
 
         }
@@ -427,40 +468,34 @@ namespace AppGui
             {
                 if (tempo.Contains("min") && tempo.Contains("h"))
                 {
-                    var exNot = lce.ExtensionNotification("", "", 0.0f, "O percurso demora " + tempo);
-                    mmic.Send(exNot);
+                    tts.Speak("O trajeto mais rápido demora " + tempo);
                 }
                 else
                 {
                     if (tempo.Contains("h"))
                     {
-                        var exNot = lce.ExtensionNotification("", "", 0.0f, "O percurso demora " + tempo + "oras");
-                        mmic.Send(exNot);
+                        tts.Speak("O trajeto mais rápido demora " + tempo + "oras");
                     }
                     else
                     {
-                        var exNot = lce.ExtensionNotification("", "", 0.0f, "O percurso demora " + tempo + "utos");
-                        mmic.Send(exNot);
+                        tts.Speak("O trajeto mais rápido demora " + tempo + "utos");
                     }
                 }
             } else
             {
                 if (tempo.Contains("min") && tempo.Contains("h"))
                 {
-                    var exNot = lce.ExtensionNotification("", "", 0.0f, "A distância a percorrer é de " + distancia + " e demora " + tempo);
-                    mmic.Send(exNot);
+                    tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo);
                 }
                 else
                 {
                     if (tempo.Contains("h"))
                     {
-                        var exNot = lce.ExtensionNotification("", "", 0.0f, "A distância a percorrer é de " + distancia + " e demora " + tempo + "oras");
-                        mmic.Send(exNot);
+                        tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo + "oras");
                     }
                     else
                     {
-                        var exNot = lce.ExtensionNotification("", "", 0.0f, "A distância a percorrer é de " + distancia + " e demora " + tempo + "utos");
-                        mmic.Send(exNot);
+                        tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo + "utos");
                     }
                 }
             }
