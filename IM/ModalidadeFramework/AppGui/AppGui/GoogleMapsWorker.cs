@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using mmisharp;
-using multimodal;
 
 namespace AppGui
 {
@@ -52,6 +51,9 @@ namespace AppGui
         {
             String url = baseMapsUrl + "search/" + service + "+" + location;
             goToUrl(url);
+
+            Thread.Sleep(2000);
+            getFirstServiceName();
         }
 
         public void goToUrl(String url)
@@ -498,6 +500,23 @@ namespace AppGui
                         tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo + "utos");
                     }
                 }
+            }
+        }
+
+        private void getFirstServiceName()
+        {
+            try
+            {
+                IWebElement nome = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/h3/span"));
+                tts.Speak(nome.Text);
+            }
+            catch (InvalidOperationException e)
+            {
+                return;
+            }
+            catch (NoSuchElementException e)
+            {
+                return;
             }
         }
 
