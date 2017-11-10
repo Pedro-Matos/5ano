@@ -44,15 +44,6 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <tag>out.MyLoc = rules.MyLoc.MyLoc ; </tag>
       </item>
       <item>
-        <tag>out.Categoria = "atualdirpara"; </tag>
-        <ruleref uri="#MyLoc"/>
-        <ruleref uri="#Cidades"/>
-        <tag>out.CidadeOrigem = rules.Cidades.Cidades ; </tag>
-        <ruleref uri="#DestinoFim"/>
-        <ruleref uri="#Cidades"/>
-        <tag>out.CidadeDestino = rules.Cidades.Cidades ; </tag>
-      </item>
-      <item>
         <tag>out.Categoria = "tts"; </tag>
         <ruleref uri="#Tts"/>
         <tag>out.Tts = rules.Tts.Tts; </tag>

@@ -79,3 +79,24 @@ C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debu
 C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csproj.CoreCompileInputs.cache
 C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.exe
 C:\Users\Pedro Ferreira de Ma\Desktop\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.pdb
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\AppGui.exe.config
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\AppGui.exe
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\AppGui.pdb
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\Microsoft.Speech.dll
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\WebDriver.dll
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\mmisharp.pdb
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\bin\Debug\WebDriver.xml
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csprojResolveAssemblyReference.cache
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\MainWindow.g.cs
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\App.g.cs
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui_MarkupCompile.cache
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui_MarkupCompile.lref
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\MainWindow.baml
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.g.resources
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.Properties.Resources.resources
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csproj.GenerateResource.Cache
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.csproj.CoreCompileInputs.cache
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.exe
+C:\Users\Bena\Documents\ModalidadeFramework\AppGui\AppGui\obj\Debug\AppGui.pdb
