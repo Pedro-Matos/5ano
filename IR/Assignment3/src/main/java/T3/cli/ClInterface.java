@@ -1,6 +1,7 @@
 package T3.cli;
 
 import T3.index.InvertedIndex;
+import T3.index.TfIdfIndexer;
 import T3.tokenizer.SimpleTokenizer;
 import T3.tokenizer.StrongTokenizer;
 import T3.tokenizer.Tokenizer;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class ClInterface {
     public static void main(String[] args) throws IOException {
-
+        int docs_number = 0;
         /*
          * Cranfield
          */
@@ -27,6 +28,9 @@ public class ClInterface {
         if (!test.isDirectory() || !test.canRead()) {
             System.out.println("The specified corpus directory is not a directory or is not readable.");
             System.exit(0);
+        }
+        else{
+            docs_number = test.listFiles().length;
         }
 
         /*
@@ -60,8 +64,8 @@ public class ClInterface {
          */
         File output = new File(out_p);
         T3.reader.Reader reader = new T3.reader.Reader();
-        InvertedIndex invIndexer = new InvertedIndex(output);
-
+        //InvertedIndex invIndexer = new InvertedIndex(output);
+        TfIdfIndexer tfidfIndexer = new TfIdfIndexer(output,docs_number);
 
         File folder = new File(input_p);
         File[] listOfFiles = folder.listFiles();
@@ -83,12 +87,12 @@ public class ClInterface {
                 /*
                  * Add tokens to inverted index
                  */
-                invIndexer.addTokens(corpus.getId(), tokens);
+                tfidfIndexer.addTermFrequency(corpus.getId(), tokens);
                 id++;
             }
         }
-        invIndexer.close();
-
+        tfidfIndexer.addDocumentFrequency();
+        tfidfIndexer.writeFile();
         //long elapsedTime = System.nanoTime() - start;
         //System.out.println("Elapsed Time: " + elapsedTime);
 

@@ -5,6 +5,8 @@ package T3.utils;
  */
 public class TfIdfWeighting {
 
+    private String term;
+
     private int docId;
 
     private int term_frequency;
@@ -19,22 +21,30 @@ public class TfIdfWeighting {
 
     private double final_weighting;
 
-    public TfIdfWeighting(int docId, int term_frequency,int document_frequency, int N){
+    public TfIdfWeighting(String term, int docId, int term_frequency,int document_frequency, int N){
         this.docId = docId;
         this.term_frequency = term_frequency;
         this.document_frequency = document_frequency;
         this.N = N;
+
+        setInverseDocFreq();
+        setFinalWeighting();
+
     }
 
 
-    public void setInverseDocFreq(){
+    private void setInverseDocFreq(){
         this.inverse_doc_freq = Math.log10(N/this.document_frequency);
     }
 
-    public void setFinalWeighting(){
+    private void setFinalWeighting(){
         double first_term = 1 + Math.log(term_frequency);
         this.final_weighting = first_term*inverse_doc_freq;
     }
 
-
+    @Override
+    public String toString() {
+        return  docId + ":" +
+                String.format( "%.2f", final_weighting );
+    }
 }

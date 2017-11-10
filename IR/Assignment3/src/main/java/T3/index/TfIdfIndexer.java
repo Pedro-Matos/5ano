@@ -22,6 +22,7 @@ public class TfIdfIndexer {
     private static final String FILE_NAME = "tf_idf_indexer";
     private int cont;
     private Map<String, List<Posting>> dic;
+    private Map<String, List<TfIdfWeighting>> dic_weight;
     private Set<String> terms;
     private File outputDir;
     private int number_documents;
@@ -29,6 +30,7 @@ public class TfIdfIndexer {
     public TfIdfIndexer(File outputDir, int number_documents){
 
         this.dic = new TreeMap();
+        this.dic_weight = new TreeMap();
         this.terms = new HashSet<String>();
         this.outputDir = outputDir;
         this.cont = 0;
@@ -81,8 +83,66 @@ public class TfIdfIndexer {
            na lista de postings temos de ver em quantos dicionarios aparece ()
          */
 
+        List<Posting> list;
+        for (String term : terms) {
+            list = dic.get(term);
+
+            //percorrer os postings todos e obter a frequência total
+            int docid;
+            int freq;
+            int doc_freq;
+
+            for(Posting post : list){
+                docid = post.getDocId();
+                freq = post.getFrequency();
+                doc_freq = list.size();
+
+                TfIdfWeighting tmp_weight = new TfIdfWeighting(term,docid,freq,doc_freq,this.number_documents);
+                if(dic_weight.containsKey(term)){
+                    dic_weight.get(term).add(tmp_weight);
+                }
+                else{
+                    List<TfIdfWeighting> list_weights = new ArrayList<TfIdfWeighting>();
+                    list_weights.add(tmp_weight);
+                    dic_weight.put(term,list_weights);
+                }
+            }
+
+        }
 
     }
+
+    /**
+     * Write index file
+     */
+    public void writeFile(){
+        File dir = new File(outputDir.getAbsolutePath());
+
+        try {
+            String blockFileName = FILE_NAME + cont++ + ".txt";
+            PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
+
+            for(Map.Entry<String, List<TfIdfWeighting>> entry : dic_weight.entrySet()){
+                pwt.print(entry.getKey() + ":");
+
+                int tmp_size = 0;
+                for(TfIdfWeighting weight : entry.getValue()){
+                    tmp_size++;
+                    if (tmp_size<entry.getValue().size())
+                        pwt.print(weight + ";");
+                    else
+                        pwt.print(weight);
+                }
+                pwt.println();
+            }
+
+            pwt.close();
+        } catch (IOException ex) {
+            throw new RuntimeException("There was a problem writing the index to a file", ex);
+        }
+
+    }
+
 
     /**
      * Check the percentage of memory used
