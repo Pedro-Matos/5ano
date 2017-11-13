@@ -1,16 +1,19 @@
 package T3.cli;
 
+import T3.RankedRetrieval.RankedRetrieval;
 import T3.index.InvertedIndex;
 import T3.index.TfIdfIndexer;
 import T3.tokenizer.SimpleTokenizer;
 import T3.tokenizer.StrongTokenizer;
 import T3.tokenizer.Tokenizer;
 import T3.utils.Document;
+import T3.utils.TfIdfWeighting;
 import org.apache.commons.cli.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Pedro Matos & Tiago Bastos
@@ -93,6 +96,14 @@ public class ClInterface {
         }
         tfidfIndexer.addDocumentFrequency();
         tfidfIndexer.writeFile();
+
+        RankedRetrieval ranked_ret = new RankedRetrieval();
+        String queries = "cranfield.queries.txt";
+        File f = new File(queries);
+        List<String> terms = ranked_ret.ParseQuerys(f);
+        Map<String, List<TfIdfWeighting>> dic_weight = tfidfIndexer.getDic_weight();
+        ranked_ret.ProcessTerms(terms, dic_weight, output);
+
         //long elapsedTime = System.nanoTime() - start;
         //System.out.println("Elapsed Time: " + elapsedTime);
 

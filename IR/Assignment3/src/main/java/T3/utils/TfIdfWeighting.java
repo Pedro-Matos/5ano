@@ -32,7 +32,6 @@ public class TfIdfWeighting {
 
     }
 
-
     private void setInverseDocFreq(){
         this.inverse_doc_freq = Math.log10(N/this.document_frequency);
     }
@@ -40,6 +39,22 @@ public class TfIdfWeighting {
     private void setFinalWeighting(){
         double first_term = 1 + Math.log(term_frequency);
         this.final_weighting = first_term*inverse_doc_freq;
+    }
+
+    public int getDocId() {
+        return docId;
+    }
+
+    public void setDocId(int docId) {
+        this.docId = docId;
+    }
+
+    public double getFinal_weighting() {
+        return final_weighting;
+    }
+
+    public void setFinal_weighting(double final_weighting) {
+        this.final_weighting = final_weighting;
     }
 
     @Override

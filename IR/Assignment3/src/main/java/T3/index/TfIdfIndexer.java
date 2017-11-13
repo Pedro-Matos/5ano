@@ -123,7 +123,7 @@ public class TfIdfIndexer {
             PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
 
             for(Map.Entry<String, List<TfIdfWeighting>> entry : dic_weight.entrySet()){
-                pwt.print(entry.getKey() + ":");
+                pwt.print(entry.getKey() + ";");
 
                 int tmp_size = 0;
                 for(TfIdfWeighting weight : entry.getValue()){
@@ -158,4 +158,7 @@ public class TfIdfIndexer {
         return usage;
     }
 
+    public Map<String, List<TfIdfWeighting>> getDic_weight() {
+        return dic_weight;
+    }
 }
