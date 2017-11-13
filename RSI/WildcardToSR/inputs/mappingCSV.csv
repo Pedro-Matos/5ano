@@ -1,0 +1,2 @@
+DataContent,HoraContent,Medico,Organizacao,NomePaciente,IdPaciente,DataNascimentoPaciente,SexoPaciente,Observador,OrganizacaoObservador,Descricao,Diagnostico,Tratamento,Breast,Narrative,Observer,Language,Supplementary,Findings
+ContentDate,ContentTime,ReferringPhysicianName,ResponsibleOrganization,PatientName,PatientId,PatientBirthDate,PatientSex,ObserverName,ObserverOrganizationName,Description,Diagnosis,Treatment,111400,111412,121005,121049,111414,121070

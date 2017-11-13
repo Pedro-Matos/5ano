@@ -1,0 +1,32 @@
+{
+	"Triplet": {
+		"1":{
+			"CodeMeaning": "Baseline",
+			"CodeValue": "121079",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"2":{
+			"CodeMeaning": "Best illustration of finding",
+			"CodeValue": "121080",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"3":{
+			"CodeMeaning": "Source of Measurement",
+			"CodeValue": "121112",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"4":{
+			"CodeMeaning": "Illustration of ROI",
+			"CodeValue": "121200",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+  "Triplet": {
+    "1":{
+      "CodeMeaning": "Distance from nipple",
+      "CodeValue": "121242",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "2":{
+      "CodeMeaning": "Distance from skin",
+      "CodeValue": "121243",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "3":{
+      "CodeMeaning": "Distance from chest wall",
+      "CodeValue": "121244",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    }
+  }
+}

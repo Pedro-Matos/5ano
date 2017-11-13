@@ -1,0 +1,36 @@
+{
+  "Triplet":{
+    "1":{
+      "CodeMeaning":"Tracking Identifier",
+      "CodeValue": "112039",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"",
+      "VT":"TEXT",
+      "NL":"h0",
+      "VM":"1",
+      "Req_Type":"MC",
+      "Condition":"At least one of row 1 or 2 shall be present.",
+      "Constraint":"A string of characters with case being non-significant. Leading and trailing spaces and control characters are forbidden.",
+      "TID_order":"1"
+    },
+    "2":{
+      "CodeMeaning":"Tracking Unique Identifier",
+      "CodeValue": "112040",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"",
+      "VT":"UIDREF",
+      "NL":"h0",
+      "VM":"1",
+      "Req_Type":"MC",
+      "Condition":"At least one of row 1 or 2 shall be present.",
+      "Constraint":"",
+      "TID_order":"2"
+    }
+  },
+  "Childs":{
+  }
+}

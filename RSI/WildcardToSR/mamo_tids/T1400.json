@@ -1,0 +1,122 @@
+{
+  "Triplet":{
+    "2":{
+      "CodeMeaning":"Path",
+      "CodeValue": "121055",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"INFERRED FORM",
+      "VT":"SCOORD",
+      "NL":"h1",
+      "VM":"1",
+      "Req_Type":"UC",
+      "Condition":"XOR Row 5",
+      "Constraint":"GRAPHIC TYPE = {POLYLINE, CIRCLE, ELLIPSE}",
+      "TID_order":"2"
+    },
+    "3":{
+      "CodeMeaning":"",
+      "CodeValue": "",
+      "CodingSchemeDesignator": "",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"R-SELECTED FROM",
+      "VT":"IMAGE",
+      "NL":"h2",
+      "VM":"1",
+      "Req_Type":"MC",
+      "Condition":"XOR Row 4",
+      "Constraint":"",
+      "TID_order":"3"
+    },
+    "4":{
+      "CodeMeaning":"",
+      "CodeValue": "",
+      "CodingSchemeDesignator": "",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"SELECTED FROM",
+      "VT":"IMAGE",
+      "NL":"h2",
+      "VM":"1",
+      "Req_Type":"MC",
+      "Condition":"XOR Row 3",
+      "Constraint":"",
+      "TID_order":"4"
+    },
+    "5":{
+      "CodeMeaning":"Path Vertex",
+      "CodeValue": "121230",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"INFERRED FROM",
+      "VT":"SCOORD",
+      "NL":"h1",
+      "VM":"2-n",
+      "Req_Type":"UC",
+      "Condition":"XOR Row 2",
+      "Constraint":"GRAPHIC TYPE = {POINT}",
+      "TID_order":"5"
+    },
+    "6":{
+      "CodeMeaning":"",
+      "CodeValue": "",
+      "CodingSchemeDesignator": "",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"R-SELECTED FROM",
+      "VT":"IMAGE",
+      "NL":"h2",
+      "VM":"1",
+      "Req_Type":"MC",
+      "Condition":"XOR Row 7",
+      "Constraint":"",
+      "TID_order":"6"
+    },
+    "7":{
+      "CodeMeaning":"",
+      "CodeValue": "",
+      "CodingSchemeDesignator": "",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"SELECTED FROM",
+      "VT":"IMAGE",
+      "NL":"h2",
+      "VM":"1",
+      "Req_Type":"MC",
+      "Condition":"XOR Row 6",
+      "Constraint":"",
+      "TID_order":"7"
+    }
+  },
+  "Childs":{
+    "1":{
+      "NL":"h0",
+      "Rel_With_Parent":"",
+      "VT":"NUM",
+      "VM":"1",
+      "Req_Type":"M",
+      "Condition":"",
+      "Constraint":"UNITS = DCID 7460 “Units of Linear Measurement”",
+      "Name":"C7470",
+      "Type":"CID",
+      "TID_order":"1",
+      "File_Name":"C7470.json"
+    },
+    "8":{
+      "NL":"h1",
+      "Rel_With_Parent":"HAS OBS CONTEXT",
+      "VT":"INCLUDE",
+      "VM":"1",
+      "Req_Type":"U",
+      "Condition":"",
+      "Constraint":"",
+      "Name":"T4108",
+      "Type":"TID",
+      "TID_order":"8",
+      "File_Name":"T4108.json"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "Triplet": {
+    "1":{
+      "CodeMeaning": "Area",
+      "CodeValue": "G-A166",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "2":{
+      "CodeMeaning": "Area of defined region",
+      "CodeValue": "G-A16A",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    }
+  }
+}

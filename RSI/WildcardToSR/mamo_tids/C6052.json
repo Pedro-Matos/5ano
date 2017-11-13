@@ -1,0 +1,81 @@
+{
+	"Triplet": {
+		"1":{
+			"CodeMeaning": "Physical Examination Results",
+			"CodeValue": "111423",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"2":{
+			"CodeMeaning": "Comparison to previous exams",
+			"CodeValue": "111424",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"3":{
+			"CodeMeaning": "Findings",
+			"CodeValue": "121070",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"4":{
+			"CodeMeaning": "Impressions",
+			"CodeValue": "19005-8",
+			"CodingSchemeDesignator": "LN",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"5":{
+			"CodeMeaning": "Recommendations",
+			"CodeValue": "121074",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"6":{
+			"CodeMeaning": "Conclusions",
+			"CodeValue": "121076",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"7":{
+			"CodeMeaning": "Addendum",
+			"CodeValue": "121078",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"8":{
+			"CodeMeaning": "Breast composition",
+			"CodeValue": "F-01710",
+			"CodingSchemeDesignator": "SRT",
+			"CodingSchemeVersion": "",
+			"Mapping" : ""
+		},
+		"9":{
+			"CodeMeaning": "Overall Assessment",
+			"CodeValue": "111413",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"10":{
+			"CodeMeaning": "Procedure reported",
+			"CodeValue": "121058",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		},
+		"11":{
+			"CodeMeaning": "Reason for procedure",
+			"CodeValue": "111401",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": ""
+		}
+	}
+}
