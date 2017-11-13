@@ -37,10 +37,9 @@ namespace speechModality
         {
             result.Text = e.Text;
             confidence.Text = e.Confidence+"";
-            if(e.Confidence < 0.3)
+            if(e.Confidence > 0.1 && e.Confidence < 0.25)
             {
                 t.Speak("Não compreendi.");
-                Console.WriteLine("No confidence ");
             }
             if (e.Final && e.Confidence > 0.85) result.FontWeight = FontWeights.Bold;
             else result.FontWeight = FontWeights.Normal;

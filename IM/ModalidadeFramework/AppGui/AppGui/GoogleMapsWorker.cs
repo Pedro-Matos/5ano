@@ -53,7 +53,7 @@ namespace AppGui
             goToUrl(url);
 
             Thread.Sleep(2000);
-            getFirstServiceName();
+            getFirstServiceName(service);
         }
 
         public void goToUrl(String url)
@@ -431,7 +431,15 @@ namespace AppGui
                     }
                     catch (NoSuchElementException ex1)
                     {
-                        return "ERROR";
+                        try
+                        {
+                            IWebElement tempoTry3 = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[4]/div[1]/div[2]/div[4]/div[2]/div[1]/span[2]"));
+                            return tempoTry3.Text;
+                        } 
+                        catch
+                        {
+                            return "ERROR";
+                        }
                     }
                 }
             }
@@ -503,12 +511,12 @@ namespace AppGui
             }
         }
 
-        private void getFirstServiceName()
+        private void getFirstServiceName(String service)
         {
             try
             {
                 IWebElement nome = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/h3/span"));
-                tts.Speak(nome.Text);
+                tts.Speak("O " + service + " mais perto é o " + nome.Text);
             }
             catch (InvalidOperationException e)
             {

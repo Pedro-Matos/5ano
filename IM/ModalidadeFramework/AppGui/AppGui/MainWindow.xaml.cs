@@ -20,7 +20,7 @@ namespace AppGui
         {
             worker = new GoogleMapsWorker();
 
-            mmiC = new MmiCommunication("192.168.1.86", 8000, "User1", "GUI");
+            mmiC = new MmiCommunication("localhost", 8000, "User1", "GUI");
             mmiC.Message += MmiC_Message;
             mmiC.Start();
 
