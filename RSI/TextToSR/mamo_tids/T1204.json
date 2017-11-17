@@ -1,0 +1,34 @@
+{
+	"Triplet":{
+		"1": {
+			"CodeMeaning": "Language of Content Item and Descendants",
+			"CodeValue": "121049",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping": "",
+			"Rel_With_Parent": "HAS CONCEPT MOD",
+			"VT": "CODE",
+			"NL": "h0",
+			"VM": "1",
+			"Req_Type": "M",
+			"Condition": "",
+			"Constraint": "CID 5000 Languages",
+			"TID_order": "1"
+		},
+		"2":{
+			"CodeMeaning":"Country of Language",
+			"CodeValue": "121046",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping":"",
+			"Rel_With_Parent":"HAS CONCEPT MOD",
+			"VT":"CODE",
+			"NL":"h1",
+			"VM":"1",
+			"Req_Type":"U",
+			"Condition":"",
+			"Constraint":"CID 5001 Countries",
+			"TID_order":"2"
+		}
+	}
+}

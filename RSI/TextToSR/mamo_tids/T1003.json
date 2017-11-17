@@ -1,0 +1,65 @@
+{
+	"Triplet":{
+		"1":{
+
+			"CodeMeaning":"Person Observer Name",
+			"CodeValue": "121008",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping":"",
+			"Rel_With_Parent":"",
+			"VT":"PNAME",
+			"NL":"h0",
+			"VM":"1",
+			"Req_Type":"M",
+			"Condition":"",
+			"Constraint":"",
+			"TID_order":"1"
+		},
+		"2":{
+			"CodeMeaning":"Person Observer's Organization Name",
+			"CodeValue": "121009",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping":"",
+			"Rel_With_Parent":"",
+			"VT":"TEXT",
+			"NL":"h0",
+			"VM":"1",
+			"Req_Type":"U",
+			"Condition":"",
+			"Constraint":"Defaults to Institution Name (0008,0080) of the General Equipment Module",
+			"TID_order":"2"
+		},
+		"3":{
+			"CodeMeaning":"Person Observer's Role in the Organization",
+			"CodeValue": "121010",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping":"",
+			"Rel_With_Parent":"",
+			"VT":"CODE",
+			"NL":"h0",
+			"VM":"1",
+			"Req_Type":"U",
+			"Condition":"",
+			"Constraint":"CID 7452-“Organizational Roles”",
+			"TID_order":"3"
+		},
+		"4":{
+			"CodeMeaning":"Person Observer's Role in this Procedure",
+			"CodeValue": "121011",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping":"",
+			"Rel_With_Parent":"",
+			"VT":"CODE",
+			"NL":"h0",
+			"VM":"1",
+			"Req_Type":"U",
+			"Condition":"",
+			"Constraint":"CID 7453 “Performing Roles”",
+			"TID_order":"4"
+		}
+	}
+}

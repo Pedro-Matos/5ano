@@ -1,0 +1,116 @@
+{
+  "Triplet": {
+    "1":{
+      "CodeMeaning": "Length",
+      "CodeValue": "G-A22A",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "2":{
+      "CodeMeaning": "Path length",
+      "CodeValue": "121211",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "3":{
+      "CodeMeaning": "Distance",
+      "CodeValue": "121206",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "4":{
+      "CodeMeaning": "Width",
+      "CodeValue": "G-A220",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "5":{
+      "CodeMeaning": "Depth",
+      "CodeValue": "G-D785",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "6":{
+      "CodeMeaning": "Diameter",
+      "CodeValue": "M-02550",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "7":{
+      "CodeMeaning": "Long Axis",
+      "CodeValue": "G-A185",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "8":{
+      "CodeMeaning": "Short Axis",
+      "CodeValue": "G-A186",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "9":{
+      "CodeMeaning": "Major Axis",
+      "CodeValue": "G-A193",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "10":{
+      "CodeMeaning": "Minor Axis",
+      "CodeValue": "G-A194",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "11":{
+      "CodeMeaning": "Perpendicular Axis",
+      "CodeValue": "G-A195",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "12":{
+      "CodeMeaning": "Radius",
+      "CodeValue": "G-A196",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "13":{
+      "CodeMeaning": "Perimeter",
+      "CodeValue": "G-A197",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "14":{
+      "CodeMeaning": "Circumference",
+      "CodeValue": "M-02560",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "15":{
+      "CodeMeaning": "Diameter of circumscribed circle",
+      "CodeValue": "G-A198",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "16":{
+      "CodeMeaning": "Height",
+      "CodeValue": "121207",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    }
+  }
+}
