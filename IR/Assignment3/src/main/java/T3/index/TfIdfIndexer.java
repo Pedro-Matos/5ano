@@ -91,6 +91,7 @@ public class TfIdfIndexer {
             int docid;
             int freq;
             int doc_freq;
+            double var_weight = 0.0;
 
             for(Posting post : list){
                 docid = post.getDocId();
@@ -98,6 +99,7 @@ public class TfIdfIndexer {
                 doc_freq = list.size();
 
                 TfIdfWeighting tmp_weight = new TfIdfWeighting(term,docid,freq,doc_freq,this.number_documents);
+                var_weight += Math.pow(tmp_weight.getFinal_weighting(),2);
                 if(dic_weight.containsKey(term)){
                     dic_weight.get(term).add(tmp_weight);
                 }
@@ -107,9 +109,14 @@ public class TfIdfIndexer {
                     dic_weight.put(term,list_weights);
                 }
             }
+            double norm = 1/Math.sqrt(var_weight);
+
+            for(TfIdfWeighting w: dic_weight.get(term)){
+                double weight_final = w.getFinal_weighting();
+                w.setWeight_normalized(norm*weight_final);
+            }
 
         }
-
     }
 
     /**

@@ -7,7 +7,16 @@ public class ScoringOption {
 
     private int query_id;
     private int doc_id;
-    private double final_weighting;
+    private double score;
+    private String term;
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
 
     public int getQuery_id() {
         return query_id;
@@ -25,12 +34,12 @@ public class ScoringOption {
         this.doc_id = doc_id;
     }
 
-    public double getFinal_weighting() {
-        return final_weighting;
+    public double getScore() {
+        return score;
     }
 
-    public void setFinal_weighting(double final_weighting) {
-        this.final_weighting = final_weighting;
+    public void setScore(double final_weighting) {
+        this.score = final_weighting;
     }
 }
 

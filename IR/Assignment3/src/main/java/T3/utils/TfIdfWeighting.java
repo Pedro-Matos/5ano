@@ -21,7 +21,10 @@ public class TfIdfWeighting {
 
     private double final_weighting;
 
+    private double weight_normalized;
+
     public TfIdfWeighting(String term, int docId, int term_frequency,int document_frequency, int N){
+        this.term = term;
         this.docId = docId;
         this.term_frequency = term_frequency;
         this.document_frequency = document_frequency;
@@ -33,7 +36,7 @@ public class TfIdfWeighting {
     }
 
     private void setInverseDocFreq(){
-        this.inverse_doc_freq = Math.log10(N/this.document_frequency);
+        this.inverse_doc_freq = Math.log(N/this.document_frequency);
     }
 
     private void setFinalWeighting(){
@@ -55,6 +58,22 @@ public class TfIdfWeighting {
 
     public void setFinal_weighting(double final_weighting) {
         this.final_weighting = final_weighting;
+    }
+
+    public double getWeight_normalized() {
+        return weight_normalized;
+    }
+
+    public void setWeight_normalized(double weight_normalized) {
+        this.weight_normalized = weight_normalized;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 
     @Override
