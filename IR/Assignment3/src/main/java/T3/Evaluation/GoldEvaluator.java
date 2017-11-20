@@ -168,7 +168,7 @@ public class GoldEvaluator {
         }
     }
 
-    public void writeScores(File dir, int rank_size){
+    public void writeScores(File dir, int rank_size, double queryL, double queryT){
         dir.mkdir();
 
         double f_precision = 0, f_recall = 0, f_meas = 0, f_map=0,
@@ -182,7 +182,6 @@ public class GoldEvaluator {
             while (it.hasNext()){
                 Map.Entry pair = (Map.Entry) it.next();
 
-                int query_id = (int) pair.getKey();
                 Eval tmp_eval = (Eval) pair.getValue();
                 f_precision += tmp_eval.getPrecision();
                 f_recall += tmp_eval.getRecal();
@@ -198,8 +197,8 @@ public class GoldEvaluator {
                     "Mean Average Precision: " + f_map/this.number_querys +  "\n" +
                     "Mean Precision at Rank"+rank_size +": " + f_mpr10/rank_size + "\n"
                     + "Mean Reciprocal Rank: " + f_mrr/this.number_querys + "\n" +
-                    "Query throughput: " + "\n"
-                    + "Median Query Latency"+ "\n");
+                    "Query throughput: " + queryT + " query/sec"+ "\n"
+                    + "Median Query Latency: "+ queryL + " sec"+ "\n");
             pwt.close();
         } catch (IOException ex) {
             throw new RuntimeException("There was a problem writing the index to a file", ex);

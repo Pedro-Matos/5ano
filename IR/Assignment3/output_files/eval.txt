@@ -4,6 +4,6 @@ Mean F-measure: 0.04934258408338811
 Mean Average Precision: 0.25256113309730494
 Mean Precision at Rank10: 0.35199999999999954
 Mean Reciprocal Rank: 0.420627973663738
-Query throughput: 
-Median Query Latency
+Query throughput: 99.52242545248504 query/sec
+Median Query Latency: 0.010047986626666667 sec
 

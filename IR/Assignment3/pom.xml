@@ -72,7 +72,7 @@
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>T3.cli.Main</mainClass>
+                                    <mainClass>T3.cli.ClInterface</mainClass>
                                 </manifest>
                                 <manifestEntries>
                                     <Class-Path>.</Class-Path>

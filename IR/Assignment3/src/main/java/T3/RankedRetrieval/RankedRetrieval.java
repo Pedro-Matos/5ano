@@ -1,6 +1,5 @@
 package T3.RankedRetrieval;
 
-import T3.tokenizer.SimpleTokenizer;
 import T3.tokenizer.StrongTokenizer;
 import T3.utils.DocumentScore;
 import T3.utils.ScoringOption;
@@ -17,9 +16,15 @@ import java.util.*;
  */
 public class RankedRetrieval {
 
-    private StrongTokenizer tokenizer = new StrongTokenizer("stopwords.txt");
+    private StrongTokenizer tokenizer;
     private List<ScoringOption> scoring_opt = new LinkedList<>();
     private Map<Integer, Map<Double, Integer>> map_of_the_maps = new HashMap<>();
+
+    public RankedRetrieval(String stop){
+        this.tokenizer = new StrongTokenizer(stop);
+    }
+
+
     public List<String> ParseQuerys(File f){
         List<String> terms = new LinkedList<String>();
 
@@ -32,7 +37,9 @@ public class RankedRetrieval {
         return terms;
     }
 
-    public void ProcessTerms(List<String> query, Map<String, List<TfIdfWeighting>> dic, File dir){
+    public long ProcessTerms(List<String> query, Map<String, List<TfIdfWeighting>> dic, File dir){
+        long start = System.nanoTime();
+
         int query_id = 1;
         String query_term;
 
@@ -136,7 +143,9 @@ public class RankedRetrieval {
             }
             query_id++;
         }
+        long elapsedTime = System.nanoTime() - start;
         WriteScores(dir);
+        return elapsedTime;
     }
 
     private void WriteScores(File dir){
