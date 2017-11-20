@@ -1,6 +1,7 @@
 package T3.RankedRetrieval;
 
 import T3.tokenizer.SimpleTokenizer;
+import T3.tokenizer.StrongTokenizer;
 import T3.utils.DocumentScore;
 import T3.utils.ScoringOption;
 import T3.utils.TfIdfWeighting;
@@ -16,7 +17,7 @@ import java.util.*;
  */
 public class RankedRetrieval {
 
-    private SimpleTokenizer tokenizer = new SimpleTokenizer();
+    private StrongTokenizer tokenizer = new StrongTokenizer("stopwords.txt");
     private List<ScoringOption> scoring_opt = new LinkedList<>();
     private Map<Integer, Map<Double, Integer>> map_of_the_maps = new HashMap<>();
     public List<String> ParseQuerys(File f){
@@ -139,11 +140,6 @@ public class RankedRetrieval {
     }
 
     private void WriteScores(File dir){
-
-
-
-
-
         dir.mkdir();
         try {
             FileUtils.cleanDirectory(dir);
@@ -182,5 +178,9 @@ public class RankedRetrieval {
         } catch (IOException ex) {
             throw new RuntimeException("There was a problem writing the index to a file", ex);
         }
+    }
+
+    public Map<Integer, Map<Double, Integer>> getMap_of_the_maps() {
+        return map_of_the_maps;
     }
 }

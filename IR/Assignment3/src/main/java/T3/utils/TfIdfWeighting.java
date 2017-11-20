@@ -9,13 +9,13 @@ public class TfIdfWeighting {
 
     private int docId;
 
-    private int term_frequency;
+    private double term_frequency;
 
-    private int document_frequency;
+    private double document_frequency;
 
     private double inverse_doc_freq;
 
-    private int tf_idf_weighting;
+    private double tf_idf_weighting;
 
     private int N;
 
@@ -23,7 +23,7 @@ public class TfIdfWeighting {
 
     private double weight_normalized;
 
-    public TfIdfWeighting(String term, int docId, int term_frequency,int document_frequency, int N){
+    public TfIdfWeighting(String term, int docId, double term_frequency,double document_frequency, int N){
         this.term = term;
         this.docId = docId;
         this.term_frequency = term_frequency;

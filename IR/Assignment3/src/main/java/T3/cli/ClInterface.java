@@ -1,5 +1,6 @@
 package T3.cli;
 
+import T3.Evaluation.GoldEvaluator;
 import T3.RankedRetrieval.RankedRetrieval;
 import T3.index.InvertedIndex;
 import T3.index.TfIdfIndexer;
@@ -104,6 +105,13 @@ public class ClInterface {
         Map<String, List<TfIdfWeighting>> dic_weight = tfidfIndexer.getDic_weight();
         ranked_ret.ProcessTerms(terms, dic_weight, output);
 
+
+        GoldEvaluator ev = new GoldEvaluator();
+        Map<Integer, Map<Double, Integer>> map_scores = ranked_ret.getMap_of_the_maps();
+        ev.readQueryRelevance("cranfield.query.relevance.txt");
+        ev.evaluateValues(map_scores,docs_number,10);
+        ev.calculateAll(10);
+        ev.writeScores(output,10);
         //long elapsedTime = System.nanoTime() - start;
         //System.out.println("Elapsed Time: " + elapsedTime);
 
