@@ -9,25 +9,26 @@ import java.util.HashMap;
  * Each TID is composed by a name and an ensamble of triplets and childs.
  *
  */
+
 public class TID {
-    private HashMap<String, Triplet> triplet = new HashMap<>();
-    private HashMap<String, Childs> childs = new HashMap<>();
+    private HashMap<String, Triplet> Triplet = new HashMap<>();
+    private HashMap<String, Childs> Childs = new HashMap<>();
     private String name;
 
-    public HashMap<String, Triplet> getTriplet() {
-        return triplet;
+    public HashMap<String, RSI.Structure.Triplet> getTriplet() {
+        return Triplet;
     }
 
-    public void setTriplet(HashMap<String, Triplet> triplet) {
-        this.triplet = triplet;
+    public void setTriplet(HashMap<String, RSI.Structure.Triplet> triplet) {
+        Triplet = triplet;
     }
 
-    public HashMap<String, Childs> getChilds() {
-        return childs;
+    public HashMap<String, RSI.Structure.Childs> getChilds() {
+        return Childs;
     }
 
-    public void setChilds(HashMap<String, Childs> childs) {
-        this.childs = childs;
+    public void setChilds(HashMap<String, RSI.Structure.Childs> childs) {
+        Childs = childs;
     }
 
     public String getName() {
@@ -41,8 +42,8 @@ public class TID {
     @Override
     public String toString() {
         return "TID{" +
-                "triplet=" + triplet +
-                ", childs=" + childs +
+                "Triplet=" + Triplet +
+                ", Childs=" + Childs +
                 ", name='" + name + '\'' +
                 '}';
     }

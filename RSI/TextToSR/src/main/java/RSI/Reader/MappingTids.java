@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by Pedro Matos
@@ -28,10 +29,8 @@ public class MappingTids {
 
     // this linked list contains all the json files that will need to be mapped into classes.
     private LinkedList<String> files_names;
-    private String mainFolder;
-    public MappingTids(LinkedList<String> files_names, String mainFolder) {
+    public MappingTids(LinkedList<String> files_names) {
         this.files_names = files_names;
-        this.mainFolder = mainFolder;
     }
 
     /**
@@ -47,11 +46,13 @@ public class MappingTids {
         for(int i=0; i<files_names.size();i++){
             String[] split = files_names.get(i).split("/");
             String name = split[split.length-1];
+            //remove .json
+            String[] tmp_name = name.split(Pattern.quote("."));
             if(name.charAt(0) == 'T'){
-                TIDs.put(name,MappingTID(files_names.get(i),name));
+                TIDs.put(tmp_name[0],MappingTID(files_names.get(i),name));
             }
             else{
-                CIDs.put(name,MappingCID(files_names.get(i),name));
+                CIDs.put(tmp_name[0],MappingCID(files_names.get(i),name));
             }
         }
     }
@@ -63,13 +64,14 @@ public class MappingTids {
             BufferedReader br = new BufferedReader(
                     new FileReader(file_name));
 
-
             obj = gson.fromJson(br, TID.class);
-            obj.setName(name);
-            //System.out.println(obj.getName());
+            //remove .json
+            String[] tmp_name = name.split(Pattern.quote("."));
+            obj.setName(tmp_name[0]);
 
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("aol");
         }
         return obj;
     }
@@ -83,8 +85,9 @@ public class MappingTids {
 
 
             obj = gson.fromJson(br, CID.class);
-            obj.setName(name);
-            //System.out.println(obj.getName());
+            //remove .json
+            String[] tmp_name = name.split(Pattern.quote("."));
+            obj.setName(tmp_name[0]);
 
         } catch (IOException e) {
             e.printStackTrace();

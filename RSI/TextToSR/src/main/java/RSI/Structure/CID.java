@@ -10,15 +10,15 @@ import java.util.HashMap;
  *
  */
 public class CID{
-    private HashMap<String, Triplet> triplet = new HashMap<>();
+    private HashMap<String, Triplet> Triplet = new HashMap<>();
     private String name;
 
-    public HashMap<String, Triplet> getTriplet() {
-        return triplet;
+    public HashMap<String, RSI.Structure.Triplet> getTriplet() {
+        return Triplet;
     }
 
-    public void setTriplet(HashMap<String, Triplet> triplet) {
-        this.triplet = triplet;
+    public void setTriplet(HashMap<String, RSI.Structure.Triplet> triplet) {
+        Triplet = triplet;
     }
 
     public String getName() {
@@ -32,7 +32,7 @@ public class CID{
     @Override
     public String toString() {
         return "CID{" +
-                "triplet=" + triplet +
+                "Triplet=" + Triplet +
                 ", name='" + name + '\'' +
                 '}';
     }
