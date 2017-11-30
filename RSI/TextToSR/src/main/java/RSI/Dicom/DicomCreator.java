@@ -93,7 +93,7 @@ public class DicomCreator {
 
 
         /**
-         * Problema em ter a estrutura em árvore e ter os campos em pdf. É necessário mais algumas modificações.
+         * Problema em ter a estrutura em árvore e ter os campos em Pdf. É necessário mais algumas modificações.
          *
          */
 
@@ -486,6 +486,34 @@ public class DicomCreator {
 
         pdf_fields.addDicomObject(d1);
 
+        //////
+        DicomObject d1x = new BasicDicomObject();
+
+        d1x.putString(Tag.RelationshipType, VR.CS, "HAS OBS CONTEXT");
+        d1x.putString(Tag.ValueType, VR.CS, "TEXT");
+
+        DicomElement d1x_e = d1x.putSequence(Tag.ConceptNameCodeSequence);
+        DicomObject d1x_o = new BasicDicomObject();
+
+        d1x_o.putString(Tag.CodeValue, VR.SH, "IHE.05");
+        d1x_o.putString(Tag.CodeMeaning, VR.LO, "Language");
+        d1x_o.putString(Tag.CodingSchemeDesignator,VR.SH , "99_OFFIS_DCMTK");
+
+        d1x_e.addDicomObject(d1x_o);
+
+        try{
+            tmp_l = real_values.get(mapping_values.get("121049"));
+            System.out.println(tmp_l.get(index));
+            d1x.putString(Tag.TextValue, VR.UT, tmp_l.get(index));
+        }
+        catch (Exception e){
+            d1x.putString(Tag.TextValue, VR.UT, "Not referred.");
+        }
+
+        pdf_fields.addDicomObject(d1x);
+
+
+
 
 
 
@@ -594,6 +622,32 @@ public class DicomCreator {
         }
 
         pdf_fields.addDicomObject(d5);
+
+
+        DicomObject d6 = new BasicDicomObject();
+
+        d6.putString(Tag.RelationshipType, VR.CS, "CONTAINS");
+        d6.putString(Tag.ValueType, VR.CS, "TEXT");
+
+        DicomElement d6_e = d6.putSequence(Tag.ConceptNameCodeSequence);
+        DicomObject d6_o = new BasicDicomObject();
+
+        d6_o.putString(Tag.CodeValue, VR.SH, "CODE_04");
+        d6_o.putString(Tag.CodeMeaning, VR.LO, "Topico");
+        d6_o.putString(Tag.CodingSchemeDesignator,VR.SH , "99_OFFIS_DCMTK");
+
+        d6_e.addDicomObject(d6_o);
+
+        try{
+            //tmp_l = real_values.get(mapping_values.get("Treatment"));
+            d6.putString(Tag.TextValue, VR.UT, "outro");
+        }
+        catch (Exception e){
+            d6.putString(Tag.TextValue, VR.UT, "The Treatment was not presented.");
+        }
+
+        pdf_fields.addDicomObject(d6);
+
     }
 
 
