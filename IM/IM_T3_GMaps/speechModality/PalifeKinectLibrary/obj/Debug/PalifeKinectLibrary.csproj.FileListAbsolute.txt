@@ -1,0 +1,37 @@
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\References\FaceTrackData.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\References\FaceTrackLib.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\PalifeKinectLibrary.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\PalifeKinectLibrary.pdb
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.Imaging.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.Math.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.dll
+c:\users\pealife\documents\visual studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.pdb
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PalifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.dll
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.pdb
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\References\FaceTrackData.dll
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\References\FaceTrackLib.dll
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\PalifeKinectLibrary.dll
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\PalifeKinectLibrary.pdb
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.dll
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.Imaging.dll
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.Math.dll
+C:\Users\Micael\Desktop\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\FaceTrackData.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\FaceTrackLib.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\PalifeKinectLibrary.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\PalifeKinectLibrary.pdb
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.Imaging.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\AForge.Math.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\Emgu.CV.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\Emgu.CV.UI.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\Emgu.Util.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.pdb
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.dll
+C:\Users\PeaLife\Documents\Visual Studio 2010\Projects\PaelifeKinectLibrary\PalifeKinectLibrary\obj\Debug\PalifeKinectLibrary.csprojResolveAssemblyReference.cache
