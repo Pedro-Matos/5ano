@@ -25,88 +25,50 @@ namespace AppGui
             worker.goToPlace("Aveiro");
             Thread.Sleep(5000);
             worker.swipeRight();
-            //mmiC = new MmiCommunication("localhost", 8000, "User1", "GUI");
-            //mmiC.Message += MmiC_Message;
-            //mmiC.Start();
+
+            mmiC = new MmiCommunication("localhost", 8000, "User1", "GUI");
+            mmiC.Message += MmiC_Message;
+            mmiC.Start();
 
         }
 
-        //private void MmiC_Message(object sender, MmiEventArgs e)
-        //{
-        //    var doc = XDocument.Parse(e.Message);
-        //    var com = doc.Descendants("command").FirstOrDefault().Value;
-        //    dynamic json = JsonConvert.DeserializeObject(com);
-
-        //    switch(json.Categoria.ToString())
-        //    {
-        //        case "cidades":
-        //            worker.goToPlace(json.CidadeUnica.ToString());
-        //            break;
-
-        //        case "zoom":
-        //            switch (json.Zoom.ToString())
-        //            {
-        //                case "mais":
-        //                    worker.zoomIn();
-        //                    break;
-        //                case "menos":
-        //                    worker.zoomOut();
-        //                    break;
-        //            }
-        //            break;
-
-        //        case "loc":
-        //            worker.goToMyLocation();
-        //            break;
-
-        //        case "locaisEmCidades":
-        //            worker.searchServiceAtLocation(json.locais.ToString(), json.CidadeLocal.ToString());
-        //            break;
-
-        //        case "tipovista":
-        //            switch (json.EscolherVista.ToString())
-        //            {
-        //                case "satélite":
-        //                    worker.toggleSatellite();
-        //                    break;
-        //                case "terreno":
-        //                    worker.toggleTerreno();
-        //                    break;
-        //            }
-        //            break;
-
-        //        case "Opções":
-        //            switch (json.Opções.ToString())
-        //            {
-        //                case "painel":
-        //                    worker.togglePanel();
-        //                    break;
-        //                case "sem painel":
-        //                    worker.togglePanel();
-        //                    break;
-        //                case "abrir menu":
-        //                    worker.openMenu();
-        //                    break;
-        //                case "fechar menu":
-        //                    worker.closeMenu();
-        //                    break;
-        //                case "sem direções":
-        //                    worker.closeDirections();
-        //                    break;
-        //                case "limpar pesquisa":
-        //                    worker.closeSearchBox();
-        //                    break;
-        //            }
-        //            break;
-
-        //        case "direcao":
-        //            worker.searchDirections(json.CidadeOrigem.ToString(), json.CidadeDestino.ToString());
-        //            break;
-
-        //        case "transporte":
-        //            worker.setTransportationMode(json.MeioTransporte.ToString());
-        //            break;
-        //    }
-        //}
+        private void MmiC_Message(object sender, MmiEventArgs e)
+        {
+            var doc = XDocument.Parse(e.Message);
+            var com = doc.Descendants("command").FirstOrDefault().Value;
+            dynamic json = JsonConvert.DeserializeObject(com);
+            Console.WriteLine(json);
+            switch (json.categoria.ToString())
+            {
+                case "left-hand":
+                    switch (json.gesto.ToString())
+                    {
+                        case "Swipe Up":
+                            worker.zoomIn();
+                            break;
+                        case "Swipe Down":
+                            worker.zoomOut();
+                            break;
+                    }
+                    break;
+                case "right-hand":
+                    switch (json.gesto.ToString())
+                    {
+                        case "Swipe Up":
+                            worker.swipeUp();
+                            break;
+                        case "Swipe Down":
+                            worker.swipeDown();
+                            break;
+                        case "Swipe Right":
+                            worker.swipeRight();
+                            break;
+                        case "Swipe Left":
+                            worker.swipeLeft();
+                            break;
+                    }
+                    break;
+            }
+        }
     }
 }

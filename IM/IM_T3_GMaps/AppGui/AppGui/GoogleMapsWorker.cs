@@ -13,7 +13,7 @@ namespace AppGui
 {
     class GoogleMapsWorker
     {
-        private Tts tts;
+    
 
         private String baseMapsUrl;
 
@@ -25,7 +25,7 @@ namespace AppGui
 
         public GoogleMapsWorker()
         {
-            tts = new Tts();
+            
 
             baseMapsUrl = "https://www.google.com/maps/";
 
@@ -277,9 +277,15 @@ namespace AppGui
 
                 Thread.Sleep(500);
                 if (transito)
-                    tts.Speak("Vista de trânsito ativada");
+                {
+                    //tts.Speak("Vista de trânsito ativada");
+                }
+
                 else
-                    tts.Speak("Vista de trânsito desativada");
+                {
+                    // tts.Speak("Vista de trânsito desativada");
+                }
+
             }
             catch (InvalidOperationException e)
             {
@@ -310,9 +316,15 @@ namespace AppGui
 
                 Thread.Sleep(500);
                 if (satelite)
-                    tts.Speak("Vista de Satélite ativada");
+                {
+                    //tts.Speak("Vista de Satélite ativada");
+                }
+
                 else
-                    tts.Speak("Vista de Satélite desativada");
+                {
+                    //tts.Speak("Vista de Satélite desativada");
+                }
+
             }
             catch (InvalidOperationException e)
             {
@@ -343,9 +355,15 @@ namespace AppGui
 
                 Thread.Sleep(500);
                 if (terreno)
-                    tts.Speak("Vista de terreno ativada");
+                {
+                    //tts.Speak("Vista de terreno ativada");
+                }
+
                 else
-                    tts.Speak("Vista de terreno desativada");
+                {
+                    //tts.Speak("Vista de terreno desativada");
+                }
+
             }
             catch (InvalidOperationException e)
             {
@@ -534,34 +552,34 @@ namespace AppGui
             {
                 if (tempo.Contains("min") && tempo.Contains("h"))
                 {
-                    tts.Speak("O trajeto mais rápido demora " + tempo);
+                   // tts.Speak("O trajeto mais rápido demora " + tempo);
                 }
                 else
                 {
                     if (tempo.Contains("h"))
                     {
-                        tts.Speak("O trajeto mais rápido demora " + tempo + "oras");
+                        //tts.Speak("O trajeto mais rápido demora " + tempo + "oras");
                     }
                     else
                     {
-                        tts.Speak("O trajeto mais rápido demora " + tempo + "utos");
+                        //tts.Speak("O trajeto mais rápido demora " + tempo + "utos");
                     }
                 }
             } else
             {
                 if (tempo.Contains("min") && tempo.Contains("h"))
                 {
-                    tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo);
+                    //tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo);
                 }
                 else
                 {
                     if (tempo.Contains("h"))
                     {
-                        tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo + "oras");
+                       // tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo + "oras");
                     }
                     else
                     {
-                        tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo + "utos");
+                       // tts.Speak("A distância a percorrer é de " + distancia + " e demora " + tempo + "utos");
                     }
                 }
             }
@@ -572,7 +590,7 @@ namespace AppGui
             try
             {
                 IWebElement nome = driver.FindElement(By.XPath("//*[@id=\"pane\"]/div/div[2]/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/h3/span"));
-                tts.Speak("O " + service + " mais perto é o " + nome.Text);
+                //tts.Speak("O " + service + " mais perto é o " + nome.Text);
             }
             catch (InvalidOperationException e)
             {

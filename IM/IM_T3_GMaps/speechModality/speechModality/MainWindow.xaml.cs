@@ -1,4 +1,5 @@
 ﻿using Microsoft.Kinect;
+using mmisharp;
 using Paelife.KinectFramework;
 using Paelife.KinectFramework.FaceRecognition;
 using Paelife.KinectFramework.FaceTracking;
@@ -35,8 +36,17 @@ namespace speechModality
 
         bool kinectStartedSucessfully = false;
 
+
+        private LifeCycleEvents lce;
+        private MmiCommunication mmic;
+
         public MainWindow()
         {
+            //init LifeCycleEvents..
+            lce = new LifeCycleEvents("ASR", "IM", "speech-1", "acoustic", "command");
+            mmic = new MmiCommunication("localhost", 8000, "User1", "ASR");
+
+            mmic.Send(lce.NewContextRequest());
             InitializeComponent();
         }
 
@@ -94,6 +104,19 @@ namespace speechModality
 
         void LeftHandSwipeGestureDetector_OnGestureDetected(string gesture)
         {
+
+            string json = "{";
+
+            json += "\"" + "categoria" + "\":\"" + "left-hand" + "\", ";
+            json += "\"" + "gesto" + "\":\"" + gesture + "\"";
+            json.Substring(0, json.Length - 2);
+            json += "}";
+
+            var exNot = lce.ExtensionNotification("", "", 0.0f, json);
+            Console.WriteLine(exNot);
+            mmic.Send(exNot);
+           
+
             textBoxMessagesCenter.Text = "Left Hand: " + gesture;
             textBoxMessagesCenter.Visibility = System.Windows.Visibility.Visible;
 
@@ -105,6 +128,19 @@ namespace speechModality
 
         void RightHandSwipeGestureDetector_OnGestureDetected(string gesture)
         {
+
+            string json = "{";
+
+            json += "\"" + "categoria" + "\":\"" + "right-hand" + "\", ";
+            json += "\"" + "gesto" + "\":\"" + gesture + "\"";
+            json.Substring(0, json.Length - 2);
+            json += "}";
+
+            var exNot = lce.ExtensionNotification("", "", 0.0f, json);
+            Console.WriteLine(exNot);
+            mmic.Send(exNot);
+
+
             textBoxMessagesCenter.Text = "Right Hand: " + gesture;
             textBoxMessagesCenter.Visibility = System.Windows.Visibility.Visible;
 
