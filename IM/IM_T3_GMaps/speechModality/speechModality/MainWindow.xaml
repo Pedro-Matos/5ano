@@ -15,7 +15,9 @@
         <Viewbox Grid.Row="0" Stretch="Uniform">
             <Image Name="image1" Width="640" Height="480"/>
         </Viewbox>
-        <TextBlock Grid.Row="1" Height="64" HorizontalAlignment="Center" Name="textBoxMessagesCenter" VerticalAlignment="Center" Text="DISCONNECTED" FontWeight="Bold" FontSize="24" Visibility="Collapsed" Foreground="Red" />
+        <TextBlock Grid.Row="1" Height="72" HorizontalAlignment="Center" Name="textBoxMessagesCenter" VerticalAlignment="Center" Text="DISCONNECTED" FontWeight="Bold" FontSize="24" Visibility="Collapsed" Foreground="Red" />
         <TextBlock Grid.Row="2" HorizontalAlignment="Left" Name="textBlockStatus" Text="Number of Detected Users = 0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" />
+        <TextBlock Grid.Row="3" Height="72" HorizontalAlignment="Center" Name="textBoxPostureCenter" VerticalAlignment="Center" Text="DISCONNECTED" FontWeight="Bold" FontSize="24" Visibility="Collapsed" Foreground="Green" />
+
     </Grid>
 </Window>

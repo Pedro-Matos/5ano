@@ -20,11 +20,10 @@ namespace AppGui
         public MainWindow()
         {
             worker = new GoogleMapsWorker();
-            Thread.Sleep(5000);
+            Thread.Sleep(2500);
 
             worker.goToPlace("Aveiro");
-            Thread.Sleep(5000);
-            worker.swipeRight();
+            Thread.Sleep(2500);
 
             mmiC = new MmiCommunication("localhost", 8000, "User1", "GUI");
             mmiC.Message += MmiC_Message;
@@ -44,10 +43,22 @@ namespace AppGui
                     switch (json.gesto.ToString())
                     {
                         case "Swipe Up":
-                            worker.zoomIn();
+                            worker.toggleSatellite();
+                            Thread.Sleep(2500);
                             break;
                         case "Swipe Down":
+                            worker.toggleTerreno();
+                            Thread.Sleep(2500);
+                            break;
+                        case "Swipe Right":
+                            worker.zoomIn();
+                            break;
+                        case "Swipe Left":
                             worker.zoomOut();
+                            break;
+                        case "Push":
+                            worker.goToMyLocation();
+                            Thread.Sleep(2500);
                             break;
                     }
                     break;
@@ -65,6 +76,34 @@ namespace AppGui
                             break;
                         case "Swipe Left":
                             worker.swipeLeft();
+                            break;
+                        case "Push":
+                            worker.goToMyLocation();
+                            Thread.Sleep(2500);
+                            break;
+                    }
+                    break;
+                case "postura":
+                    switch (json.gesto.ToString())
+                    {
+                        case "T":
+                            worker.setTransportationMode("publicos");
+                            break;
+                        case "V":
+                            worker.setTransportationMode("avião");
+                            break;
+                        case "Right Kick":
+                            worker.setTransportationMode("a pé");
+                            break;
+                        case "Left Kick":
+                            worker.setTransportationMode("a pé");
+                            break;
+                        case "A":
+                            worker.setTransportationMode("carro");
+                            break;
+                        case "Maos Juntas":
+                            worker.closeDirections();
+                            Thread.Sleep(2500);
                             break;
                     }
                     break;

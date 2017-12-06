@@ -8,6 +8,7 @@ namespace Paelife.KinectFramework
     using System.ComponentModel;
     using Paelife.KinectFramework.FaceTracking;
     using Paelife.KinectFramework.Gestures;
+    using Paelife.KinectFramework.Postures;
 
     /// <summary>
     /// This class is the simplest way of using all the available features of
@@ -181,6 +182,8 @@ namespace Paelife.KinectFramework
         /// </summary>
         public event EventHandler RightSwipeDetected;
 
+        public event EventHandler LeftHandAboveHeadDetected;
+
         /// <summary>
         /// This class is based on a <see cref="KinectManager"/>. You can configure it
         /// by accessing this property.
@@ -225,7 +228,16 @@ namespace Paelife.KinectFramework
             RightHandSwipeGestureDetector.OnGestureDetected +=
                 new Action<string>(SwipeGestureDetector_OnGestureDetected);
             KinectManager.GestureDetectors.Add(RightHandSwipeGestureDetector);
+
+
+            PostureDetector LeftHandOverHeadPostureDetector = 
+                new AlgorithmicPostureDetector();
+            LeftHandOverHeadPostureDetector.PostureDetected +=
+                new Action<string>(PostureDetector_OnPostureDetected);
+            KinectManager.PostureDetectors.Add(LeftHandOverHeadPostureDetector);
         }
+
+        
 
         private void kinectManager_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -271,6 +283,12 @@ namespace Paelife.KinectFramework
                 LeftSwipeDetected(this, EventArgs.Empty);
             else if (gesture == "SwipeToRight")
                 RightSwipeDetected(this, EventArgs.Empty);
+        }
+
+        private void PostureDetector_OnPostureDetected(string posture)
+        {
+            if (posture == "LeftHandOverHead")
+                LeftHandAboveHeadDetected(this, EventArgs.Empty);
         }
 
         /// <summary>

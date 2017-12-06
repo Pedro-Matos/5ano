@@ -136,6 +136,7 @@ namespace Paelife.KinectFramework
     using Paelife.KinectFramework.FaceRecognition;
     using Paelife.KinectFramework.FaceTracking;
     using Paelife.KinectFramework.Gestures;
+    using Paelife.KinectFramework.Postures;
 
     /// <summary>
     /// A data wrapper for a KinectSensor, which makes it easier to use.
@@ -182,6 +183,7 @@ namespace Paelife.KinectFramework
 
         bool detectSwipes = false;
         List<GestureDetector> gestureDetectorsValue;
+        List<PostureDetector> postureDetectorsValue;
 
         /// <summary>
         /// Event implementing INotifyPropertyChanged interface.
@@ -380,7 +382,13 @@ namespace Paelife.KinectFramework
             get { return gestureDetectorsValue; }
             private set { gestureDetectorsValue = value; }
         }
-        
+
+        public List<PostureDetector> PostureDetectors
+        {
+            get { return postureDetectorsValue; }
+            private set { postureDetectorsValue = value; }
+        }
+
 
         /// <summary>
         /// Initializes a new instance of KinectManager class.
@@ -395,6 +403,7 @@ namespace Paelife.KinectFramework
 
             faceRecognizer = new EigenFaceRecognizer(this);
             gestureDetectorsValue = new List<GestureDetector>();
+            postureDetectorsValue = new List<PostureDetector>();
 
             InitializeKinectSensor();
         }
@@ -486,6 +495,13 @@ namespace Paelife.KinectFramework
                         if (s.TrackingId == nearestId)
                             foreach (GestureDetector gd in gestureDetectorsValue)
                                 gd.Add(s.Joints[gd.TrackedJoint].Position, kinectSensorValue);
+
+                //processar posturas
+                if (postureDetectorsValue.Count > 0)
+                    foreach (Skeleton s in skeletons)
+                        if (s.TrackingId == nearestId)
+                            foreach (PostureDetector pd in postureDetectorsValue)
+                                pd.Add(s, kinectSensorValue);
             }
 
             finally
@@ -549,7 +565,7 @@ namespace Paelife.KinectFramework
                     this.kinectSensorValue = KinectSensor.KinectSensors[index];
 
                     this.kinectSensorValue.Start();
-
+                    this.kinectSensorValue.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default; // Use Seated Mode
                     this.IsDisconnected = false;
                     this.DisconnectedReason = null;
                 }
@@ -575,6 +591,7 @@ namespace Paelife.KinectFramework
             {
                 kinectSensorValue.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
                 kinectSensorValue.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
+                kinectSensorValue.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default; // Use Seated Mode
                 kinectSensorValue.SkeletonStream.Enable();
 
                 kinectSensorValue.AllFramesReady += onAllFramesReadyEventHandler;

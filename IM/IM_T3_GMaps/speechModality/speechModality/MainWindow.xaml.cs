@@ -4,6 +4,7 @@ using Paelife.KinectFramework;
 using Paelife.KinectFramework.FaceRecognition;
 using Paelife.KinectFramework.FaceTracking;
 using Paelife.KinectFramework.Gestures;
+using Paelife.KinectFramework.Postures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +94,10 @@ namespace speechModality
                 RightHandSwipeGestureDetector.OnGestureDetected +=
                     new Action<string>(RightHandSwipeGestureDetector_OnGestureDetected);
                 kinectManager.GestureDetectors.Add(RightHandSwipeGestureDetector);
+
+                PostureDetector postureDetector = new AlgorithmicPostureDetector();
+                postureDetector.PostureDetected += new Action<string>(PostureDetector_PostureDetected);
+                kinectManager.PostureDetectors.Add(postureDetector);
             }
 
             if (!kinectStartedSucessfully)
@@ -100,6 +105,28 @@ namespace speechModality
                 textBoxMessagesCenter.Text = "DISCONNECTED";
                 textBoxMessagesCenter.Visibility = System.Windows.Visibility.Visible;
             }
+        }
+
+        void PostureDetector_PostureDetected(string posture)
+        {
+            string json = "{";
+
+            json += "\"" + "categoria" + "\":\"" + "postura" + "\", ";
+            json += "\"" + "gesto" + "\":\"" + posture + "\"";
+            json.Substring(0, json.Length - 2);
+            json += "}";
+
+            var exNot = lce.ExtensionNotification("", "", 0.0f, json);
+            Console.WriteLine(exNot);
+            mmic.Send(exNot);
+
+            textBoxPostureCenter.Text = posture;
+            textBoxPostureCenter.Visibility = System.Windows.Visibility.Visible;
+
+            centerMessageDisplayTime = DateTime.UtcNow + TimeSpan.FromSeconds(2.5);
+            Dispatcher.BeginInvoke(
+                System.Windows.Threading.DispatcherPriority.Background,
+                new UpdateUIDelegate(UpdateUI));
         }
 
         void LeftHandSwipeGestureDetector_OnGestureDetected(string gesture)
@@ -223,6 +250,13 @@ namespace speechModality
                     System.Windows.Threading.DispatcherPriority.Background,
                     new UpdateUIDelegate(UpdateUI));
             else textBoxMessagesCenter.Text = "";
+
+
+            if (DateTime.UtcNow < this.centerMessageDisplayTime)
+                Dispatcher.BeginInvoke(
+                    System.Windows.Threading.DispatcherPriority.Background,
+                    new UpdateUIDelegate(UpdateUI));
+            else textBoxPostureCenter.Text = "";
         }
 
     }

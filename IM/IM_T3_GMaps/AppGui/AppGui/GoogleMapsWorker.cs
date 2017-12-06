@@ -143,6 +143,10 @@ namespace AppGui
             {
                 return;
             }
+            catch(ElementNotVisibleException e)
+            {
+                return;
+            }
         }
 
 

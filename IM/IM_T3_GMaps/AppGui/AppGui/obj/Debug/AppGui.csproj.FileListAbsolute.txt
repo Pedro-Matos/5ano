@@ -106,7 +106,6 @@ C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\bin\Debug\AppGui.pdb
 C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\bin\Debug\Microsoft.Speech.dll
 C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\bin\Debug\WebDriver.dll
-C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\bin\Debug\mmisharp.pdb
 C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\bin\Debug\WebDriver.xml
 C:\Users\Bena\Documents\IM_T3_GMaps\AppGui\AppGui\obj\Debug\AppGui.csprojResolveAssemblyReference.cache

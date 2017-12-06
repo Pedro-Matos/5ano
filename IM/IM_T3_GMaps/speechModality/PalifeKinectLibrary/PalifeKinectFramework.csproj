@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Paelife.KinectFramework</RootNamespace>
     <AssemblyName>PaelifeKinectFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=1.2.0.0, Culture=neutral, PublicKeyToken=75f8e82c5042a70f, processorArchitecture=MSIL">
@@ -86,11 +89,13 @@
     <Compile Include="ImageProcessingAux.cs" />
     <Compile Include="KinectManager.cs" />
     <Compile Include="MotionDetection\IMotionDetector.cs" />
+    <Compile Include="Postures\AlgorithmicPostureDetector.cs" />
+    <Compile Include="Postures\PosturesAux.cs" />
+    <Compile Include="Postures\PostureDetector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MotionDetection\SimpleMotionDetector.cs" />
     <Compile Include="SimpleKinectManager.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="FaceTrackData.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

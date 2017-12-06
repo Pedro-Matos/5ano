@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Kinect;
 
+
 namespace Paelife.KinectFramework.Gestures
 {
     /// <summary>
@@ -9,9 +10,6 @@ namespace Paelife.KinectFramework.Gestures
     /// </summary>
     public class SwipeGestureDetector : GestureDetector
     {
-        /// <summary>
-        /// The minimal lenght the swipe gesture should have.
-        /// </summary>
         public float SwipeMinimalLength { get; set; }
 
         /// <summary>
@@ -76,6 +74,17 @@ namespace Paelife.KinectFramework.Gestures
         /// </summary>
         protected override void LookForGesture()
         {
+            // Push 
+            if (ScanPositions((p1, p2) => Math.Abs(p2.Y - p1.Y) < SwipeMaximalHeight,  // Height
+                (p1, p2) => p2.Z - p1.Z < 0.01f, // Progression to right
+                (p1, p2) => Math.Abs(p2.Z - p1.Z) > SwipeMinimalLength, // Length
+                SwipeMininalDuration, SwipeMaximalDuration))// Duration
+            {
+                RaiseGestureDetected("Push");
+                return;
+            }
+
+
             // Swipe to right
             if (ScanPositions((p1, p2) => Math.Abs(p2.Y - p1.Y) < SwipeMaximalHeight, // Height
                 (p1, p2) => p2.X - p1.X > -0.01f, // Progression to right
@@ -96,7 +105,7 @@ namespace Paelife.KinectFramework.Gestures
                 return;
             }
 
-            if (ScanPositions((p1, p2) => Math.Abs(p2.X - p1.X) < 0.20f, 
+            if (ScanPositions((p1, p2) => Math.Abs(p2.X - p1.X) < 0.20f,
                 (p1, p2) => p2.Y - p1.Y < 0.01f,
                 (p1, p2) => Math.Abs(p2.Y - p1.Y) > 0.2f, 250, 2500))
             {
@@ -112,6 +121,10 @@ namespace Paelife.KinectFramework.Gestures
                 RaiseGestureDetected("Swipe Up");
                 return;
             }
+
+
         }
+
+    
     }
 }

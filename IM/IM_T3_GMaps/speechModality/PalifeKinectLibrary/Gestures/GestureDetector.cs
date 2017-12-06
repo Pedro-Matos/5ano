@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Kinect;
+using System.Threading;
 
 namespace Paelife.KinectFramework.Gestures
 {
@@ -79,6 +80,7 @@ namespace Paelife.KinectFramework.Gestures
             }
 
             // Look for gestures
+           // Thread.Sleep(50);
             LookForGesture();
         }
 
