@@ -1,0 +1,60 @@
+@()
+
+  @main("Welcome to Play") {
+
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>DCM Form</title>
+
+
+        <link href="@routes.Assets.versioned("bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+        <link rel="stylesheet" href="@routes.Assets.versioned("bootstrap/css/font-awesome.min.css")">
+        <link href="@routes.Assets.versioned("bootstrap/css/animate.min.css")" rel="stylesheet">
+        <link href="@routes.Assets.versioned("bootstrap/css/animate.css")" rel="stylesheet" />
+        <link href="@routes.Assets.versioned("bootstrap/css/prettyPhoto.css")" rel="stylesheet">
+        <link href="@routes.Assets.versioned("bootstrap/css/style.css")" rel="stylesheet">
+
+      </head>
+
+      <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="row">
+              <div class="site-logo">
+                <a href="" class="brand">Form to DCM</a>
+              </div>
+                <!-- /.Navbar-collapse -->
+            </div>
+          </div>
+        </nav>
+
+
+        <section id="Download">
+          <div class="container">
+            <div class="row">
+              <div class="center">
+                <div class="col-md-6 col-md-offset-3">
+                  <h2>Downloads</h2>
+                  <hr>
+                  <p class="lead"> This API is based in inputs with lots of information.
+                    This means that the user only needs to create a <strong>.csv file</strong> with all the contents.</p>
+                  <p class="lead">
+                    The API needs one csv as a <strong>mapping file</strong> and another one with the <strong>real information</strong>.
+                  </p>
+                  <li>Please go to <a href="@routes.WidgetController.listWidgets">@routes.WidgetController.listWidgets</a></li>
+                  <p></p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </body>
+    </html>
+
+  }
