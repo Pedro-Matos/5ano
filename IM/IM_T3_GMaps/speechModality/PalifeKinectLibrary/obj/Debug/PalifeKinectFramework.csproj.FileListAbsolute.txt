@@ -1,0 +1,55 @@
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\FaceTrackData.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\FaceTrackLib.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\PaelifeKinectFramework.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\PaelifeKinectFramework.pdb
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.Imaging.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.Math.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.CV.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.CV.UI.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.Util.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PalifeKinectFramework.csprojResolveAssemblyReference.cache
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PaelifeKinectFramework.dll
+C:\Users\Gil\Desktop\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PaelifeKinectFramework.pdb
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PalifeKinectFramework.csprojResolveAssemblyReference.cache
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PaelifeKinectFramework.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PaelifeKinectFramework.pdb
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\FaceTrackData.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\FaceTrackLib.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\PaelifeKinectFramework.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\PaelifeKinectFramework.pdb
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.Imaging.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.Math.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.CV.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.CV.UI.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.Util.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\SpotifyAPI.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\SpotifyAPI.pdb
+C:\Users\Gil\Documents\UA\IM\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\SpotifyAPI.xml
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\FaceTrackData.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\FaceTrackLib.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\PaelifeKinectFramework.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\PaelifeKinectFramework.pdb
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.Imaging.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\AForge.Math.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.CV.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.CV.UI.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Emgu.Util.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\SpotifyAPI.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\Newtonsoft.Json.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\SpotifyAPI.pdb
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\SpotifyAPI.xml
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\bin\Debug\SpotifyAPI.dll.config
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PalifeKinectFramework.csprojResolveAssemblyReference.cache
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PalifeKinectFramework.csproj.CoreCompileInputs.cache
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PaelifeKinectFramework.dll
+D:\Transferências\Trabalho3 - Spotinect-20171206T183350Z-001\Trabalho3 - Spotinect\Kinect Framework v1.0\src\PalifeKinectLibrary\obj\Debug\PaelifeKinectFramework.pdb
