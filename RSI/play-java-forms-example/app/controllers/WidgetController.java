@@ -51,7 +51,10 @@ public class WidgetController extends Controller {
             return badRequest(views.html.listWidgets.render(asScala(widgets), boundForm));
         } else {
             WidgetData data = boundForm.get();
-            widgets.add(new Widget(data.getDoctorName(), data.getPatientName()));
+            widgets.add(new Widget(data.getDoctorName(), data.getPatientName(), data.getPatientid() ,data.getPhysicalExaminationResults(),
+                    data.getComparisontopreviousexams(), data.getFindings(), data.getRecommendations(), data.getConclusions(),
+                    data.getPathologyResults(), data.getPathology(),data.getMalignancyType(),data.getNippleinvolved(),data.getNumbernodesremoved(),
+                    data.getNumbernodespositive(), data.getDistancefromnipple(), data.getDistancefromskin(), data.getDistancefromchestwall()));
             flash("info", "Form created!");
             upload();
             return redirect(routes.WidgetController.listWidgets());

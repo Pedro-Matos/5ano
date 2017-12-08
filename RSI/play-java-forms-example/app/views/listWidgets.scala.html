@@ -1,32 +1,74 @@
 @(widgets: Seq[Widget], form: Form[WidgetData])
+@implicitFieldConstructor = @{ b3.horizontal.fieldConstructor("col-md-2", "col-md-10") }
 @main("Widgets") {
-    <h1>Widgets</h1>
 
-    @* Flash shows updates to a page *@
-    @flash.asScala.map{ case (name, value) =>
-    <div class="@name">@value</div>
-    }
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta doctorName="viewport" content="width=device-width, initial-scale=1">
+            <title>DCM Form</title>
 
-    <hr/>
 
-    @* Global errors are not tied to any particular form field *@
-    @if(form.hasGlobalErrors) {
-        @form.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
-            <div>
-                @error.key: @error.message
+            <link href="@routes.Assets.versioned("bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+            <link rel="stylesheet" href="@routes.Assets.versioned("bootstrap/css/font-awesome.min.css")">
+            <link href="@routes.Assets.versioned("bootstrap/css/animate.min.css")" rel="stylesheet">
+            <link href="@routes.Assets.versioned("bootstrap/css/animate.css")" rel="stylesheet" />
+            <link href="@routes.Assets.versioned("bootstrap/css/prettyPhoto.css")" rel="stylesheet">
+            <link href="@routes.Assets.versioned("bootstrap/css/style.css")" rel="stylesheet">
+
+        </head>
+
+        <body>
+
+            <div class="container">
+                <! @* Flash shows updates to a page *@
+                @flash.asScala.map { case (name, value) =>
+                <div class="@name">@value</div>
+                }
             </div>
-        }
-    }
 
-    @helper.form(routes.WidgetController.createWidget) {
-        @helper.CSRF.formField
+            <hr/>
 
-        @helper.inputText(form("doctorName"), 'id -> "doctorName", 'size -> 30)
+            @* Global errors are not tied to any particular form field *@
+            @if(form.hasGlobalErrors) {
+                @form.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
+                    <div>
+                        @error.key: @error.message
+                    </div>
+                }
+            }
 
-        @helper.inputText(form("patientName"))
+            <div class="container">
+
+            @b3.form(routes.WidgetController.createWidget) {
+                @b3.text(form("doctorName"), '_label -> "Doctor Name", 'placeholder -> "Name...")
+                @b3.text(form("patientName"), '_label -> "Patient Name", 'placeholder -> "Name...")
+                @b3.text(form("patientid"), '_label -> "Patient Id", 'placeholder -> "Id...")
+                <hr/>
+                @b3.textarea(form("physicalExaminationResults"), '_label -> "Physical Results", 'rows -> 3)
+                @b3.textarea(form("comparisontopreviousexams"), '_label -> "Previous Exams", 'rows -> 3)
+                @b3.textarea(form("findings"), '_label -> "Findings", 'rows -> 3)
+                @b3.textarea(form("recommendations"), '_label -> "Recommendations", 'rows -> 3)
+                @b3.textarea(form("conclusions"), '_label -> "Conclusions", 'rows -> 3)
+                <hr/>
+                @b3.text(form("Pathology"), '_label -> "Pathology", 'placeholder -> "Name...")
+                @b3.text(form("pathologyResults"), '_label -> "Pathology Results", 'placeholder -> "Name...")
+                @b3.text(form("malignancyType"), '_label -> "Malignancy Type", 'placeholder -> "Name...")
+                @b3.text(form("nippleinvolved"), '_label -> "Nipple Involved", 'placeholder -> "Name...")
+                @b3.text(form("numbernodesremoved"), '_label -> "Number of nodes removed", 'placeholder -> "Name...")
+                @b3.text(form("numbernodespositive"), '_label -> "Number of nodes positive", 'placeholder -> "Name...")
+                <hr/>
+                @b3.text(form("distancefromnipple"), '_label -> "Distance from nipple", 'placeholder -> "Name...")
+                @b3.text(form("distancefromskin"), '_label -> "Distance from skin", 'placeholder -> "Name...")
+                @b3.text(form("distancefromchestwall"), '_label -> "Distance from chest wall", 'placeholder -> "Name...")
+                <hr/>
+                @b3.submit('class -> "btn btn-primary") { Sign in }
+            }
+            </div>
 
 
-        <button type="submit">Create widget</button>
-    }
+        </body>
+    </html>
 
 }

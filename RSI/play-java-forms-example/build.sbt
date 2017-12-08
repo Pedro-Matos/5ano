@@ -9,3 +9,10 @@ scalaVersion := "2.12.2"
 testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
 libraryDependencies += guice
+
+// Resolver is needed only for SNAPSHOT versions
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+
+libraryDependencies ++= Seq(
+  "com.adrianhurt" %% "play-bootstrap" % "1.2-P26-B3"
+)

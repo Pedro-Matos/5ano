@@ -4,28 +4,7 @@ TID 6052:
 121070	Findings
 121074	Recommendations
 121076	Conclusions
-
-
-TID 350:
-121144	Document Title
-
-
-TID 1002:
-121005	Observer Type	121006	Person
-
-
-TID 1003:
-121008	Person Observer Name	
-121009	Person Observer's Organization Name
-121010	Person Observer's Role in the Organization
-121011	Person Observer's Role in this Procedure
-
-
-TID 4203:
-111053	Recommended Follow-up
-111055	Recommended Follow-up Interval
-111054	Recommended Follow-up Date
-
+------------------------------------------------------------------------------------------------------------------------
 
 TID 4207:
 111468	Pathology Results
@@ -34,28 +13,13 @@ TID 4207:
 111472	Nipple involved
 111473	Number of nodes removed
 111474	Number of nodes positive
-
+------------------------------------------------------------------------------------------------------------------------
 
 CID 6165:
 121242	Distance from nipple
 121243	Distance from skin
 121244	Distance from chest wall
-
-
-TID 4204:
-111467	Needle Length
-111436	Number of passes
-111437	Number of specimens
-111431	Instrument Approach
-111438	Needle in target
-111439	Number of needles around target
-111440	Incision made
-111123	Marker placement
-111442	Confirmation of target
-111466	Severity of Complication
-111456	Action on fluid
-111455	Occult blood test result
-
+------------------------------------------------------------------------------------------------------------------------
 
 TID 4206:
 121071	Finding
@@ -77,3 +41,10 @@ TID 4206:
 111371	Identifiable effect on surrounding tissues
 111372	Vascularity
 111380	Correlation to Other Findings
+
+
+TID 4203:
+111053	Recommended Follow-up
+111055	Recommended Follow-up Interval
+111054	Recommended Follow-up Date
+
