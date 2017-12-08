@@ -39,7 +39,7 @@ public class WidgetControllerTest extends WithApplication {
     public void testCreateWidget() {
         Http.RequestBuilder request = Helpers.fakeRequest()
                 .method(POST)
-                .bodyForm(ImmutableMap.of("name","widget 6", "price", "6"))
+                .bodyForm(ImmutableMap.of("doctorName","widget 6", "price", "6"))
                 .uri("/widgets");
 
         Result result = route(app, request);
