@@ -54,7 +54,10 @@ public class WidgetController extends Controller {
             widgets.add(new Widget(data.getDoctorName(), data.getPatientName(), data.getPatientid() ,data.getPhysicalExaminationResults(),
                     data.getComparisontopreviousexams(), data.getFindings(), data.getRecommendations(), data.getConclusions(),
                     data.getPathologyResults(), data.getPathology(),data.getMalignancyType(),data.getNippleinvolved(),data.getNumbernodesremoved(),
-                    data.getNumbernodespositive(), data.getDistancefromnipple(), data.getDistancefromskin(), data.getDistancefromchestwall()));
+                    data.getNumbernodespositive(), data.getDistancefromnipple(), data.getDistancefromskin(), data.getDistancefromchestwall(),
+                    data.getQuadrant_location(), data.getDepth(), data.getLesion_density(), data.getMargins(),
+                    data.getCalcification_type(),data.getCalcification_distribution(),data.getNumber_of_calc(),
+                    data.getRecommended_followup(), data.getRecommended_followup_interval(), data.getBi_rads()));
             flash("info", "Form created!");
             upload();
             return redirect(routes.WidgetController.listWidgets());

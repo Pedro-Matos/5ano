@@ -63,7 +63,19 @@
                 @b3.text(form("distancefromskin"), '_label -> "Distance from skin", 'placeholder -> "Name...")
                 @b3.text(form("distancefromchestwall"), '_label -> "Distance from chest wall", 'placeholder -> "Name...")
                 <hr/>
-                @b3.submit('class -> "btn btn-primary") { Sign in }
+                @b3.text(form("quadrant_location"), '_label -> "Quadrant Location", 'placeholder -> "Name...")
+                @b3.text(form("depth"), '_label -> "Depth", 'placeholder -> "Name...")
+                @b3.text(form("lesion_density"), '_label -> "Lesion Density", 'placeholder -> "Name...")
+                @b3.text(form("margins"), '_label -> "Margins", 'placeholder -> "Name...")
+                @b3.text(form("calcification_type"), '_label -> "Calcification Type", 'placeholder -> "Name...")
+                @b3.text(form("calcification_distribution"), '_label -> "Calcification Distribution", 'placeholder -> "Name...")
+                @b3.text(form("number_of_calc"), '_label -> "Number of calcifications", 'placeholder -> "Name...")
+                <hr/>
+                @b3.text(form("recommended_followup"), '_label -> "Recommended Followup", 'placeholder -> "Name...")
+                @b3.text(form("recommended_followup_interval"), '_label -> "Recommended Followup Interval", 'placeholder -> "Name...")
+                @b3.number(form("bi_rads"), '_label -> "Bi-Rads value")
+                <hr/>
+                @b3.submit('class -> "btn btn-primary") { Send Report }
             }
             </div>
 

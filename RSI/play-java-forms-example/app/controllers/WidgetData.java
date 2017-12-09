@@ -56,11 +56,42 @@ public class WidgetData {
     private int numbernodespositive;
 
     @Constraints.Required
-    public String distancefromnipple;
+    private String distancefromnipple;
     @Constraints.Required
-    public String distancefromskin;
+    private String distancefromskin;
     @Constraints.Required
-    public String distancefromchestwall;
+    private String distancefromchestwall;
+
+    @Constraints.Required
+    private String quadrant_location;
+
+    @Constraints.Required
+    private String depth;
+
+    @Constraints.Required
+    private String lesion_density;
+
+    @Constraints.Required
+    private String margins;
+
+    @Constraints.Required
+    private String calcification_type;
+
+    @Constraints.Required
+    private String calcification_distribution;
+
+    @Constraints.Required
+    private String number_of_calc;
+
+    @Constraints.Required
+    private String recommended_followup;
+
+    @Constraints.Required
+    private String recommended_followup_interval;
+
+    @Constraints.Min(0)
+    @Constraints.Max(6)
+    private int bi_rads;
 
 
 
@@ -201,5 +232,85 @@ public class WidgetData {
 
     public void setDistancefromchestwall(String distancefromchestwall) {
         this.distancefromchestwall = distancefromchestwall;
+    }
+
+    public String getQuadrant_location() {
+        return quadrant_location;
+    }
+
+    public void setQuadrant_location(String quadrant_location) {
+        this.quadrant_location = quadrant_location;
+    }
+
+    public String getDepth() {
+        return depth;
+    }
+
+    public void setDepth(String depth) {
+        this.depth = depth;
+    }
+
+    public String getLesion_density() {
+        return lesion_density;
+    }
+
+    public void setLesion_density(String lesion_density) {
+        this.lesion_density = lesion_density;
+    }
+
+    public String getMargins() {
+        return margins;
+    }
+
+    public void setMargins(String margins) {
+        this.margins = margins;
+    }
+
+    public String getCalcification_type() {
+        return calcification_type;
+    }
+
+    public void setCalcification_type(String calcification_type) {
+        this.calcification_type = calcification_type;
+    }
+
+    public String getCalcification_distribution() {
+        return calcification_distribution;
+    }
+
+    public void setCalcification_distribution(String calcification_distribution) {
+        this.calcification_distribution = calcification_distribution;
+    }
+
+    public String getNumber_of_calc() {
+        return number_of_calc;
+    }
+
+    public void setNumber_of_calc(String number_of_calc) {
+        this.number_of_calc = number_of_calc;
+    }
+
+    public String getRecommended_followup() {
+        return recommended_followup;
+    }
+
+    public void setRecommended_followup(String recommended_followup) {
+        this.recommended_followup = recommended_followup;
+    }
+
+    public String getRecommended_followup_interval() {
+        return recommended_followup_interval;
+    }
+
+    public void setRecommended_followup_interval(String recommended_followup_interval) {
+        this.recommended_followup_interval = recommended_followup_interval;
+    }
+
+    public int getBi_rads() {
+        return bi_rads;
+    }
+
+    public void setBi_rads(int bi_rads) {
+        this.bi_rads = bi_rads;
     }
 }
