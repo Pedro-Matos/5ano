@@ -22,9 +22,6 @@ CID 6165:
 ------------------------------------------------------------------------------------------------------------------------
 
 TID 4206:
-121071	Finding
-111405	Implant type
-111014	Clockface or region
 111048	Quadrant location
 111020	Depth
 111035	Lesion Density
@@ -32,19 +29,29 @@ TID 4206:
 111009	Calcification Type
 111008	Calcification Distribution
 111038	Number of calcifications
-111407	Implant finding
-111406	Number of similar findings
-111354	Orientation
-111357	Lesion boundary
-111360	Echo pattern
-111366	Posterior acoustic features
-111371	Identifiable effect on surrounding tissues
-111372	Vascularity
-111380	Correlation to Other Findings
+------------------------------------------------------------------------------------------------------------------------
+
 
 
 TID 4203:
 111053	Recommended Follow-up
 111055	Recommended Follow-up Interval
-111054	Recommended Follow-up Date
+
+BI-RADS
+
+------------------------------------------------------------------------------------------------------------------------
+
+Medico  - ReferringPhysicianName
+NomePaciente - PatientName
+IdPaciente  - PatientId
+DataNascimentoPaciente - PatientBirthDate
+SexoPaciente - PatientSex
+Organizacao  - ResponsibleOrganization
+Language - 121049
+
+
+
+
+
+
 
