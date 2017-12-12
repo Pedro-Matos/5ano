@@ -51,7 +51,8 @@ public class WidgetController extends Controller {
             return badRequest(views.html.listWidgets.render(asScala(widgets), boundForm));
         } else {
             WidgetData data = boundForm.get();
-            widgets.add(new Widget(data.getDoctorName(), data.getPatientName(), data.getPatientid() ,data.getPhysicalExaminationResults(),
+            widgets.add(new Widget(data.getDoctorName(), data.getPatientName(), data.getPatientid(), data.getBirth_date(), data.getPatient_sex(),
+                    data.getOrganization(), data.getLanguage(), data.getPhysicalExaminationResults(),
                     data.getComparisontopreviousexams(), data.getFindings(), data.getRecommendations(), data.getConclusions(),
                     data.getPathologyResults(), data.getPathology(),data.getMalignancyType(),data.getNippleinvolved(),data.getNumbernodesremoved(),
                     data.getNumbernodespositive(), data.getDistancefromnipple(), data.getDistancefromskin(), data.getDistancefromchestwall(),

@@ -23,6 +23,20 @@ public class WidgetData {
     private int patientid;
 
     @Constraints.Required
+    public String birth_date;
+
+    @Constraints.Required
+    public String patient_sex;
+
+    @Constraints.Required
+    public String organization;
+
+    @Constraints.Required
+    public String language;
+
+
+
+    @Constraints.Required
     private String physicalExaminationResults;
 
     @Constraints.Required
@@ -312,5 +326,37 @@ public class WidgetData {
 
     public void setBi_rads(int bi_rads) {
         this.bi_rads = bi_rads;
+    }
+
+    public String getBirth_date() {
+        return birth_date;
+    }
+
+    public void setBirth_date(String birth_date) {
+        this.birth_date = birth_date;
+    }
+
+    public String getPatient_sex() {
+        return patient_sex;
+    }
+
+    public void setPatient_sex(String patient_sex) {
+        this.patient_sex = patient_sex;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

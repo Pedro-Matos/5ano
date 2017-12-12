@@ -11,7 +11,10 @@ public class Widget {
     public String doctorName;
     public String patientName;
     public int patientid;
-
+    public String birth_date;
+    public String patient_sex;
+    public String organization;
+    public String language;
 
     public String physicalExaminationResults;
     public String comparisontopreviousexams;
@@ -44,7 +47,8 @@ public class Widget {
 
 
 
-    public Widget(String name, String patientName,int patientid, String physicalExaminationResults, String comparisontopreviousexams,
+    public Widget(String name, String patientName,int patientid, String birth_date, String patient_sex, String organization, String language,
+                  String physicalExaminationResults, String comparisontopreviousexams,
                   String findings, String recommendations, String conclusions,
                   String pathologyResults, String pathology, String malignancyType, String nippleinvolved, int numbernodesremoved, int numbernodespositive,
                   String distancefromnipple, String distancefromskin, String distancefromchestwall,
@@ -54,6 +58,10 @@ public class Widget {
         this.doctorName = name;
         this.patientName = patientName;
         this.patientid = patientid;
+        this.birth_date = birth_date;
+        this.patient_sex = patient_sex;
+        this.organization = organization;
+        this.language = language;
 
         this.physicalExaminationResults = physicalExaminationResults;
         this.comparisontopreviousexams = comparisontopreviousexams;

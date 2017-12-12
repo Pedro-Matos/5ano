@@ -42,9 +42,22 @@
             <div class="container">
 
             @b3.form(routes.WidgetController.createWidget) {
+
+                <div class="container">
+                    <h1>This mammography form is an example of what can be done to create a DICOM SR </h1>
+                    <p>This form is going to be divided in 6 parts</p>
+                    <pre>
+                        The first part is about the doctor and patient details.
+                    </pre>
+                </div>
+                
                 @b3.text(form("doctorName"), '_label -> "Doctor Name", 'placeholder -> "Name...")
                 @b3.text(form("patientName"), '_label -> "Patient Name", 'placeholder -> "Name...")
                 @b3.text(form("patientid"), '_label -> "Patient Id", 'placeholder -> "Id...")
+                @b3.text(form("birth_date"), '_label -> "Patient Birthday", 'placeholder -> "Birth day")
+                @b3.text(form("patient_sex"), '_label -> "Patient Sex", 'placeholder -> "Patient Sex")
+                @b3.text(form("organization"), '_label -> "Hospital/Organization name", 'placeholder -> "Organization")
+                @b3.text(form("language"), '_label -> "Language", 'placeholder -> "Portuguese, English...")
                 <hr/>
                 @b3.textarea(form("physicalExaminationResults"), '_label -> "Physical Results", 'rows -> 3)
                 @b3.textarea(form("comparisontopreviousexams"), '_label -> "Previous Exams", 'rows -> 3)
