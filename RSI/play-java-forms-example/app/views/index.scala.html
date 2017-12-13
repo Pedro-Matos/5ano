@@ -1,6 +1,6 @@
 @()
 
-  @main("Welcome to Play") {
+  @main("Mammography form") {
 
     <html lang="en">
       <head>
@@ -25,35 +25,183 @@
           <div class="container">
             <div class="row">
               <div class="site-logo">
-                <a href="" class="brand">Form to DCM</a>
+                <a href="" class="brand">Free text report to DICOM SR</a>
               </div>
                 <!-- /.Navbar-collapse -->
             </div>
           </div>
         </nav>
 
+        <div id="home">
+          <div class="slider">
+            <div id="about-slider">
+              <div id="carousel-slider"  class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                <ol class="carousel-indicators visible-xs">
+                  <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-slider" data-slide-to="1"></li>
+                </ol>
 
-        <section id="Download">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="@routes.Assets.versioned("images/medical.png")"  class="img-responsive" alt="">
+                  </div>
+                  <div class="item">
+                    <img src="@routes.Assets.versioned("images/radiography.jpg")"  class="img-responsive" alt="">
+                  </div>
+                </div>
+
+                <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+                  <i class="fa fa-angle-left"></i>
+                </a>
+
+                <a class=" right carousel-control hidden-xs"href="#carousel-slider" data-slide="next">
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div> <!--/#carousel-slider-->
+            </div><!--/#about-slider-->
+          </div>
+        </div>
+
+          <section id="Contents">
+              <div class="container">
+                  <div class="center">
+                      <div class="col-md-6 col-md-offset-3">
+                          <h2>DICOM SR</h2>
+                          <hr>
+                          <p class="lead">DICOM SR is very important in the medical area since it can be used worldwide.
+                              It will certainly improve this area
+                              and that's the main reason we wanted to give a step in this direction.</p>
+                              <!-- correct -->
+                      </div>
+                  </div>
+              </div>
+          </section><!--/#portfolio-item-->
+          <section id="Contents">
+              <div class="container">
+                  <div class="center">
+                      <div class="col-md-12 col-md-offset-5">
+                          <a href="@routes.WidgetController.listWidgets" class="btn btn-primary">Create Form</a>
+                      </div>
+                  </div>
+              </div>
+          </section><!--/#portfolio-item-->
+
+        <section id="about">
+          <div class="container">
+            <div class="center">
+              <div class="col-md-6 col-md-offset-3">
+                <h2>About Us</h2>
+                <hr>
+                <p class="lead">Cadeira RSI, da Universidade de Aveiro.</p>
+              </div>
+            </div>
+          </div>
+
           <div class="container">
             <div class="row">
-              <div class="center">
-                <div class="col-md-6 col-md-offset-3">
-                  <h2>Downloads</h2>
-                  <hr>
-                  <p class="lead"> This API is based in inputs with lots of information.
-                    This means that the user only needs to create a <strong>.csv file</strong> with all the contents.</p>
-                  <p class="lead">
-                    The API needs one csv as a <strong>mapping file</strong> and another one with the <strong>real information</strong>.
-                  </p>
-                  <li>Please go to <a href="@routes.WidgetController.listWidgets">@routes.WidgetController.listWidgets</a></li>
-                  <p></p>
+              <div class="col-sm-6 wow fadeInRight">
+                <img src="@routes.Assets.versioned("images/bioInf.png")" class="img-responsive" />
+              </div><!--/.col-sm-6-->
 
+              <div class="col-sm-6 wow fadeInDown">
+                <div class="accordion">
+                  <div class="panel-group" id="accordion1">
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading active">
+                        <h3 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+                            Instituição
+                            <i class="fa fa-angle-right pull-right"></i>
+                          </a>
+                        </h3>
+                      </div>
+
+                      <div id="collapseOne1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                          <div class="media accordion-inner">
+                            <div class="pull-left">
+                              <img class="img-responsive" src="@routes.Assets.versioned("images/logoUA.png")">
+                            </div>
+                            <div class="media-body">
+                              <h4>Universidade de Aveiro</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">
+                            Membros
+                            <i class="fa fa-angle-right pull-right"></i>
+                          </a>
+                        </h3>
+                      </div>
+                      <div id="collapseTwo1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <p>Pedro Matos</p>
+                            <p>Sofia Pimentel</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!--/#accordion1-->
+                </div>
+              </div>
+
+            </div><!--/.row-->
+          </div><!--/.container-->
+        </section><!--/#about-->
+
+        <footer id="footer" class="midnight-blue">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <div class="text-center">
+                  <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
+                </div>
+                <div>
+                  <a>Free text to DICOM SR</a>
+                </div>
+              </div>
+
+              <div class="top-bar">
+                <div class="col-lg-12">
+                  <div class="social">
+                    <ul class="social-share">
+                      <li><a href="https://github.com/Pedro-Matos/" target="_blank"><i class="fa fa-github"></i></a></li>
+                      <li><a href="https://pt.linkedin.com/in/pedro-matos-40552b101" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </footer><!--/#footer-->
 
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="@routes.Assets.versioned("bootstrap/js/bootstrap.min.js")"></script>
+        <script src='@routes.Assets.versioned("assets/bootstrap/js/bootstrap.min.js")'></script>
+
+
+
+          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
+          <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery.prettyPhoto.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery.isotope.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/wow.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery.easing.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/main.js")"></script>
       </body>
     </html>
 
