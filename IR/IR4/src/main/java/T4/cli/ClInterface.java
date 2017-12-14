@@ -1,8 +1,10 @@
 package T4.cli;
 
 import T4.RankedRetrieval.RankedRetrieval;
+import T4.RelevanceFeedback.Relevances;
 import T4.index.InvertedIndex;
 import T4.index.TfIdfIndexer;
+import T4.reader.TesteReader;
 import T4.tokenizer.StrongTokenizer;
 import T4.tokenizer.Tokenizer;
 import T4.utils.Document;
@@ -14,6 +16,7 @@ import org.apache.commons.cli.*;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Pedro Matos & Tiago Bastos
@@ -86,12 +89,42 @@ public class ClInterface {
         RankedRetrieval ranked_ret = new RankedRetrieval(stopwords);
         List<String> querys = ranked_ret.ParseQuerys(f);
         ranked_ret.ProcessTerms(querys, dic_weight, output);
-        Map<Integer, Map<Double, Integer>> map_10_scores = ranked_ret.getMap10();
+        Map<Integer, ArrayList<Integer>> map_10_scores = ranked_ret.getMap10();
 
 
         // guião 4 calculations
+
+
+        TesteReader teste = new TesteReader();
+        //teste.addToSetAndCount();
+
+
+
+
+
+        HashMap<String, Integer> term_count = (HashMap<String, Integer>) invIndexer.getTerm_count();
+        System.out.println(docs_number);
+        Relevances relev = new Relevances(dic_weight,docs_number,stopwords);
+
+        int query_id = 1;
+        for(String query : querys){
+            relev.calculateImplicit(map_10_scores,query_id,query);
+            query_id++;
+        }
+        relev.writeScores(output,true);
+
+/*        relevantAndNonRel(map_relv,map_10_scores);
+        query_id = 1;
+        for(String query : querys){
+            relev.calculateExplicit(nonRelevantDocsHM,map_relv,query_id,query);
+            query_id++;
+        }
+        relev.writeScores(output,false);*/
+
     }
 
+    private static TreeMap<Integer, HashMap<Integer, Integer>> relevantDocsHM = new TreeMap<>();
+    private static TreeMap<Integer, ArrayList<Integer>> nonRelevantDocsHM = new TreeMap<>();
 
     public static Map<Integer, Map<Integer, Integer>> readRelevances(String filename) throws IOException {
 
@@ -105,6 +138,7 @@ public class ClInterface {
             int query_id = Integer.parseInt(parsed[0]);
             int doc_id = Integer.parseInt(parsed[1]);
             int relv = Integer.parseInt(parsed[2]);
+            relv = 5-relv;
 
             if(map_of_relevances.containsKey(query_id)){
                 map_of_relevances.get(query_id).put(doc_id,relv);
@@ -120,5 +154,27 @@ public class ClInterface {
         return map_of_relevances;
 
     }
+
+    public static void relevantAndNonRel(Map<Integer, Map<Integer, Integer>> explicit_rel, Map<Integer, ArrayList<Integer>> implicit_rel){
+
+        for(Map.Entry<Integer, ArrayList<Integer>> entry : implicit_rel.entrySet()){
+            ArrayList<Integer> tmpArrayList = entry.getValue(); // arraylist docs
+            HashMap<Integer, Integer> docIdRelevanceHM = new HashMap<>();
+            ArrayList<Integer> nonRelevantDocs = new ArrayList<>();
+            TreeMap<Integer, Integer> tmp = (TreeMap<Integer, Integer>) explicit_rel.get(entry.getKey());
+            for(Integer docRel: tmpArrayList) {
+                if(explicit_rel.containsKey(entry.getKey())) {
+                    if(tmp.containsKey(docRel))
+                        docIdRelevanceHM.put(docRel, tmp.get(docRel));
+                    else
+                        nonRelevantDocs.add(docRel);
+                }
+            }
+            relevantDocsHM.put(entry.getKey(), docIdRelevanceHM);
+            nonRelevantDocsHM.put(entry.getKey(), nonRelevantDocs);
+        }
+    }
+
+
 
 }

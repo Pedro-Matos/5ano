@@ -134,6 +134,8 @@ public class TfIdfIndexer {
     }
 
 
+
+
     /**
      * Check the percentage of memory used
      * @return double with the percentage

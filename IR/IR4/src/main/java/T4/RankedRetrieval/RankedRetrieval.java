@@ -17,7 +17,7 @@ public class RankedRetrieval {
 
     private StrongTokenizer tokenizer;
     private Map<Integer, Map<Double, Integer>> map_of_the_maps = new HashMap<>();
-    private Map<Integer, Map<Double, Integer>> map_reduced = new HashMap<>();
+    private Map<Integer, ArrayList<Integer>> map_reduced = new HashMap<>();
     public RankedRetrieval(String stop){
         this.tokenizer = new StrongTokenizer(stop);
     }
@@ -146,7 +146,7 @@ public class RankedRetrieval {
         return elapsedTime;
     }
 
-    public Map<Integer, Map<Double, Integer>> getMap10(){
+    public Map<Integer, ArrayList<Integer>> getMap10(){
         // Map<Integer, Map<Double, Integer>>
         Iterator final_it = map_of_the_maps.entrySet().iterator();
         while (final_it.hasNext()){
@@ -165,11 +165,13 @@ public class RankedRetrieval {
                 if(cont_final < 10){
 
                     if(map_reduced.containsKey(query_id)){
-                        map_reduced.get(query_id).put(score,doc_id);
+                        ArrayList<Integer> x = map_reduced.get(query_id);
+                        x.add(doc_id);
+                        map_reduced.replace(query_id,x);
                     }
                     else{
-                        Map<Double, Integer> map = new TreeMap(Collections.reverseOrder());
-                        map.put(score,doc_id);
+                        ArrayList<Integer> map = new ArrayList<>();
+                        map.add(doc_id);
                         map_reduced.put(query_id,map);
                     }
                     cont_final++;

@@ -26,6 +26,7 @@ public class InvertedIndex {
     private int cont;
     private Map<String, List<Posting>> dic;
     private Set<String> terms;
+    private Map<String, Integer> term_count;
     private File outputDir;
 
     public InvertedIndex(File outputDir){
@@ -34,6 +35,7 @@ public class InvertedIndex {
         this.terms = new HashSet<String>();
         this.outputDir = outputDir;
         this.cont = 0;
+        this.term_count = new HashMap<>();
         start_index();
     }
 
@@ -71,8 +73,17 @@ public class InvertedIndex {
                 list.add(tmp_posting);
                 dic.put(token,list);
             }
-
             terms.add(token);
+
+            if(term_count.containsKey(token)){
+                int value = term_count.get(token);
+                value++;
+                term_count.put(token,value);
+            }
+            else{
+                term_count.put(token,1);
+            }
+
         }
 
         /*
@@ -126,6 +137,10 @@ public class InvertedIndex {
 
     public Set<String> getTerms() {
         return terms;
+    }
+
+    public Map<String, Integer> getTerm_count() {
+        return term_count;
     }
 
     /**
