@@ -10,6 +10,11 @@ public class TesteReader {
     private final TreeMap<String, LinkedList<Posting2>> tokenDocIdFreq = new TreeMap<>();
     private LinkedList<Posting2> postings;
 
+
+    public TreeMap<String, LinkedList<Posting2>> getTokenDocIdFreq() {
+        return tokenDocIdFreq;
+    }
+
     /**
      * Método que faz a contagem dos termos processados e invoca o método addToTokenDocIdFreq para adicionar os termos
      * de um documento à TreeMap.

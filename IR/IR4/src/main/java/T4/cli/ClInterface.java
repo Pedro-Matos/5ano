@@ -7,11 +7,8 @@ import T4.index.TfIdfIndexer;
 import T4.reader.TesteReader;
 import T4.tokenizer.StrongTokenizer;
 import T4.tokenizer.Tokenizer;
-import T4.utils.Document;
-import T4.utils.DocumentScore;
-import T4.utils.Posting;
+import T4.utils.*;
 import T4.reader.Reader;
-import T4.utils.TfIdfWeighting;
 import org.apache.commons.cli.*;
 
 import java.io.*;
@@ -96,7 +93,20 @@ public class ClInterface {
 
 
         TesteReader teste = new TesteReader();
-        //teste.addToSetAndCount();
+        id = 1;
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()){
+                /*
+                 * read the file and get the corpus and id
+                 */
+                Document corpus = reader.readFile(listOfFile.getPath(), tags,id);
+                List<String> tokens = tokenizer.tokenize(corpus.getCorpus());
+                teste.addToSetAndCount(tokens,id);
+                id++;
+            }
+        }
+        TreeMap<String, LinkedList<Posting2>> new_postings = teste.getTokenDocIdFreq();
+
 
 
 
