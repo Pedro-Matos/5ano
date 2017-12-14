@@ -60,7 +60,7 @@ public class ClInterface {
 
         Map<String, List<Posting>> dic_postings;
 
-
+        TesteReader teste = new TesteReader();
         int id = 1;
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()){
@@ -69,6 +69,7 @@ public class ClInterface {
                  */
                 Document corpus = reader.readFile(listOfFile.getPath(), tags,id);
                 List<String> tokens = tokenizer.tokenize(corpus.getCorpus());
+                teste.addToSetAndCount(tokens,id);
                 /*
                  * Add tokens to inverted index
                  */
@@ -91,30 +92,9 @@ public class ClInterface {
 
         // guião 4 calculations
 
-
-        TesteReader teste = new TesteReader();
-        id = 1;
-        for (File listOfFile : listOfFiles) {
-            if (listOfFile.isFile()){
-                /*
-                 * read the file and get the corpus and id
-                 */
-                Document corpus = reader.readFile(listOfFile.getPath(), tags,id);
-                List<String> tokens = tokenizer.tokenize(corpus.getCorpus());
-                teste.addToSetAndCount(tokens,id);
-                id++;
-            }
-        }
         TreeMap<String, LinkedList<Posting2>> new_postings = teste.getTokenDocIdFreq();
 
-
-
-
-
-
-        HashMap<String, Integer> term_count = (HashMap<String, Integer>) invIndexer.getTerm_count();
-        System.out.println(docs_number);
-        Relevances relev = new Relevances(dic_weight,docs_number,stopwords);
+        Relevances relev = new Relevances(new_postings,docs_number,stopwords);
 
         int query_id = 1;
         for(String query : querys){
@@ -123,13 +103,13 @@ public class ClInterface {
         }
         relev.writeScores(output,true);
 
-/*        relevantAndNonRel(map_relv,map_10_scores);
+        relevantAndNonRel(map_relv,map_10_scores);
         query_id = 1;
         for(String query : querys){
             relev.calculateExplicit(nonRelevantDocsHM,map_relv,query_id,query);
             query_id++;
         }
-        relev.writeScores(output,false);*/
+        relev.writeScores(output,false);
 
     }
 

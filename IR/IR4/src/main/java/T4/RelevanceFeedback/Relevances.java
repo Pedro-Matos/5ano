@@ -3,6 +3,7 @@ package T4.RelevanceFeedback;
 import T4.Relevance.RelevanceFeedback;
 import T4.tokenizer.StrongTokenizer;
 import T4.utils.Posting;
+import T4.utils.Posting2;
 import T4.utils.TfIdfWeighting;
 import org.apache.commons.io.FileUtils;
 
@@ -22,9 +23,9 @@ public class Relevances {
     private StrongTokenizer tokenizer;
     private TreeMap<Integer, TreeMap<Integer, Double>> queryIdDocIdRankTestImplicit;
     private TreeMap<Integer, TreeMap<Integer, Double>> queryIdDocIdRankTestExplicit;
-    private Map<String, List<TfIdfWeighting>> dic_weight;
+    private TreeMap<String, LinkedList<Posting2>>dic_weight;
 
-    public Relevances(Map<String, List<TfIdfWeighting>> dic_weight, int corpus_size, String stop) {
+    public Relevances(TreeMap<String, LinkedList<Posting2>>dic_weight, int corpus_size, String stop) {
         this.corpus_size = corpus_size;
         this.tokenizer = new StrongTokenizer(stop);
         this.queryIdDocIdRankTestExplicit = new TreeMap<>();
@@ -49,14 +50,14 @@ public class Relevances {
         for (String term : tokens) {
 
             if (dic_weight.containsKey(term)) {
-                List<TfIdfWeighting> posts = dic_weight.get(term);
+                LinkedList<Posting2> posts = dic_weight.get(term);
                 int termQueryFreq = Collections.frequency(tokens, term);
 
-                for (TfIdfWeighting p : posts) {
+                for (Posting2 p : posts) {
                     if (relev_implicit.contains(p.getDocId())) {
                         double wtqOriginal = ((getTFQuery(termQueryFreq) * calculateIdfQuery(corpus_size, getNrDocsByTerm(term))) / norm) * alpha;
                         //double wtqPositive = tmpPostings.get(entryPosting.getDocId()).getTermWeight()*betha/(relevantDocsExplicit.size());
-                        double wtdPositive = betha * p.getWeight_normalized() / (relev_implicit.size());
+                        double wtdPositive = betha * p.getTermWeight() / (relev_implicit.size());
                         double finalScore = (wtqOriginal + wtdPositive); //* entryPosting.getTermWeight(); // * tf doc
                         //System.out.println("Querie: "+ query_id + "\t\t" + "wtqOriginal: " + wtqOriginal  + "wtdPositive: " + wtdPositive +"finalScore: " + finalScore);
                         if (!results_implicit.containsKey(term))
@@ -97,15 +98,15 @@ public class Relevances {
         for (String term : tokens) {
 
             if (dic_weight.containsKey(term)) {
-                List<TfIdfWeighting> posts = dic_weight.get(term);
+                List<Posting2> posts = dic_weight.get(term);
                 int termQueryFreq = Collections.frequency(tokens, term);
 
-                for (TfIdfWeighting p : posts) {
+                for (Posting2 p : posts) {
                     if (relev_explicit.containsKey(p.getDocId())) {
                         int relevance = relev_explicit.get(p.getDocId());
                         double wtqOriginal = ((getTFQuery(termQueryFreq) * calculateIdfQuery(corpus_size, getNrDocsByTerm(term))) / norm) * alpha;
                         //double wtqPositive = tmpPostings.get(entryPosting.getDocId()).getTermWeight()*betha/(relevantDocsExplicit.size());
-                        double wtdPositive = betha * relevance * p.getWeight_normalized() / getSumOfRelevant(relev_explicit);
+                        double wtdPositive = betha * relevance * p.getTermWeight() / getSumOfRelevant(relev_explicit);
                         double finalScore = (wtqOriginal + wtdPositive); //* entryPosting.getTermWeight(); // * tf doc
                         if (!results_explicit.containsKey(term))
                             results_explicit.put(term, finalScore);
@@ -113,7 +114,7 @@ public class Relevances {
                             results_explicit.replace(term, results_explicit.get(term) + wtdPositive);
                     } else {
                         double wtqOriginal = ((getTFQuery(termQueryFreq) * calculateIdfQuery(corpus_size, getNrDocsByTerm(term))) / norm) * alpha;
-                        double wtdNegative = miu * p.getWeight_normalized() / (non_rel.size());
+                        double wtdNegative = miu * p.getTermWeight() / (non_rel.size());
                         double finalScore = (wtqOriginal - wtdNegative); //* entryPosting.getTermWeight(); // * tf doc
                         if (!results_explicit.containsKey(term))
                             results_explicit.put(term, finalScore);
@@ -139,14 +140,13 @@ public class Relevances {
 
         for (Map.Entry<String, Double> entry : tmpTM.entrySet()) {
             if (dic_weight.containsKey(entry.getKey())) {
-                List<TfIdfWeighting> tmpPostings = dic_weight.get(entry.getKey());
+                List<Posting2> tmpPostings = dic_weight.get(entry.getKey());
 
                 tmpPostings.forEach((entryPosting) -> {
                     // score = Wt,d * Wt,q = (tfdoc*1) * (tfquery*idfquery)
-                    double wtd = entryPosting.getWeight_normalized();
+                    double wtd = entryPosting.getTermWeight();
                     double wtq = entry.getValue();
                     double score = wtd * wtq;
-                    System.out.println("Query id: " + queryId + "\t\t\twtd: "+wtd+ "\t\t\twtq: "+wtq + "\t\t\tScore: " + score);
                     if (score != 0) {
                         addToQueryIdDocIdScoreTM(entryPosting.getDocId(), queryId, score, true);
                     }
@@ -159,11 +159,11 @@ public class Relevances {
 
         for (Map.Entry<String, Double> entry : tmpTM.entrySet()) {
             if (dic_weight.containsKey(entry.getKey())) {
-                List<TfIdfWeighting> tmpPostings = dic_weight.get(entry.getKey());
+                List<Posting2> tmpPostings = dic_weight.get(entry.getKey());
 
                 tmpPostings.forEach((entryPosting) -> {
                     // score = Wt,d * Wt,q = (tfdoc*1) * (tfquery*idfquery)
-                    double wtd = entryPosting.getWeight_normalized();
+                    double wtd = entryPosting.getTermWeight();
                     double wtq = entry.getValue();
                     double score = wtd * wtq;
                     //System.out.println("Query id: " + queryId + "\t\t\twtd: "+wtd+ "\t\t\twtq: "+wtq);
