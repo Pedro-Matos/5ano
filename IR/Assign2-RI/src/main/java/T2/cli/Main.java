@@ -78,13 +78,18 @@ public class Main {
         Reader indexreader = new Reader();
         indexreader.readFile(filename);
 
+
         BooleanRetrieval boolRetr = new BooleanRetrieval();
         File f = new File(queries);
         List<String> querys = boolRetr.ParseQuerys(f);
 
         Map<String, List<Posting>> dic = indexreader.getDic();
         File dir = new File(out_p);
-        boolRetr.ProcessTerms(querys,dic,dir);
+        String query_term;
+        for (String tQuery : querys) {
+            boolRetr.ProcessTerms(tQuery,dic);
+        }
+        boolRetr.WriteScores(dir);
 
     }
     /**

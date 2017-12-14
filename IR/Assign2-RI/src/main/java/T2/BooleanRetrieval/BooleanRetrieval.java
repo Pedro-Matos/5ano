@@ -3,6 +3,7 @@ package T2.BooleanRetrieval;
 import T2.tokenizer.SimpleTokenizer;
 import T2.utils.Posting;
 import T2.utils.ScoringOption;
+import T2.utils.Tuple;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -16,8 +17,8 @@ import java.util.*;
 public class BooleanRetrieval {
 
     private SimpleTokenizer tokenizer = new SimpleTokenizer();
-    private List<ScoringOption> scoring_opt = new LinkedList<>();
-
+    private Map<Tuple, Integer> map_scores = new TreeMap<>();
+    private int query_id = 1;
     public List<String> ParseQuerys(File f){
         List<String> terms = new LinkedList<String>();
 
@@ -32,13 +33,8 @@ public class BooleanRetrieval {
 
 
 
-    public void ProcessTerms(List<String> query, Map<String, List<Posting>> dic, File dir){
-        int query_id = 1;
-        String query_term;
-
-        for (String tQuery : query) {
-            query_term = tQuery;
-            List<String> tokens = tokenizer.tokenize(query_term);
+    public void ProcessTerms(String query, Map<String, List<Posting>> dic){
+            List<String> tokens = tokenizer.tokenize(query);
 
             //tokens processed by the tokenizer...
             for(String abc : tokens){
@@ -51,23 +47,26 @@ public class BooleanRetrieval {
                     for(int i = 0; i < postings.size(); i++){
                         Posting post = postings.get(i);
 
-                        ScoringOption scoring = new ScoringOption();
-                        scoring.setQuery_id(query_id);
-                        scoring.setDoc_id(post.getDocId());
-                        scoring.setDoc_score(post.getFrequency());
-                        scoring_opt.add(scoring);
+                        int tmp_doc_id = post.getDocId();
+                        int tmp_post_frequency = post.getFrequency();
+
+                        Tuple tmp_tuple = new Tuple(this.query_id, tmp_doc_id);
+                        if(map_scores.containsKey(tmp_tuple)){
+                            int score = map_scores.get(tmp_tuple) + tmp_post_frequency;
+                            map_scores.put(tmp_tuple, score);
+                        }
+                        else{
+                            map_scores.put(tmp_tuple, tmp_post_frequency);
+                        }
                     }
                 }
             }
-            query_id++;
-        }
-        WriteScores(dir);
+
+        this.query_id++;
     }
 
 
-    private void WriteScores(File dir){
-
-
+    public void WriteScores(File dir){
 
         dir.mkdir();
         try {
@@ -76,22 +75,26 @@ public class BooleanRetrieval {
             throw new RuntimeException("There was a problem cleaning the directory.", ex);
         }
 
-
-
         try {
             String blockFileName = "scores.txt";
             PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
 
             pwt.println("query_id" + "\t" + "doc_id" + "\t" + "doc_score");
-            for(ScoringOption scor : scoring_opt){
-                pwt.println(scor.getQuery_id() + "\t\t\t" + scor.getDoc_id() + "\t\t\t" + scor.getDoc_score());
+
+
+            Iterator it = map_scores.entrySet().iterator();
+            while (it.hasNext()){
+                Map.Entry pair = (Map.Entry) it.next();
+
+                Tuple tuple = (Tuple) pair.getKey();
+                int score = (int) pair.getValue();
+                pwt.println(tuple.getQuery() + "\t\t\t" + tuple.getDoc() + "\t\t\t" + score);
             }
+
 
             pwt.close();
         } catch (IOException ex) {
             throw new RuntimeException("There was a problem writing the index to a file", ex);
         }
-
     }
-
 }
