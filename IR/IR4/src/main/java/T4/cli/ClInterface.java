@@ -22,9 +22,7 @@ import java.util.*;
 public class ClInterface {
     public static void main(String[] args) throws IOException {
 
-        String file_scores = "scores_limited.txt";
         String file_relv = "cranfield.query.relevance.txt";
-        String file_post = "index.txt";
         Map<Integer, Map<Integer, Integer>> map_relv = readRelevances(file_relv);
         //Map<String, List<T4.utils.Posting>> dic_postings = readPostings(file_post);
 
@@ -93,7 +91,7 @@ public class ClInterface {
 
         TreeMap<String, LinkedList<Posting2>> new_postings = teste.getTokenDocIdFreq();
 
-        Relevances relev = new Relevances(new_postings,docs_number,stopwords);
+        Relevances relev = new Relevances(new_postings,docs_number,stopwords,1.0,0.0,0.0);
 
         int query_id = 1;
         for(String query : querys){
@@ -137,8 +135,8 @@ public class ClInterface {
         dcgs_implicit = evaluation.calculateDCG(relevantDocsHM);
         idcgs_implicit = evaluation.calculateIDCG(relevantDocsHM);
 
-        TreeMap<Integer, TreeMap<Integer, Double>> map_explicit = relev.getQueryIdDocIdRankTestExplicit();
-        TreeMap<Integer, TreeMap<Integer, Double>> map_implicit = relev.getQueryIdDocIdRankTestImplicit();
+        TreeMap<Integer, TreeMap<Integer, Double>> map_explicit = relev.getMapExplicit();
+        TreeMap<Integer, TreeMap<Integer, Double>> map_implicit = relev.getMapImplicit();
 
         //for implicit
         int i=0;
@@ -213,7 +211,7 @@ public class ClInterface {
         //imprimir com word2vec
         relev.printWord2Vec(output);
 
-        TreeMap<Integer, TreeMap<Integer, Double>> map_words2vec = relev.getQueryIdDocIdRankWord2Vec();
+        TreeMap<Integer, TreeMap<Integer, Double>> map_words2vec = relev.getMapWord2Vec();
         precision =0;
         recall =0;
         fmeasure=0;

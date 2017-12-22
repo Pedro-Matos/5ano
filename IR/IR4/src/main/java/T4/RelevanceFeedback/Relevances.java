@@ -11,37 +11,42 @@ import java.util.*;
 public class Relevances {
 
 
-    private double alpha = 1.0;
-    private double betha = 0.0;
-    private double miu = 0.0;
+    private double alpha;
+    private double betha;
+    private double miu;
     private int corpus_size;
     private StrongTokenizer tokenizer;
-    private TreeMap<Integer, TreeMap<Integer, Double>> queryIdDocIdRankTestImplicit;
-    private TreeMap<Integer, TreeMap<Integer, Double>> queryIdDocIdRankTestExplicit;
+    private TreeMap<Integer, TreeMap<Integer, Double>> mapImplicit;
+    private TreeMap<Integer, TreeMap<Integer, Double>> mapExplicit;
     private TreeMap<String, LinkedList<Posting2>>dic_weight;
-    private final TreeMap<Integer, TreeMap<Integer,Double>> queryIdDocIdRankWord2Vec;
+    private final TreeMap<Integer, TreeMap<Integer,Double>> mapWord2Vec;
     private final Word2Vec w2v = new Word2Vec();
 
-    public Relevances(TreeMap<String, LinkedList<Posting2>>dic_weight, int corpus_size, String stop) {
+    public Relevances(TreeMap<String, LinkedList<Posting2>>dic_weight, int corpus_size, String stop, double alpha, double betha, double miu) {
+
+        this.alpha = alpha;
+        this.betha = betha;
+        this.miu = miu;
+
         this.corpus_size = corpus_size;
         this.tokenizer = new StrongTokenizer(stop);
-        this.queryIdDocIdRankTestExplicit = new TreeMap<>();
-        this.queryIdDocIdRankTestImplicit = new TreeMap<>();
+        this.mapExplicit = new TreeMap<>();
+        this.mapImplicit = new TreeMap<>();
         this.dic_weight = dic_weight;
-        this.queryIdDocIdRankWord2Vec = new TreeMap<>();
+        this.mapWord2Vec = new TreeMap<>();
     }
 
 
-    public TreeMap<Integer, TreeMap<Integer, Double>> getQueryIdDocIdRankWord2Vec() {
-        return queryIdDocIdRankWord2Vec;
+    public TreeMap<Integer, TreeMap<Integer, Double>> getMapWord2Vec() {
+        return mapWord2Vec;
     }
 
-    public TreeMap<Integer, TreeMap<Integer, Double>> getQueryIdDocIdRankTestImplicit() {
-        return queryIdDocIdRankTestImplicit;
+    public TreeMap<Integer, TreeMap<Integer, Double>> getMapImplicit() {
+        return mapImplicit;
     }
 
-    public TreeMap<Integer, TreeMap<Integer, Double>> getQueryIdDocIdRankTestExplicit() {
-        return queryIdDocIdRankTestExplicit;
+    public TreeMap<Integer, TreeMap<Integer, Double>> getMapExplicit() {
+        return mapExplicit;
     }
 
     public void calculateImplicit(Map<Integer, ArrayList<Integer>> map_10_scores, int query_id, String query) {
@@ -176,12 +181,12 @@ public class Relevances {
 
         if (implicit) {
             TreeMap<Integer, Double> docsScores;
-            if (!queryIdDocIdRankTestImplicit.containsKey(queryId)) {
+            if (!mapImplicit.containsKey(queryId)) {
                 docsScores = new TreeMap<>();
                 docsScores.put(docId, score);
 
             } else {
-                docsScores = queryIdDocIdRankTestImplicit.get(queryId);
+                docsScores = mapImplicit.get(queryId);
                 if (docsScores.containsKey(docId)) {
                     double res = docsScores.get(docId);
                     res += score;
@@ -189,15 +194,15 @@ public class Relevances {
                 } else
                     docsScores.put(docId, score);
             }
-            queryIdDocIdRankTestImplicit.put(queryId, docsScores);
+            mapImplicit.put(queryId, docsScores);
         } else {
             TreeMap<Integer, Double> docsScores;
-            if (!queryIdDocIdRankTestExplicit.containsKey(queryId)) {
+            if (!mapExplicit.containsKey(queryId)) {
                 docsScores = new TreeMap<>();
                 docsScores.put(docId, score);
 
             } else {
-                docsScores = queryIdDocIdRankTestExplicit.get(queryId);
+                docsScores = mapExplicit.get(queryId);
                 if (docsScores.containsKey(docId)) {
                     double res = docsScores.get(docId);
                     res += score;
@@ -205,7 +210,7 @@ public class Relevances {
                 } else
                     docsScores.put(docId, score);
             }
-            queryIdDocIdRankTestExplicit.put(queryId, docsScores);
+            mapExplicit.put(queryId, docsScores);
 
         }
 
@@ -284,7 +289,7 @@ public class Relevances {
                     double wtq = (getTFQuery(termQueryFreq) * calculateIdfQuery(corpus_size, getNrDocsByTerm(key)))/norm;
                     double score = wtd*wtq;
                     if (score != 0) {
-                        addToQueryIdDocIdScoreTM_words2vec(entryPosting.getDocId(), queryId, score, queryIdDocIdRankWord2Vec);
+                        addToQueryIdDocIdScoreTM_words2vec(entryPosting.getDocId(), queryId, score, mapWord2Vec);
                     }
                 });
             }
@@ -322,7 +327,7 @@ public class Relevances {
                 String blockFileName = "implict.txt";
                 PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
                 pwt.println("query_id" + "\t" + "doc_id" + "\t" + "doc_score");
-                Iterator it = queryIdDocIdRankTestImplicit.entrySet().iterator();
+                Iterator it = mapImplicit.entrySet().iterator();
                 while (it.hasNext()) {
                     Map.Entry pair = (Map.Entry) it.next();
 
@@ -340,7 +345,7 @@ public class Relevances {
                 String blockFileName = "explicit.txt";
                 PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
                 pwt.println("query_id" + "\t" + "doc_id" + "\t" + "doc_score");
-                Iterator it = queryIdDocIdRankTestExplicit.entrySet().iterator();
+                Iterator it = mapExplicit.entrySet().iterator();
                 while (it.hasNext()) {
                     Map.Entry pair = (Map.Entry) it.next();
 
@@ -372,7 +377,7 @@ public class Relevances {
             String blockFileName = "word2vec.txt";
             PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
             pwt.println("query_id" + "\t" + "doc_id" + "\t" + "doc_score");
-            Iterator it = queryIdDocIdRankWord2Vec.entrySet().iterator();
+            Iterator it = mapWord2Vec.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry) it.next();
 
