@@ -1,5 +1,6 @@
 package T4.cli;
 
+import T4.Evaluation.Evaluation;
 import T4.RankedRetrieval.RankedRetrieval;
 import T4.RelevanceFeedback.Relevances;
 import T4.index.InvertedIndex;
@@ -111,9 +112,185 @@ public class ClInterface {
         }
         relev.writeScores(output,false);
 
+        //calculate NDGC
+        Evaluation evaluation = new Evaluation();
+        evaluation.setMap(map_relv);
+        //evaluation.readQueryRelevanceFile(file_relv);
+        double precision =0,recall =0, fmeasure=0, precisionRanked=0;
+        double ndcg_explicit=0;
+        double ndcg_implicit=0;
+        double sumAvgPrec=0;
+        double sumMMR=0;
+        int rankSize = 10;
+        Map<String, Double> m;
+
+
+        ArrayList<Double> dcgs_explict = new ArrayList<>();
+        ArrayList<Double> idcgs__explict = new ArrayList<>();
+        ArrayList<Double> dcgs_implicit = new ArrayList<>();
+        ArrayList<Double> idcgs_implicit = new ArrayList<>();
+
+
+        //for explicit
+        dcgs_explict = evaluation.calculateDCG(map_relv);
+        idcgs__explict = evaluation.calculateIDCG(map_relv);
+
+        //for implicit
+        dcgs_implicit = evaluation.calculateDCG(relevantDocsHM);
+        idcgs_implicit = evaluation.calculateIDCG(relevantDocsHM);
+
+        TreeMap<Integer, TreeMap<Integer, Double>> map_explicit = relev.getQueryIdDocIdRankTestExplicit();
+        TreeMap<Integer, TreeMap<Integer, Double>> map_implicit = relev.getQueryIdDocIdRankTestImplicit();
+
+        //for implicit
+        int i=0;
+        for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_implicit.entrySet()){
+            Integer corpusSize = docs_number;
+            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(m, false);
+            recall += evaluation.recall(m);
+            fmeasure += evaluation.fmeasure(recall, precision);
+            precisionRanked += evaluation.precision(m, true);
+            sumAvgPrec += m.get("avgPrecision");
+            sumMMR += m.get("recRank");
+            if(idcgs_implicit.get(i) != 0.0)
+                ndcg_implicit += dcgs_implicit.get(i)/idcgs_implicit.get(i);
+            i++;
+        }
+
+        System.out.println("Implicit: ");
+        System.out.printf("Mean Precision: %.6f \n",precision/map_implicit.entrySet().size());
+        System.out.printf("Mean Recall: %.6f \n",recall/map_implicit.entrySet().size());
+        System.out.printf("Mean F-measure: %.6f \n",fmeasure/map_implicit.entrySet().size());
+        System.out.printf("Mean average Precision: %.6f \n",sumAvgPrec/map_implicit.entrySet().size());
+        System.out.printf("Mean Precision at Rank %d: %.6f\n", rankSize, precisionRanked/rankSize);
+        System.out.printf("Mean Reciprocal Rank: %.6f\n",sumMMR/map_implicit.entrySet().size());
+        System.out.printf("NDCG at Rank 10: %f\n",ndcg_implicit/map_implicit.entrySet().size());
+        System.out.println("----------------------------------------------------");
+
+
+        precision =0;
+        recall =0;
+        fmeasure=0;
+        precisionRanked=0;
+        ndcg_explicit=0;
+        ndcg_implicit=0;
+        sumAvgPrec=0;
+        sumMMR=0;
+        rankSize = 10;
+
+        //for explicit
+        int j=0;
+        for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_explicit.entrySet()){
+            Integer corpusSize = docs_number;
+            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(m, false);
+            recall += evaluation.recall(m);
+            fmeasure += evaluation.fmeasure(recall, precision);
+            precisionRanked += evaluation.precision(m, true);
+            sumAvgPrec += m.get("avgPrecision");
+            sumMMR += m.get("recRank");
+            if(idcgs__explict.get(j) != 0.0)
+                ndcg_explicit += dcgs_explict.get(j)/idcgs__explict.get(j);
+            j++;
+        }
+        System.out.println("Explicit:");
+        System.out.printf("Mean Precision: %.6f \n",precision/map_explicit.entrySet().size());
+        System.out.printf("Mean Recall: %.6f \n",recall/map_explicit.entrySet().size());
+        System.out.printf("Mean F-measure: %.6f \n",fmeasure/map_explicit.entrySet().size());
+        System.out.printf("Mean average Precision: %.6f \n",sumAvgPrec/map_explicit.entrySet().size());
+        System.out.printf("Mean Precision at Rank %d: %.6f\n", rankSize, precisionRanked/rankSize);
+        System.out.printf("Mean Reciprocal Rank: %.6f\n",sumMMR/map_explicit.entrySet().size());
+        System.out.printf("NDCG at Rank 10: %f\n",ndcg_explicit/map_explicit.entrySet().size());
+        System.out.println("----------------------------------------------------");
+
+
+        //alinea 2
+        int id_wv = 1;
+        for(String query : querys){
+            relev.calculateWeightsWord2vec(query,id_wv,4);
+            id_wv++;
+        }
+
+        //imprimir com word2vec
+        relev.printWord2Vec(output);
+
+        TreeMap<Integer, TreeMap<Integer, Double>> map_words2vec = relev.getQueryIdDocIdRankWord2Vec();
+        precision =0;
+        recall =0;
+        fmeasure=0;
+        precisionRanked=0;
+        ndcg_explicit=0;
+        ndcg_implicit=0;
+        sumAvgPrec=0;
+        sumMMR=0;
+        rankSize = 10;
+        //for implicit
+        i=0;
+        for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_words2vec.entrySet()){
+            Integer corpusSize = docs_number;
+            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(m, false);
+            recall += evaluation.recall(m);
+            fmeasure += evaluation.fmeasure(recall, precision);
+            precisionRanked += evaluation.precision(m, true);
+            sumAvgPrec += m.get("avgPrecision");
+            sumMMR += m.get("recRank");
+            if(idcgs_implicit.get(i) != 0.0)
+                ndcg_implicit += dcgs_implicit.get(i)/idcgs_implicit.get(i);
+            i++;
+        }
+        System.out.println("Implicit with word2vec:");
+        System.out.printf("Mean Precision: %.6f \n",precision/map_words2vec.entrySet().size());
+        System.out.printf("Mean Recall: %.6f \n",recall/map_words2vec.entrySet().size());
+        System.out.printf("Mean F-measure: %.6f \n",fmeasure/map_words2vec.entrySet().size());
+        System.out.printf("Mean average Precision: %.6f \n",sumAvgPrec/map_words2vec.entrySet().size());
+        System.out.printf("Mean Precision at Rank %d: %.6f\n", rankSize, precisionRanked/rankSize);
+        System.out.printf("Mean Reciprocal Rank: %.6f\n",sumMMR/map_words2vec.entrySet().size());
+        System.out.printf("NDCG at Rank 10: %f\n",ndcg_implicit/map_words2vec.entrySet().size());
+        System.out.println("----------------------------------------------------");
+
+
+        //for explicit
+        precision =0;
+        recall =0;
+        fmeasure=0;
+        precisionRanked=0;
+        ndcg_explicit=0;
+        ndcg_implicit=0;
+        sumAvgPrec=0;
+        sumMMR=0;
+        rankSize = 10;
+        j=0;
+        for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_words2vec.entrySet()){
+            Integer corpusSize = docs_number;
+            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(m, false);
+            recall += evaluation.recall(m);
+            fmeasure += evaluation.fmeasure(recall, precision);
+            precisionRanked += evaluation.precision(m, true);
+            sumAvgPrec += m.get("avgPrecision");
+            sumMMR += m.get("recRank");
+            if(idcgs__explict.get(j) != 0.0)
+                ndcg_explicit += dcgs_explict.get(j)/idcgs__explict.get(j);
+            j++;
+        }
+
+        System.out.println("Explicit with word2vec:");
+        System.out.printf("Mean Precision: %.6f \n",precision/map_words2vec.entrySet().size());
+        System.out.printf("Mean Recall: %.6f \n",recall/map_words2vec.entrySet().size());
+        System.out.printf("Mean F-measure: %.6f \n",fmeasure/map_words2vec.entrySet().size());
+        System.out.printf("Mean average Precision: %.6f \n",sumAvgPrec/map_words2vec.entrySet().size());
+        System.out.printf("Mean Precision at Rank %d: %.6f\n", rankSize, precisionRanked/rankSize);
+        System.out.printf("Mean Reciprocal Rank: %.6f\n",sumMMR/map_words2vec.entrySet().size());
+        System.out.printf("NDCG at Rank 10: %f\n",ndcg_explicit/map_words2vec.entrySet().size());
+        System.out.println("----------------------------------------------------");
+
+
+
     }
 
-    private static TreeMap<Integer, HashMap<Integer, Integer>> relevantDocsHM = new TreeMap<>();
+    private static TreeMap<Integer, Map<Integer, Integer>> relevantDocsHM = new TreeMap<>();
     private static TreeMap<Integer, ArrayList<Integer>> nonRelevantDocsHM = new TreeMap<>();
 
     public static Map<Integer, Map<Integer, Integer>> readRelevances(String filename) throws IOException {
@@ -164,7 +341,6 @@ public class ClInterface {
             nonRelevantDocsHM.put(entry.getKey(), nonRelevantDocs);
         }
     }
-
 
 
 }

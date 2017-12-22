@@ -1,8 +1,8 @@
 package T4.RelevanceFeedback;
 
 import T4.Relevance.RelevanceFeedback;
+import T4.Word2Vec.Word2Vec;
 import T4.tokenizer.StrongTokenizer;
-import T4.utils.Posting;
 import T4.utils.Posting2;
 import T4.utils.TfIdfWeighting;
 import org.apache.commons.io.FileUtils;
@@ -24,6 +24,8 @@ public class Relevances {
     private TreeMap<Integer, TreeMap<Integer, Double>> queryIdDocIdRankTestImplicit;
     private TreeMap<Integer, TreeMap<Integer, Double>> queryIdDocIdRankTestExplicit;
     private TreeMap<String, LinkedList<Posting2>>dic_weight;
+    private final TreeMap<Integer, TreeMap<Integer,Double>> queryIdDocIdRankWord2Vec;
+    private final Word2Vec w2v = new Word2Vec();
 
     public Relevances(TreeMap<String, LinkedList<Posting2>>dic_weight, int corpus_size, String stop) {
         this.corpus_size = corpus_size;
@@ -31,6 +33,20 @@ public class Relevances {
         this.queryIdDocIdRankTestExplicit = new TreeMap<>();
         this.queryIdDocIdRankTestImplicit = new TreeMap<>();
         this.dic_weight = dic_weight;
+        this.queryIdDocIdRankWord2Vec = new TreeMap<>();
+    }
+
+
+    public TreeMap<Integer, TreeMap<Integer, Double>> getQueryIdDocIdRankWord2Vec() {
+        return queryIdDocIdRankWord2Vec;
+    }
+
+    public TreeMap<Integer, TreeMap<Integer, Double>> getQueryIdDocIdRankTestImplicit() {
+        return queryIdDocIdRankTestImplicit;
+    }
+
+    public TreeMap<Integer, TreeMap<Integer, Double>> getQueryIdDocIdRankTestExplicit() {
+        return queryIdDocIdRankTestExplicit;
     }
 
     //10 melhores
@@ -276,6 +292,94 @@ public class Relevances {
         }
     }
 
+    /**
+     * Método responsável por calcular o ranking para uma dada query aplicando a expansão da query
+     *  (Query Expansion).
+     * @param queryId
+     * @param numWords
+     */
+    public void calculateWeightsWord2vec(String query, int queryId, int numWords) {
+
+        // normalização: raiz quadrada do quadrado de todos os tfs da query
+        Map<String, Integer> tmpMap = new TreeMap<>();
+        List newProcessedList = new LinkedList<>();
+
+        List<String> processedList = tokenizer.tokenize(query);
+
+        newProcessedList.addAll(processedList);
+
+        // Adicionar termos semelhantes a cada termo da query à lista de termos processada
+        for(int i=0; i<processedList.size(); i++){
+            String term = (String) processedList.get(i);
+            Collection<String> newWords=null;
+            newWords = w2v.generateNearestWords(term, numWords);
+
+            if(newWords!=null){
+                for(String newWord: newWords)
+                    newProcessedList.add(newWord);
+            }
+        }
+
+        Set<String> unique = new HashSet<>(newProcessedList);
+        unique.forEach((key) -> {
+            Integer freq = Collections.frequency(newProcessedList, key);
+            tmpMap.put(key, freq);
+        });
+
+        double norm = getNormalizationValueQuery(tmpMap, corpus_size);
+
+        //Score for a document-query pair: sum over terms t in both q and d:
+        for(int query_term=0; query_term<newProcessedList.size(); query_term++){
+            String key = (String) newProcessedList.get(query_term);
+
+            if(dic_weight.containsKey(key)){
+                LinkedList<Posting2> tmpPostings = dic_weight.get(key);
+                // term: 2:0.06801255271278411,588:0.08628994543116196,1039:0.09235327689371566
+                int termQueryFreq = Collections.frequency(newProcessedList, key);
+
+                tmpPostings.forEach((entryPosting) -> {
+                    // score = Wt,d * Wt,q = (tfdoc*1) * (tfquery*idfquery)
+                    double wtd = entryPosting.getTermWeight();
+                    double wtq = (getTFQuery(termQueryFreq) * calculateIdfQuery(corpus_size, getNrDocsByTerm(key)))/norm;
+                    double score = wtd*wtq;
+                    if (score != 0) {
+                        addToQueryIdDocIdScoreTM_words2vec(entryPosting.getDocId(), queryId, score, queryIdDocIdRankWord2Vec);
+                    }
+                });
+            }
+        }
+    }
+
+    /**
+     * Método que procede à introdução dos termos na linkedList e posteriormente associa essa
+     * linkedList à TreeMap.
+     * @param docId
+     * @param queryId
+     * @param score
+     * @param tmap
+     */
+    public void addToQueryIdDocIdScoreTM_words2vec(int docId, int queryId, double score, TreeMap<Integer, TreeMap<Integer,Double>> tmap){
+
+        TreeMap<Integer, Double> docsScores;
+        //DocWeight tmpScore = new DocWeight(docId, score);
+        if(!tmap.containsKey(queryId)){
+            docsScores = new TreeMap<>();
+            docsScores.put(docId,score);
+
+        } else {
+            // caso key exista
+            docsScores = tmap.get(queryId);
+            if(docsScores.containsKey(docId))
+                docsScores.replace(docId,docsScores.get(docId)+ score);
+            else
+                docsScores.put(docId,score);
+        }
+        tmap.put(queryId, docsScores);
+    }
+
+
+
+
 
     public void writeScores(File dir, boolean implicit) {
         dir.mkdir();
@@ -357,4 +461,30 @@ public class Relevances {
     }
 
 
+    public void printWord2Vec(File dir) {
+        dir.mkdir();
+
+        try {
+
+            String blockFileName = "word2vec.txt";
+            PrintWriter pwt = new PrintWriter(new File(dir, blockFileName));
+            pwt.println("query_id" + "\t" + "doc_id" + "\t" + "doc_score");
+            Iterator it = queryIdDocIdRankWord2Vec.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry) it.next();
+                //TreeMap<Integer, HashMap<Integer,Double>>
+
+                int query_id = (int) pair.getKey();
+
+                TreeMap<Integer, Double> map = (TreeMap<Integer, Double>) pair.getValue();
+                map.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                        .forEach(integerDoubleEntry ->
+                                pwt.println(query_id + "\t\t\t" + integerDoubleEntry.getKey() + "\t\t\t" + integerDoubleEntry.getValue()));
+            }
+            pwt.close();
+        } catch (IOException ex) {
+            throw new RuntimeException("There was a problem writing the index to a file", ex);
+        }
+    }
 }
