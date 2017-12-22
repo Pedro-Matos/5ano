@@ -1,10 +1,5 @@
 package T4.Evaluation;
 
-import it.unimi.dsi.fastutil.Hash;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 
 public class Evaluation {
@@ -17,12 +12,6 @@ public class Evaluation {
     }
 
 
-    /**
-     * Método responsável por calcular o Discounted Cumulative Gain dado um conjunto de documentos relevantes.
-     * @param relevantDocsHM
-     * @return
-     */
-
     public ArrayList<Double> calculateDCG(Map<Integer, Map<Integer, Integer>> relevantDocsHM) {
 
         ArrayList<Double> queryIdDCGs = new ArrayList<>();
@@ -33,7 +22,7 @@ public class Evaluation {
             for(Map.Entry<Integer, Integer> docs : docIdRelevance.entrySet()){
                 i++;
                 if(i!=1)
-                    dcg += docs.getValue()/log2(i);
+                    dcg += docs.getValue()/(Math.log(i)/Math.log(2));
                 else
                     dcg=docs.getValue();
             }
@@ -42,11 +31,6 @@ public class Evaluation {
         return queryIdDCGs;
     }
 
-    /**
-     * Método responsável por calcular o Discounted Cumulative Gain dado um conjunto de documentos relevantes.
-     * @param relevantDocsHM
-     * @return
-     */
     public ArrayList<Double> calculateIDCG(Map<Integer, Map<Integer, Integer>> relevantDocsHM) {
 
         ArrayList<Double> queryIdIDCGs = new ArrayList<>();
@@ -58,11 +42,10 @@ public class Evaluation {
             for(Map.Entry<Integer, Integer> docs : docIdRelevance.entrySet())
                 orderedRelevances.add(docs.getValue());
 
-            // Sort by reverseOrder - ( > Document Relevance)
             Collections.sort(orderedRelevances, Collections.reverseOrder());
             for(int i=1; i<= orderedRelevances.size(); i++){
                 if(i!=1)
-                    idcg += orderedRelevances.get(i-1)/log2(i);
+                    idcg += orderedRelevances.get(i-1)/ (Math.log(i)/Math.log(2));
                 else
                     idcg=orderedRelevances.get(i-1);
             }
@@ -71,24 +54,14 @@ public class Evaluation {
         return queryIdIDCGs;
     }
 
-    /**
-     * Método responsável por calcular o logaritmo de 2 de um dado valor.
-     * @param num
-     * @return
-     */
-    public double log2(int num){
-        return ((double)Math.log(num)/Math.log(2));
-    }
 
 
-    // Map em que a Key é a queryId e value é Arraylist com os docids
-    // Calcular FP e TP -> para queryid percorrer arrylist com os docids
-    // Verificar se contem na Treemap criada
     public Map<String, Double> compute(TreeMap<Integer, Double> results, int queryId, int corpus_size, int rankSize){
         int truePos = 0, falsePos = 0, falseNeg = 0, trueNeg = 0, truePosRank=0, falsePosRank=0;
-        // ArrayList de docs relevantes -> 'cranfield.query.relevance'
+
+
         Map<Integer, Integer> relevants_docs = map.get(queryId);
-        // ArrayList de docsIds da query que é recebida
+
         ArrayList<Integer> docsId = new ArrayList<>();
         int countdocs = 0;
         double avgPrec = 0.0, mmrFirst = 0.0;
@@ -102,7 +75,7 @@ public class Evaluation {
         }
 
         for(int docId: docsId){
-            //count
+
             countdocs++;
             if(relevants_docs.containsKey(docId)){
                 if(first){
@@ -122,7 +95,7 @@ public class Evaluation {
 
         falseNeg = relevants_docs.keySet().stream().filter((relevant) -> (!docsId.contains(relevant))).map((_item) -> 1).reduce(falseNeg, Integer::sum);
 
-        // size -> getCorpusize()
+
         trueNeg = corpus_size - truePos - falsePos - falseNeg;
 
         Map<String, Double> valuescomputed = new HashMap<>();
@@ -138,12 +111,7 @@ public class Evaluation {
         return valuescomputed;
     }
 
-    /**
-     * Método que retorna o valor de precisão para a query dada.
-     * @param valuescomputed
-     * @param ranked
-     * @return
-     */
+
     public double precision(Map<String, Double> valuescomputed, Boolean ranked) {
         double truePos, falsePos;
         if(!ranked){
@@ -156,29 +124,20 @@ public class Evaluation {
 
         if(truePos == 0)
             return 0.0;
-        return (double)truePos/(truePos+falsePos);
+        return truePos /(truePos+falsePos);
     }
 
-    /**
-     * Método que retorna o valor de recall para a query dada.
-     * @param valuescomputed
-     * @return
-     */
+
     public double recall(Map<String, Double> valuescomputed){
         double truePos = valuescomputed.get("truePos");
         double falseNeg = valuescomputed.get("falseNeg");
 
         if(truePos == 0)
             return 0.0;
-        return (double)truePos/(truePos+falseNeg);
+        return truePos /(truePos+falseNeg);
     }
 
-    /**
-     * Método que retorna o valor de f-measure para a query dada.
-     * @param recall
-     * @param precision
-     * @return
-     */
+
     public double fmeasure(double recall, double precision){
         if(recall == 0.0 && precision == 0.0)
             return 0;

@@ -17,20 +17,11 @@ public class Word2Vec {
     private static org.deeplearning4j.models.word2vec.Word2Vec vec;
     private static final String filename = "word_2_vec.txt";
 
-    /**
-     * Word2VecGenerator Constructor.
-     */
     public Word2Vec() {
         filePath = filename;
         initialize();
     }
 
-    /**
-     * Created by agibsonccc on 10/9/14.
-     * <p>
-     * Neural net that processes text into wordvectors. See below url for an in-depth explanation.
-     * https://deeplearning4j.org/word2vec.html
-     */
     private void initialize() {
 
         try {
@@ -41,11 +32,6 @@ public class Word2Vec {
 
         TokenizerFactory t = new DefaultTokenizerFactory();
 
-        /*
-            CommonPreprocessor will apply the following regex to each token: [\d\.:,"'\(\)\[\]|/?!;]+
-            So, effectively all numbers, punctuation symbols and some special symbols are stripped off.
-            Additionally it forces lower case for all tokens. OLD BUT GOLD
-         */
         t.setTokenPreProcessor(new CommonPreprocessor());
 
         vec = new org.deeplearning4j.models.word2vec.Word2Vec.Builder()
@@ -61,15 +47,7 @@ public class Word2Vec {
         vec.fit();
     }
 
-    /**
-     * Método que retorna as 4 palavras mais similares do termo passado como argumento.
-     *
-     * @param term
-     * @param numWords
-     * @return
-     */
     public Collection<String> generateNearestWords(String term, int numWords) {
-        // Prints out the closest 10 words to "day". An example on what to do with these Word Vectors.
         Collection<String> lst = vec.wordsNearest(term, numWords);
         return lst;
     }

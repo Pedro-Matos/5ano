@@ -5,16 +5,14 @@ import T4.RankedRetrieval.RankedRetrieval;
 import T4.RelevanceFeedback.Relevances;
 import T4.index.InvertedIndex;
 import T4.index.TfIdfIndexer;
-import T4.reader.TesteReader;
+import T4.reader.ReaderNormalization;
 import T4.tokenizer.StrongTokenizer;
 import T4.tokenizer.Tokenizer;
 import T4.utils.*;
 import T4.reader.Reader;
-import org.apache.commons.cli.*;
-
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 /**
  * Created by Pedro Matos & Tiago Bastos
@@ -61,7 +59,7 @@ public class ClInterface {
 
         Map<String, List<Posting>> dic_postings;
 
-        TesteReader teste = new TesteReader();
+        ReaderNormalization teste = new ReaderNormalization();
         int id = 1;
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()){
