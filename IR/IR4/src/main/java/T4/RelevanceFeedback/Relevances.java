@@ -249,7 +249,7 @@ public class Relevances {
     }
 
 
-    public void calculateWeightsWord2vec(String query, int queryId, int numWords) {
+    public void calculateScoreWord2Vec(String query, int queryId, int numWords) {
 
         Map<String, Integer> tmpMap = new TreeMap<>();
         List newProcessedList = new LinkedList<>();
@@ -289,14 +289,14 @@ public class Relevances {
                     double wtq = (getTFQuery(termQueryFreq) * calculateIdfQuery(corpus_size, getNrDocsByTerm(key)))/norm;
                     double score = wtd*wtq;
                     if (score != 0) {
-                        addToQueryIdDocIdScoreTM_words2vec(entryPosting.getDocId(), queryId, score, mapWord2Vec);
+                        addToQueryIdDocIdScoreWord2Vec(entryPosting.getDocId(), queryId, score, mapWord2Vec);
                     }
                 });
             }
         }
     }
 
-    public void addToQueryIdDocIdScoreTM_words2vec(int docId, int queryId, double score, TreeMap<Integer, TreeMap<Integer,Double>> tmap){
+    public void addToQueryIdDocIdScoreWord2Vec(int docId, int queryId, double score, TreeMap<Integer, TreeMap<Integer,Double>> tmap){
 
         TreeMap<Integer, Double> docsScores;
         if(!tmap.containsKey(queryId)){
@@ -311,6 +311,8 @@ public class Relevances {
                 docsScores.put(docId,score);
         }
         tmap.put(queryId, docsScores);
+
+
     }
 
 

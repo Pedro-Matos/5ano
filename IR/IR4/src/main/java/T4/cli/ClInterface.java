@@ -91,7 +91,8 @@ public class ClInterface {
 
         TreeMap<String, LinkedList<Posting2>> new_postings = teste.getTokenDocIdFreq();
 
-        Relevances relev = new Relevances(new_postings,docs_number,stopwords,1.0,0.0,0.0);
+        Relevances relev = new Relevances(new_postings,docs_number,stopwords,
+                1.0,0.0,0.0);
 
         int query_id = 1;
         for(String query : querys){
@@ -118,7 +119,7 @@ public class ClInterface {
         double sumAvgPrec=0;
         double sumMMR=0;
         int rankSize = 10;
-        Map<String, Double> m;
+        Map<String, Double> mapScores;
 
 
         ArrayList<Double> dcgs_explict = new ArrayList<>();
@@ -142,13 +143,13 @@ public class ClInterface {
         int i=0;
         for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_implicit.entrySet()){
             Integer corpusSize = docs_number;
-            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
-            precision += evaluation.precision(m, false);
-            recall += evaluation.recall(m);
+            mapScores = evaluation.countScores(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(mapScores, false);
+            recall += evaluation.recall(mapScores);
             fmeasure += evaluation.fmeasure(recall, precision);
-            precisionRanked += evaluation.precision(m, true);
-            sumAvgPrec += m.get("avgPrecision");
-            sumMMR += m.get("recRank");
+            precisionRanked += evaluation.precision(mapScores, true);
+            sumAvgPrec += mapScores.get("avgPrecision");
+            sumMMR += mapScores.get("recRank");
             if(idcgs_implicit.get(i) != 0.0)
                 ndcg_implicit += dcgs_implicit.get(i)/idcgs_implicit.get(i);
             i++;
@@ -179,13 +180,13 @@ public class ClInterface {
         int j=0;
         for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_explicit.entrySet()){
             Integer corpusSize = docs_number;
-            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
-            precision += evaluation.precision(m, false);
-            recall += evaluation.recall(m);
+            mapScores = evaluation.countScores(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(mapScores, false);
+            recall += evaluation.recall(mapScores);
             fmeasure += evaluation.fmeasure(recall, precision);
-            precisionRanked += evaluation.precision(m, true);
-            sumAvgPrec += m.get("avgPrecision");
-            sumMMR += m.get("recRank");
+            precisionRanked += evaluation.precision(mapScores, true);
+            sumAvgPrec += mapScores.get("avgPrecision");
+            sumMMR += mapScores.get("recRank");
             if(idcgs__explict.get(j) != 0.0)
                 ndcg_explicit += dcgs_explict.get(j)/idcgs__explict.get(j);
             j++;
@@ -204,7 +205,7 @@ public class ClInterface {
         //alinea 2
         int id_wv = 1;
         for(String query : querys){
-            relev.calculateWeightsWord2vec(query,id_wv,4);
+            relev.calculateScoreWord2Vec(query,id_wv,4);
             id_wv++;
         }
 
@@ -225,13 +226,13 @@ public class ClInterface {
         i=0;
         for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_words2vec.entrySet()){
             Integer corpusSize = docs_number;
-            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
-            precision += evaluation.precision(m, false);
-            recall += evaluation.recall(m);
+            mapScores = evaluation.countScores(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(mapScores, false);
+            recall += evaluation.recall(mapScores);
             fmeasure += evaluation.fmeasure(recall, precision);
-            precisionRanked += evaluation.precision(m, true);
-            sumAvgPrec += m.get("avgPrecision");
-            sumMMR += m.get("recRank");
+            precisionRanked += evaluation.precision(mapScores, true);
+            sumAvgPrec += mapScores.get("avgPrecision");
+            sumMMR += mapScores.get("recRank");
             if(idcgs_implicit.get(i) != 0.0)
                 ndcg_implicit += dcgs_implicit.get(i)/idcgs_implicit.get(i);
             i++;
@@ -260,13 +261,13 @@ public class ClInterface {
         j=0;
         for(Map.Entry<Integer, TreeMap<Integer, Double>> entry : map_words2vec.entrySet()){
             Integer corpusSize = docs_number;
-            m = evaluation.compute(entry.getValue(), entry.getKey(), corpusSize, rankSize);
-            precision += evaluation.precision(m, false);
-            recall += evaluation.recall(m);
+            mapScores = evaluation.countScores(entry.getValue(), entry.getKey(), corpusSize, rankSize);
+            precision += evaluation.precision(mapScores, false);
+            recall += evaluation.recall(mapScores);
             fmeasure += evaluation.fmeasure(recall, precision);
-            precisionRanked += evaluation.precision(m, true);
-            sumAvgPrec += m.get("avgPrecision");
-            sumMMR += m.get("recRank");
+            precisionRanked += evaluation.precision(mapScores, true);
+            sumAvgPrec += mapScores.get("avgPrecision");
+            sumMMR += mapScores.get("recRank");
             if(idcgs__explict.get(j) != 0.0)
                 ndcg_explicit += dcgs_explict.get(j)/idcgs__explict.get(j);
             j++;

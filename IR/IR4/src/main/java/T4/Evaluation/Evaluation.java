@@ -56,7 +56,7 @@ public class Evaluation {
 
 
 
-    public Map<String, Double> compute(TreeMap<Integer, Double> results, int queryId, int corpus_size, int rankSize){
+    public Map<String, Double> countScores(TreeMap<Integer, Double> results, int queryId, int corpus_size, int rankSize){
         int truePos = 0, falsePos = 0, falseNeg = 0, trueNeg = 0, truePosRank=0, falsePosRank=0;
 
 
