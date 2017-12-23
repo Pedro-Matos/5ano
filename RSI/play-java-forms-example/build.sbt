@@ -13,6 +13,9 @@ libraryDependencies += guice
 // Resolver is needed only for SNAPSHOT versions
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 
+
 libraryDependencies ++= Seq(
-  "com.adrianhurt" %% "play-bootstrap" % "1.2-P26-B3"
+  "com.adrianhurt" %% "play-bootstrap" % "1.2-P26-B3",
+  "com.google.guava" % "guava" % "12.0",
+  "com.google.code.gson" % "gson" % "2.8.0"
 )

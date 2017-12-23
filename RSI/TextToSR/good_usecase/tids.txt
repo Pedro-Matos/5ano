@@ -41,12 +41,12 @@ BI-RADS
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Medico  - ReferringPhysicianName
-NomePaciente - PatientName
-IdPaciente  - PatientId
-DataNascimentoPaciente - PatientBirthDate
-SexoPaciente - PatientSex
-Organizacao  - ResponsibleOrganization
+DoctorName  - ReferringPhysicianName
+PatientName - PatientName
+PatientID  - PatientId
+PatientBirthDate - PatientBirthDate
+PatientSex - PatientSex
+Organization  - ResponsibleOrganization
 Language - 121049
 
 
