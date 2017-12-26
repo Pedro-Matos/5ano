@@ -1,0 +1,48 @@
+{
+	"Triplet":{
+		"1":{
+			"CodeMeaning":"Observer Type",
+			"CodeValue": "121005",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping":"",
+			"Rel_With_Parent":"HAS OBS CONTEXT",
+			"VT":"CODE",
+			"NL":"h0",
+			"VM":"1",
+			"Req_Type":"MC",
+			"Condition":"IF Observer type is device",
+			"Constraint":"CID 270-“ObserverType”",
+			"TID_order":"1"
+		}
+	},
+	"Childs":{
+		"2":{
+
+			"NL":"h1",
+			"Rel_With_Parent":"HAS OBS CONTEXT",
+			"VT":"INCLUDE",
+			"VM":"1",
+			"Req_Type":"MC",
+			"Condition":"IFF Row 1 value = (121006, DCM, “Person”) or Row 1 is absent",
+			"Constraint":"",
+			"Name":"T1003",
+			"Type":"TID",
+			"TID_order":"2",
+			"File_Name":"T1003.json"
+		},
+		"3":{
+			"NL":"h1",
+			"Rel_With_Parent":"HAS OBS CONTEXT",
+			"VT":"INCLUDE",
+			"VM":"1",
+			"Req_Type":"MC",
+			"Condition":"IFF Row 1 value = (121007, DCM, “Device”)",
+			"Constraint":"",
+			"Name":"T1004",
+			"Type":"TID",
+			"TID_order":"3",
+			"File_Name":"T1004.json"
+		}
+	}
+}

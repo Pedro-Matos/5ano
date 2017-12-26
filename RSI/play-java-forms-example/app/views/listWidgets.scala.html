@@ -51,12 +51,12 @@
                     </pre>
                 </div>
                 
-                @b3.text(form("doctorName"), '_label -> "Doctor Name", 'placeholder -> "Name...")
-                @b3.text(form("patientName"), '_label -> "Patient Name", 'placeholder -> "Name...")
-                @b3.text(form("patientid"), '_label -> "Patient Id", 'placeholder -> "Id...")
-                @b3.text(form("birth_date"), '_label -> "Patient Birthday", 'placeholder -> "Birth day")
-                @b3.text(form("patient_sex"), '_label -> "Patient Sex", 'placeholder -> "Patient Sex")
-                @b3.text(form("organization"), '_label -> "Hospital/Organization name", 'placeholder -> "Organization")
+                @b3.text(form("doctorName"), '_label -> "Doctor Name", 'placeholder -> "Doctor Name")
+                @b3.text(form("patientName"), '_label -> "Patient Name", 'placeholder -> "Patient Name")
+                @b3.text(form("patientid"), '_label -> "Patient Id", 'placeholder -> "Ex: 1, 2, ...")
+                @b3.text(form("birth_date"), '_label -> "Patient Birthday", 'placeholder -> "Ex: DD/MM/YYYY")
+                @b3.text(form("patient_sex"), '_label -> "Patient Sex", 'placeholder -> "F/M")
+                @b3.text(form("organization"), '_label -> "Hospital/Organization name", 'placeholder -> "Doctor's Organization")
                 @b3.text(form("language"), '_label -> "Language", 'placeholder -> "Portuguese, English...")
                 <hr/>
 
@@ -65,9 +65,9 @@
                         This part is about the exam results. They will appear in the final pdf
                     </pre>
                 </div>
-                @b3.textarea(form("physicalExaminationResults"), '_label -> "Physical Results", 'rows -> 3)
-                @b3.textarea(form("comparisontopreviousexams"), '_label -> "Previous Exams", 'rows -> 3)
-                @b3.textarea(form("findings"), '_label -> "Findings", 'rows -> 3)
+                @b3.textarea(form("physicalExaminationResults"), '_label -> "Physical Results of the exam", 'rows -> 3)
+                @b3.textarea(form("comparisontopreviousexams"), '_label -> "Previous Exams comparison to actual", 'rows -> 3)
+                @b3.textarea(form("findings"), '_label -> "Findings in this exam", 'rows -> 3)
                 @b3.textarea(form("recommendations"), '_label -> "Recommendations", 'rows -> 3)
                 @b3.textarea(form("conclusions"), '_label -> "Conclusions", 'rows -> 3)
                 <hr/>
@@ -77,12 +77,12 @@
                         This part is about the exam results. They will appear in the final pdf
                     </pre>
                 </div>
-                @b3.text(form("Pathology"), '_label -> "Pathology", 'placeholder -> "Name...")
-                @b3.text(form("pathologyResults"), '_label -> "Pathology Results", 'placeholder -> "Name...")
-                @b3.text(form("malignancyType"), '_label -> "Malignancy Type", 'placeholder -> "Name...")
-                @b3.text(form("nippleinvolved"), '_label -> "Nipple Involved", 'placeholder -> "Name...")
-                @b3.text(form("numbernodesremoved"), '_label -> "Number of nodes removed", 'placeholder -> "Name...")
-                @b3.text(form("numbernodespositive"), '_label -> "Number of nodes positive", 'placeholder -> "Name...")
+                @b3.text(form("Pathology"), '_label -> "Pathology", 'placeholder -> "Pathology detected")
+                @b3.text(form("pathologyResults"), '_label -> "Pathology Results", 'placeholder -> "Pathology results")
+                @b3.text(form("malignancyType"), '_label -> "Malignancy Type", 'placeholder -> "Malignancy Type")
+                @b3.text(form("nippleinvolved"), '_label -> "Nipple Involved", 'placeholder -> "Nipple Involved")
+                @b3.text(form("numbernodesremoved"), '_label -> "Number of nodes removed", 'placeholder -> "1,2,...")
+                @b3.text(form("numbernodespositive"), '_label -> "Number of nodes positive", 'placeholder -> "1,2,...")
                 <hr/>
 
                 <div class="container">
@@ -90,9 +90,9 @@
                         This part is about the exam results. They will appear in the final pdf
                     </pre>
                 </div>
-                @b3.text(form("distancefromnipple"), '_label -> "Distance from nipple", 'placeholder -> "Name...")
-                @b3.text(form("distancefromskin"), '_label -> "Distance from skin", 'placeholder -> "Name...")
-                @b3.text(form("distancefromchestwall"), '_label -> "Distance from chest wall", 'placeholder -> "Name...")
+                @b3.text(form("distancefromnipple"), '_label -> "Distance from nipple(mm)", 'placeholder -> "Ex: 2")
+                @b3.text(form("distancefromskin"), '_label -> "Distance from skin(mm)", 'placeholder -> "Ex: 2")
+                @b3.text(form("distancefromchestwall"), '_label -> "Distance from chest wall(mm)", 'placeholder -> "Ex: 2")
                 <hr/>
 
                 <div class="container">
@@ -100,13 +100,13 @@
                         This part is about the exam results. They will appear in the final pdf
                     </pre>
                 </div>
-                @b3.text(form("quadrant_location"), '_label -> "Quadrant Location", 'placeholder -> "Name...")
-                @b3.text(form("depth"), '_label -> "Depth", 'placeholder -> "Name...")
-                @b3.text(form("lesion_density"), '_label -> "Lesion Density", 'placeholder -> "Name...")
-                @b3.text(form("margins"), '_label -> "Margins", 'placeholder -> "Name...")
-                @b3.text(form("calcification_type"), '_label -> "Calcification Type", 'placeholder -> "Name...")
-                @b3.text(form("calcification_distribution"), '_label -> "Calcification Distribution", 'placeholder -> "Name...")
-                @b3.text(form("number_of_calc"), '_label -> "Number of calcifications", 'placeholder -> "Name...")
+                @b3.text(form("quadrant_location"), '_label -> "Quadrant Location", 'placeholder -> "Location")
+                @b3.text(form("depth"), '_label -> "Depth", 'placeholder -> "Depth")
+                @b3.text(form("lesion_density"), '_label -> "Lesion Density", 'placeholder -> "Density of the lesion")
+                @b3.text(form("margins"), '_label -> "Margins", 'placeholder -> "Margins")
+                @b3.text(form("calcification_type"), '_label -> "Calcification Type", 'placeholder -> "Type")
+                @b3.text(form("calcification_distribution"), '_label -> "Calcification Distribution", 'placeholder -> "Distribution")
+                @b3.text(form("number_of_calc"), '_label -> "Number of calcifications", 'placeholder -> "Ex:2")
                 <hr/>
 
                 <div class="container">
@@ -114,8 +114,8 @@
                         This part is about the exam results. They will appear in the final pdf
                     </pre>
                 </div>
-                @b3.textarea(form("recommended_followup"), '_label -> "Recommended Followup", 'placeholder -> "Name...")
-                @b3.text(form("recommended_followup_interval"), '_label -> "Recommended Followup Interval", 'placeholder -> "Name...")
+                @b3.textarea(form("recommended_followup"), '_label -> "Recommended Followup", 'placeholder -> "Follow up recommended")
+                @b3.text(form("recommended_followup_interval"), '_label -> "Recommended Followup Interval", 'placeholder -> "Duration of the recommendation")
                 @b3.number(form("bi_rads"), '_label -> "Bi-Rads value")
                 <hr/>
                 @b3.submit('class -> "btn btn-primary") { Send Report }

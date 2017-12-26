@@ -9,35 +9,42 @@ import RSI.Structure.TID;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
 
 /**
  * Created by pmatos9 on 17/11/17.
  */
-public class Main {
+public class DicomBoxTool {
 
 
-    public static void main(String[] args) throws IOException {
 
+    private String ideal_csv;
+    private String mapping_csv;
+    private String output_dir;
 
+    public DicomBoxTool(String ideal_csv, String mapping_csv, String output_dir){
+        this.ideal_csv = ideal_csv;
+        this.mapping_csv = mapping_csv;
+        this.output_dir = output_dir;
+    }
+
+    public void execute() throws IOException {
         /*
             Read csv information regarding the patient
          */
-        String file_csv = "ideal.csv";
+
         CsvReader csvreader = new CsvReader();
         HashMap<String, LinkedList<String>> values;
-        values = csvreader.read_patient(file_csv);
-        String map_csv = "mapping.csv";
+        values = csvreader.read_patient(ideal_csv);
+
         HashMap<String, String> mapping_values;
-        mapping_values = csvreader.read_mapping(map_csv);
+        mapping_values = csvreader.read_mapping(mapping_csv);
 
 
         /*
             Read the TID information
          */
-        File mainFolder = new File("mamo_tids");
+        File mainFolder = new File("public/mamo_tids/");
         File[] listOfFiles = mainFolder.listFiles();
         LinkedList<String > files_names = new LinkedList<>();
         for (File listOfFile : listOfFiles) {
@@ -57,7 +64,7 @@ public class Main {
             System.out.println(tid.getTriplet());
         }*/
 
-        String output_dir = "output";
+
         createDir(output_dir);
         DicomCreator d1 = new DicomCreator(tids,cids,mapping_values,values,output_dir);
         d1.CreateDicom(csvreader.getCsv_lines_n());

@@ -1,0 +1,60 @@
+{
+  "Triplet": {
+    "1":{
+      "CodeMeaning": "Volume",
+      "CodeValue": "G-D705",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "2":{
+      "CodeMeaning": "Volume estimated from single 2D region",
+      "CodeValue": "121216",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "3":{
+      "CodeMeaning": "Volume estimated from two non-coplanar 2D regions",
+      "CodeValue": "121218",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "4":{
+      "CodeMeaning": "Volume estimated from three or more non-coplanar 2D regions",
+      "CodeValue": "121217",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "5":{
+      "CodeMeaning": "Volume of sphere",
+      "CodeValue": "121222",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "6":{
+      "CodeMeaning": "Volume of ellipsoid",
+      "CodeValue": "121221",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "7":{
+      "CodeMeaning": "Volume of circumscribed sphere",
+      "CodeValue": "121220",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping": ""
+    },
+    "8":{
+      "CodeMeaning": "Volume of bounding three dimensional region",
+      "CodeValue": "121219",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping" : ""
+    }
+  }
+}

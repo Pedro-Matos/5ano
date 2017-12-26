@@ -1,8 +1,6 @@
 package controllers;
 
 import models.Widget;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.*;
@@ -14,14 +12,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import java.io.FileOutputStream;
-
-import java.io.IOException;
 
 import java.nio.file.FileVisitResult;
 
@@ -39,6 +34,7 @@ import java.util.zip.ZipEntry;
 
 import java.util.zip.ZipOutputStream;
 
+import RSI.Cli.DicomBoxTool;
 
 import static play.libs.Scala.asScala;
 
@@ -89,6 +85,11 @@ public class WidgetController extends Controller {
             foldername = upload(data);
             System.out.println(foldername);
             String zipname= "";
+            String mapping = foldername.concat("/mapping.csv");
+            String ideal = foldername.concat("/ideal.csv");
+            String output = foldername.concat("/");
+            DicomBoxTool dicombox = new DicomBoxTool(ideal, mapping,output);
+            dicombox.execute();
             zipname = GenerateZip(foldername);
             //return redirect(routes.WidgetController.listWidgets());
             return ok(new File(zipname));

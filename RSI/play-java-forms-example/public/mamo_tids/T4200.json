@@ -1,0 +1,60 @@
+{
+	"Triplet":{
+		"1":{
+			"CodeMeaning":"Breast Imaging Report",
+			"CodeValue": "111400",
+			"CodingSchemeDesignator": "DCM",
+			"CodingSchemeVersion": "",
+			"Mapping":"",
+			"Rel_With_Parent":"",
+			"VT":"CONTAINER",
+			"VM":"1",
+			"NL":"h0",
+			"Req_Type":"M",
+			"Condition":"",
+			"Constraint":"Root Node",
+			"TID_order":"1"
+			}
+		},
+	"Childs":{
+		"2":{
+			"NL":"h1",
+			"Rel_With_Parent":"HAS CONCEPT MOD",
+			"VT":"INCLUDE",
+			"VM":"1",
+			"Req_Type":"M",
+			"Condition":"",
+			"Constraint":"",
+			"Name":"T1204",
+			"Type":"TID",
+			"TID_order":"2",
+			"File_Name":"T1204.json"
+		},
+		"3":{
+			"NL":"h1",
+			"Rel_With_Parent":"CONTAINS",
+			"VT":"INCLUDE",
+			"VM":"1",
+			"Req_Type":"M",
+			"Condition":"",
+			"Constraint":"",
+			"Name":"T4202",
+			"Type":"TID",
+			"TID_order":"3",
+			"File_Name":"T4202.json"
+		},
+		"4":{
+		"NL":"h1",
+		"Rel_With_Parent":"CONTAINS",
+		"VT":"INCLUDE",
+		"VM":"1",
+		"Req_Type":"M",
+		"Condition":"",
+		"Constraint":"",
+		"Name":"T4208",
+		"Type":"TID",
+		"TID_order":"4",
+		"File_Name":"T4208.json"
+		}
+	}
+}

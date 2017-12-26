@@ -1,7 +1,5 @@
 package RSI.Structure;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Pedro Matos

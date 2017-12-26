@@ -1,0 +1,94 @@
+{
+  "Triplet":{
+    "1":{
+      "CodeMeaning":"Specimen UID",
+      "CodeValue": "121039",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"",
+      "VT":"UIDREF",
+      "NL":"h0",
+      "VM":"1",
+      "Req_Type":"U",
+      "Condition":"",
+      "Constraint":"",
+      "TID_order":"1"
+    },
+    "3":{
+      "CodeMeaning":"Specimen Identifier",
+      "CodeValue": "121041",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"",
+      "VT":"TEXT",
+      "NL":"h0",
+      "VM":"1",
+      "Req_Type":"U",
+      "Condition":"",
+      "Constraint":"",
+      "TID_order":"3"
+    },
+    "4":{
+      "CodeMeaning":"Issuer of Specimen Identifier",
+      "CodeValue": "111724",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"",
+      "VT":"TEXT",
+      "NL":"h0",
+      "VM":"1",
+      "Req_Type":"U",
+      "Condition":"",
+      "Constraint":"See Content Item descriptions",
+      "TID_order":"4"
+    },
+    "5":{
+      "CodeMeaning":"Specimen Type",
+      "CodeValue": "R-00254",
+      "CodingSchemeDesignator": "SRT",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"",
+      "VT":"CODE",
+      "NL":"h0",
+      "VM":"1",
+      "Req_Type":"U",
+      "Condition":"",
+      "Constraint":"CID 8103 “Anatomic Pathology Specimen Types”",
+      "TID_order":"5"
+    },
+    "6":{
+      "CodeMeaning":"Specimen Container Identifier",
+      "CodeValue": "111700",
+      "CodingSchemeDesignator": "DCM",
+      "CodingSchemeVersion": "",
+      "Mapping":"",
+      "Rel_With_Parent":"",
+      "VT":"TEXT",
+      "NL":"h0",
+      "VM":"1",
+      "Req_Type":"U",
+      "Condition":"",
+      "Constraint":"",
+      "TID_order":"6"
+    }
+  },
+  "Childs":{
+    "2":{
+      "NL":"h0",
+      "Rel_With_Parent":"",
+      "VT":"INCLUDE",
+      "VM":"1",
+      "Req_Type":"UC",
+      "Condition":"IFF the source of the specimen is a human or animal patient",
+      "Constraint":"",
+      "Name":"T1007",
+      "Type":"TID",
+      "TID_order":"2",
+      "File_Name":"T1007.json"
+    }
+  }
+}

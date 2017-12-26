@@ -4,15 +4,13 @@ import RSI.Structure.CID;
 import RSI.Structure.Childs;
 import RSI.Structure.TID;
 import RSI.Structure.Triplet;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import org.dcm4che2.data.*;
 import org.dcm4che2.io.DicomOutputStream;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
+
 
 
 /**

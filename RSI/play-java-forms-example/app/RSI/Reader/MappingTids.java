@@ -3,17 +3,11 @@ package RSI.Reader;
 import RSI.Structure.CID;
 import RSI.Structure.TID;
 import com.google.gson.Gson;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 /**
