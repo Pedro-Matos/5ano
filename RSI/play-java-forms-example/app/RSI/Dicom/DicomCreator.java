@@ -442,6 +442,7 @@ public class DicomCreator {
         LinkedList<String> tmp_l;
 
 
+
         DicomObject d1 = new BasicDicomObject();
 
         d1.putString(Tag.RelationshipType, VR.CS, "HAS OBS CONTEXT");
@@ -458,7 +459,7 @@ public class DicomCreator {
         d1_e.addDicomObject(d1_o);
 
         try{
-            tmp_l = real_values.get(mapping_values.get("ObserverName"));
+            tmp_l = real_values.get(mapping_values.get("ReferringPhysicianName"));
             d1.putString(Tag.PersonName, VR.PN, tmp_l.get(index));
             System.out.println("ObserverName: "+tmp_l.get(index));
         }
@@ -515,9 +516,9 @@ public class DicomCreator {
         d2_e.addDicomObject(d2_o);
 
         try{
-            tmp_l = real_values.get(mapping_values.get("ObserverOrganizationName"));
+            tmp_l = real_values.get(mapping_values.get("ResponsibleOrganization"));
             d2.putString(Tag.TextValue, VR.UT, tmp_l.get(index));
-            System.out.println("ObserverOrganizationName: "+tmp_l.get(index));
+            System.out.println("ResponsibleOrganization: "+tmp_l.get(index));
         }
         catch (Exception e){
             d2.putString(Tag.TextValue, VR.UT, "Not referred.");
@@ -543,12 +544,12 @@ public class DicomCreator {
         d3_e.addDicomObject(d3_o);
 
         try{
-            tmp_l = real_values.get(mapping_values.get("Description"));
+            tmp_l = real_values.get(mapping_values.get("111423"));
             d3.putString(Tag.TextValue, VR.UT, tmp_l.get(index));
             System.out.println("Physical Examination Results: "+tmp_l.get(index));
         }
         catch (Exception e){
-            d3.putString(Tag.TextValue, VR.UT, "The Description was not presented.");
+            d3.putString(Tag.TextValue, VR.UT, "The Physical Examination Results was not presented.");
         }
 
         pdf_fields.addDicomObject(d3);
@@ -571,13 +572,13 @@ public class DicomCreator {
         d4_e.addDicomObject(d4_o);
 
         try{
-            tmp_l = real_values.get(mapping_values.get("Diagnosis"));
+            tmp_l = real_values.get(mapping_values.get("111424"));
             d4.putString(Tag.TextValue, VR.UT, tmp_l.get(index));
             System.out.println("Comparison to previous exams: "+tmp_l.get(index));
 
         }
         catch (Exception e){
-            d4.putString(Tag.TextValue, VR.UT, "The Diagnosis was not presented.");
+            d4.putString(Tag.TextValue, VR.UT, "The Comparison To Previous Exams was not presented.");
         }
 
 
@@ -601,13 +602,13 @@ public class DicomCreator {
         d5_e.addDicomObject(d5_o);
 
         try{
-            tmp_l = real_values.get(mapping_values.get("Treatment"));
+            tmp_l = real_values.get(mapping_values.get("121070"));
             d5.putString(Tag.TextValue, VR.UT, tmp_l.get(index));
             System.out.println("Findings: "+tmp_l.get(index));
 
         }
         catch (Exception e){
-            d5.putString(Tag.TextValue, VR.UT, "The Treatment was not presented.");
+            d5.putString(Tag.TextValue, VR.UT, "The Findings was not presented.");
         }
 
         pdf_fields.addDicomObject(d5);
@@ -628,11 +629,12 @@ public class DicomCreator {
         d6_e.addDicomObject(d6_o);
 
         try{
-            //tmp_l = real_values.get(mapping_values.get("Treatment"));
-            d6.putString(Tag.TextValue, VR.UT, "outro");
+            tmp_l = real_values.get(mapping_values.get("121076"));
+            d6.putString(Tag.TextValue, VR.UT, tmp_l.get(index));
+            System.out.println("Conclusions: "+tmp_l.get(index));
         }
         catch (Exception e){
-            d6.putString(Tag.TextValue, VR.UT, "The Treatment was not presented.");
+            d6.putString(Tag.TextValue, VR.UT, "The Conclusions was not presented.");
         }
 
         pdf_fields.addDicomObject(d6);

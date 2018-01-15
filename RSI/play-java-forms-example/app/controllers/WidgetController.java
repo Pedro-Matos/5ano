@@ -114,6 +114,17 @@ public class WidgetController extends Controller {
             hora_final = hora_final.concat(abc);
         }
 
+        String bday = data.getBirth_date();
+        String[] bday_split = bday.split("/");
+        String bday_remade = "";
+        int counter_bday = 0;
+        for(String b : bday_split){
+            if(counter_bday == 0)
+                bday_remade = bday_remade.concat(b);
+            else
+                bday_remade = bday_remade.concat(":"+b);
+            counter_bday++;
+        }
 
         String type = "";
         String dir = "public/outputs/";
@@ -175,7 +186,7 @@ public class WidgetController extends Controller {
                             +"/"+data.getRecommended_followup()+"/"+data.getRecommended_followup_interval()
                             +"/"+Integer.toString(data.getBi_rads())
                             +"/"+data.getDoctorName()+"/"+data.getPatientName()+"/"+
-                            Integer.toString(data.getPatientid())+"/"+data.getBirth_date()+"/"+data.getPatient_sex()
+                            Integer.toString(data.getPatientid())+"/"+bday_remade+"/"+data.getPatient_sex()
                     +"/"+data.getOrganization()+"/"+data.getLanguage()+
             "/" + data_final+"/" +hora_final);
 
