@@ -1,0 +1,44 @@
+1. Conjugar conceitos relacionados com o archive no âmbito do pacs (aquisição,arquivo, distribuição, compressão, qualidade de imagem e mais uns)
+
+2. Falar na comunicação dicom; dizer os intervenientes e os workflows dos serviços e dar exemplos com diagramas
+
+3. O que é um Dicom persistent object e falar dele
+
+An instance of a data object as defined by [DICOM PS 3.3] that has been allocated an unique identifier in the format specified for SOP Instance UID in [DICOM PS 3.3] 
+and has been chosen as an object to be saved securely for some period of time. Within the DICOM Standard, a DICOM Persistent Object
+ is referred to as a Composite Service Object Pair (SOP) Instance.
+
+4. PACS na cloud (o que é, pa que serve, vantagens e desvanstagens)
+
+Ao utilizarmos um serviço PACS na Cloud, estamos também a promover a partilha de informação entre instituições, 
+de forma a criar um PACS Regional.
+
+Vantagens:
+	-> Redução da infraestrutura tecnológina no lado organizacional
+	-> Redução da manutenção do servidor
+	-> Redução dos custos
+	-> Redução nos gastos energéticos e da climatização do ar nos servidores
+	-> Redução das licenças necessárias
+	-> Acesso às aplicações e dados em todo lado e a qualquer hora
+Desvantagens:
+	-> Possibilidade de existência de problemas de privacidade e confidencialidade
+	-> Fraca interoperabilidade com os protocolos existentes
+	-> Atrasos no acesso aos dads/aplicações
+
+5. Explique o que entende por PACS - Data Analysis e dê exemplos e indique mais valias
+
+The patient oriented approach: attribute "PatientID” was used in the search query, as well other associated data. 
+Ex: Identify clinical features that may represent areas for practice improvement.
+
+•  Approach with clinical objective goals
+•  Research can be made building diverse queries over different attributes
+•  Query focus is the data associated with the "PatientID" attribute
+
+The study oriented approach: the data analysis was made over the mammographic study. The query structure selected was based
+on the "StudyDescription" attribute with the text value “BREAST”.
+Ex: Know the number of studies and population x-ray exposure level in such studies.
+
+•  Query focus was the data associated with the "StudyDescription" attribute
+•  Approach with radiation exposure assessment objective goals in mammographic studies
+•  Research can be made building diverse queries over different attributes 
+(e.g. number of projections taken, interval time and exposure level)
